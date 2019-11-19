@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Image;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,8 +12,20 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function home()
+    {
+        $images = Image::orderBy('id','asc')->get();
+        return view('home',compact('images'));
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function index()
     {
-        return view('home');
+        $images = Image::orderBy('id','asc')->get();
+        return view('index',compact('images'));
     }
 }

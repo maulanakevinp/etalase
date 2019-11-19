@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/', 'HomeController@index')->name('home.index');
+Route::get('/', 'HomeController@home')->name('home.home');
+Route::get('/gallery', 'HomeController@index')->name('home.index');
 
 Auth::routes([
     'register' => false, // Registration Routes...

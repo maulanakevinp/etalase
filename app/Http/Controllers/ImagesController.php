@@ -48,7 +48,7 @@ class ImagesController extends Controller
     public function update(Request $request, Image $image)
     {
         $request->validate([
-            'image' => ['required','image','mimes:jpeg,png,gif'],
+            'image' => ['image','mimes:jpeg,png,gif'],
             'text'  => ['required']
         ]);
         if ($request->image) {
