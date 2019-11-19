@@ -15,8 +15,7 @@
     <link rel="stylesheet" href="{{ url('/') }}/assets/css/animate.css">
     <link rel="stylesheet" href="{{ url('/') }}/assets/css/style.css">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ url('/') }}/assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="shortcut icon" href="{{ url('/') }}/assets/ico/favicon.png">
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="{{ asset('logo/logo etalase.png') }}" type="image/x-icon">
     <script src="{{ url('/') }}/assets/vendors/jquery.min.js"></script>
     <script src="{{ url('/') }}/assets/owlcarousel/owl.carousel.js"></script>
 </head>
