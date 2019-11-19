@@ -23,7 +23,7 @@
 <body style="padding:0;">
     <section id="demos">
         <div class="title">
-            <h1 class="font-title">GALERI UKMK ETALASE</h1>
+            <h1 class="font-title">GALLERY UKMK ETALASE</h1>
         </div>
         <div class="image-camera">
             <img src="{{ url('/') }}/assets/images/3.png" alt="">
