@@ -28,9 +28,17 @@
         <div class="image-camera">
             <img src="{{ url('/') }}/assets/images/3.png" alt="">
             <div class="content-camera">
-                {{ $i=1 }}
+                @php
+                    $i = 1;
+                @endphp
+                <img src="{{ asset('img/'.$images[0]->image) }}" alt="" class="j" id="{{ $i }}">
                 @foreach ($images as $image)
-                    <img src="{{ asset('img/'.$image->image) }}" alt="" class="camera in-camera j" id="{{ $i++ }}">
+                    @if ($image->image != $images[0]->image)
+                        @php
+                            $i++;
+                        @endphp
+                <img src="{{ asset('img/'.$image->image) }}" alt="" class="camera in-camera j" id="{{ $i }}">
+                    @endif
                 @endforeach
             </div>
             <a href="{{ route('home.index') }}" class="btn-view animated infinite bounce delay-2s">View All</a>
