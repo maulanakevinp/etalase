@@ -31,13 +31,13 @@
                 @php
                     $i = 1;
                 @endphp
-                <img src="{{ asset('img/'.$images[0]->image) }}" alt="" class="j" id="{{ $i }}">
+                <img src="{{ asset('img/'.$images[0]->image) }}" alt="" class="camera in-camera j" id="{{ $i }}">
                 @foreach ($images as $image)
                     @if ($image->image != $images[0]->image)
                         @php
                             $i++;
                         @endphp
-                <img src="{{ asset('img/'.$image->image) }}" alt="" class="camera in-camera j" id="{{ $i }}">
+                <img src="{{ asset('img/'.$image->image) }}" alt="" class="camera in-camera" id="{{ $i }}">
                     @endif
                 @endforeach
             </div>
