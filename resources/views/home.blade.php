@@ -59,7 +59,7 @@
                 loop: true,
                 margin: 10,
                 autoplay: true,
-                autoplayTimeout: 3000,
+                autoplayTimeout: 6000,
                 center: true,
                 animateOut: 'zoomOutLeft',
                 animateIn: 'zoomInRight',
