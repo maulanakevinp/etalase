@@ -30,12 +30,11 @@ Images - {{ config('app.name') }}
         <div class="col-md-6 mb-3">
             <div class="card shadow h-100">
                 <div class="card-body">
-                    <img class="mb-1" src="{{ asset('img/'. $image->image) }}" alt="{{ $image->image }}" width="100%" height="250px">
+                    <img src="{{ asset('img/'. $image->image) }}" alt="{{ $image->image }}" width="100%" height="250px">
                     <form action=" {{ route('images.update' ,['image' => $image->id]) }} " method="post" enctype="multipart/form-data">
                         @method('patch')
                         @csrf
                         <div class="form-group mb-3">
-                            <label>Foto</label>
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="image" name="image" aria-describedby="image">
                                 <label class="custom-file-label" for="image">Pilih foto</label>
@@ -43,11 +42,11 @@ Images - {{ config('app.name') }}
                             <div class="input-group-append">
                             </div>
                         </div>
-                        <div class="form-group mb-3">
+                        {{-- <div class="form-group mb-3">
                             <label>Keterangan</label>
                             <input type="text" name="text" id="text" class="form-control" value="{{ old('text', $image->text) }}">
                             {!! $errors->first('text', '<span class="invalid-feedback" role="alert">:message</span>') !!}
-                        </div>
+                        </div> --}}
                         <button class="btn btn-success float-right" type="submit">Perbarui</button>
                     </form>
                     <form class="mb-3" action="{{ route('images.destroy' , ['image' => $image->id]) }}" method="post">
@@ -88,11 +87,11 @@ Images - {{ config('app.name') }}
                         </div>
                         {!! $errors->first('image', '<span class="invalid-feedback" role="alert">:message</span>') !!}
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label>Keterangan</label>
                         <input type="text" name="text" id="text" class="form-control">
                         {!! $errors->first('text', '<span class="invalid-feedback" role="alert">:message</span>') !!}
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>

@@ -29,11 +29,11 @@ class ImagesController extends Controller
     {
         $request->validate([
             'image' => ['required','image','mimes:jpeg,png,gif'],
-            'text'  => ['required']
+            // 'text'  => ['nullable']
         ]);
         Image::create([
             'image' => $this->setImageUpload($request->image,'img'),
-            'text'  => $request->text
+            // 'text'  => $request->text
         ]);
         return back()->with('success','Foto berhasil ditambahkan');
     }
@@ -48,13 +48,13 @@ class ImagesController extends Controller
     public function update(Request $request, Image $image)
     {
         $request->validate([
-            'image' => ['image','mimes:jpeg,png,gif'],
-            'text'  => ['required']
+            'image' => ['required','image','mimes:jpeg,png,gif'],
+            // 'text'  => ['nullable']
         ]);
         if ($request->image) {
             $image->image = $this->setImageUpload($request->image,'img',$image->image);
         }
-        $image->text = $request->text;
+        // $image->text = $request->text;
         $image->save();
         return back()->with('success','Foto berhasil diperbarui');
     }
