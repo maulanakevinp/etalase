@@ -28,7 +28,7 @@ class ImagesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => ['required','image','mimes:jpeg,png,gif'],
+            'image' => ['required','image','mimes:jpeg,png,gif','max:10248'],
             // 'text'  => ['nullable']
         ]);
         Image::create([
@@ -48,7 +48,7 @@ class ImagesController extends Controller
     public function update(Request $request, Image $image)
     {
         $request->validate([
-            'image' => ['required','image','mimes:jpeg,png,gif'],
+            'image' => ['required','image','mimes:jpeg,png,gif','max:10248'],
             // 'text'  => ['nullable']
         ]);
         if ($request->image) {
