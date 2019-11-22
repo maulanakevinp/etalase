@@ -20,8 +20,7 @@ class Controller extends BaseController
             }
             return $file_name;
         } else {
-            Alert::error('Foto gagal diunggah', 'gagal')->persistent('tutup');
-            return back()->with('Foto gagal diunggah', 'gagal');
+            return back()->with('failed','Foto gagal diunggah');
         }
     }
 }
