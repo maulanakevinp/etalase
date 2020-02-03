@@ -11,9 +11,14 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', 'HomeController@home')->name('home.home');
 Route::get('/gallery', 'HomeController@index')->name('home.index');
-
+Route::get('/tes', function(){
+    return view('layouts.master');
+});
 Auth::routes([
     'register' => false, // Registration Routes...
     'reset' => false, // Password Reset Routes...
