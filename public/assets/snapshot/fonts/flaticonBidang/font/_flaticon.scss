@@ -1,0 +1,50 @@
+    /*
+    Flaticon icon font: Flaticon
+    Creation date: 27/03/2020 16:55
+    */
+
+    @font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.woff2") format("woff2"),
+       url("./Flaticon.woff") format("woff"),
+       url("./Flaticon.ttf") format("truetype"),
+       url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+    .fi:before{
+        display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    }
+
+    .flaticon-music:before { content: "\f100"; }
+.flaticon-belly-dance:before { content: "\f101"; }
+.flaticon-theater:before { content: "\f102"; }
+.flaticon-choir:before { content: "\f103"; }
+.flaticon-camera:before { content: "\f104"; }
+    
+    $font-Flaticon-music: "\f100";
+    $font-Flaticon-belly-dance: "\f101";
+    $font-Flaticon-theater: "\f102";
+    $font-Flaticon-choir: "\f103";
+    $font-Flaticon-camera: "\f104";

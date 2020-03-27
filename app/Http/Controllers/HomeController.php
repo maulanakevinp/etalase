@@ -14,8 +14,10 @@ class HomeController extends Controller
      */
     public function home()
     {
-        $images = Image::orderBy('id','asc')->get();
-        return view('welcome',compact('images'));
+        // $images = Image::orderBy('id','asc')->get();
+        // return view('welcome',compact('images'));
+
+        return view('snapshot');
     }
 
     /**

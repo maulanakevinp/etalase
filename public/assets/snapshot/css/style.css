@@ -1014,6 +1014,14 @@ pre {
     margin-left: 91.66667%; } }
 
 @media (min-width: 992px) {
+  .btn-kotak {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 15px 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #9da1a5;
+    font-size: 10px;
+    letter-spacing: 1px; }
   .col-lg {
     -ms-flex-preferred-size: 0;
     flex-basis: 0;
