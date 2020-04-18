@@ -356,7 +356,7 @@
             <div class="row">
                 <div class="col-4"></div>
                 <div class="col-4 text-center">
-                    <button class="btn btn-primary mt-4">Load More</button>
+                    <a href="{{ url('/gallery') }}" class="btn btn-primary mt-4">Load More</a>
                 </div>
                 <div class="col-4"></div>
             </div>
