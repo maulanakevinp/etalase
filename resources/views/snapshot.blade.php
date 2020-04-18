@@ -106,9 +106,10 @@
     			</div>
     			<div class="col-md-6 col-lg-6 pl-md-5">
 	          <div class="heading-section ftco-animate">
-	            <h2 class="mb-4">Snapshot is A Creative Direction, <br>Photography Agency</h2>
-	            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-
+	            <h2 class="mb-4">Etalase... <br></h2>
+	            <p>Etalase adalah lkajeqjwdnm lasnlqw smd clqwkndna slkjdq lkjsae lkajseqj lkjqkjwe alkjsd alksjdq
+              alksjdljqw lkdjqlkjd alskj dlqkj lkjaslkdj ljelk lka d qlkwjldjq kljsf ioeurlns ch kjw k jhkqwh kajdh
+            klndqj lkj asdnmnqw kjasd lkweoiu kjasd khwe</p>
 	            <div class="counter-wrap ftco-animate d-flex my-md-4">
 	              <div class="text">
 	              	<p class="mb-4">
@@ -121,10 +122,24 @@
 		            <div class="img img-about-2 mr-2" style="background-image:url({{ url('/') }}/assets/snapshot/images/about.jpg);"></div>
 		            <div class="img img-about-2 ml-2" style="background-image:url({{ url('/') }}/assets/snapshot/images/about-3.jpg);"></div>
 		          </div>
-		          <blockquote class="blockquote mt-5">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="col-md-3" style="padding: 1.5rem">
+                    <a href="#">
+                    <p class="btn-kotak">Profil Etalase <span class="ion-ios-arrow-round-forward"></span></p>
+                    </a>
+                  </div>
+                  <div class="col-md-3" style="padding: 1.5rem">
+                    <a href="#">
+                    <p class="btn-kotak">Sejarah Etalase <span class="ion-ios-arrow-round-forward"></span></p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+		          <!-- <blockquote class="blockquote mt-5">
 		          	<p class="mb-2">"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.."</p>
 		          	<span>&mdash; Lucy Lee</span>
-		          </blockquote>
+		          </blockquote> -->
 	          </div>
 	        </div>
         </div>
@@ -226,12 +241,12 @@
 
 					        <!-- Progress bar 1 -->
 					        <div class="progress mx-auto" data-value='80'>
-					          <span class="progress-left">
+					          <!-- <span class="progress-left">
 		                  <span class="progress-bar border-primary"></span>
 					          </span>
 					          <span class="progress-right">
 		                  <span class="progress-bar border-primary"></span>
-					          </span>
+					          </span> -->
 					          <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
 					            <div class="h5">80<sup class="small">%</sup></div>
 					          </div>
@@ -246,12 +261,12 @@
 
 					        <!-- Progress bar 1 -->
 					        <div class="progress mx-auto" data-value='75'>
-					          <span class="progress-left">
+					          <!-- <span class="progress-left">
 		                  <span class="progress-bar border-primary"></span>
 					          </span>
 					          <span class="progress-right">
 		                  <span class="progress-bar border-primary"></span>
-					          </span>
+					          </span> -->
 					          <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
 					            <div class="h5">75<sup class="small">%</sup></div>
 					          </div>
