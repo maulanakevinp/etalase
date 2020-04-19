@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Image;
+use App\m_structure;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -15,7 +16,8 @@ class HomeController extends Controller
     public function home()
     {
         $images = Image::orderBy('id','asc')->paginate(9);
-        return view('snapshot',compact('images'));
+        $structure = m_structure::get();
+        return view('snapshot',compact('images' , 'structure'));
     }
 
     /**
@@ -26,6 +28,12 @@ class HomeController extends Controller
     public function index()
     {
         $images = Image::orderBy('id','asc')->paginate(8);
-        return view('index',compact('images'));
+
+        return view('index',compact('images' ));
     }
+    public function structure(){
+        $structure = m_structure::get();
+        return view('structure',compact('structure'));
+    }
+
 }
