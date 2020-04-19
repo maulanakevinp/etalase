@@ -26,7 +26,7 @@
             </li>
             <li>
                 <a data-scroll="testimonial" href="#testimonial" class="dot">
-                    <span>Testimony</span>
+                    <span>Structure</span>
                 </a>
             </li>
             <li>
@@ -305,8 +305,8 @@
             <div class="row no-gutters">
                 @foreach ($images as $image)
                     <div class="col-md-4 ftco-animate">
-                        <div class="model img d-flex align-items-end" style="background-image:url({{ asset('img/'.$image->image) }});">
-                            <a href="{{ asset('img/'.$image->image) }}" class="icon image-popup d-flex justify-content-center align-items-center">
+                        <div class="model img d-flex align-items-end" style="background-image:url({{ asset('img/gallery/'.$image->image) }});">
+                            <a href="{{ asset('img/gallery/'.$image->image) }}" class="icon image-popup d-flex justify-content-center align-items-center">
                                 <span class="icon-expand"></span>
                             </a>
                             <div class="desc w-100 px-4">
@@ -322,7 +322,7 @@
             <div class="row">
                 <div class="col-4"></div>
                 <div class="col-4 text-center">
-                    <a href="{{ url('/gallery') }}" class="btn btn-primary mt-4">Load More</a>
+                    <a href="{{ route('gallery') }}" class="btn btn-primary mt-4">Load More</a>
                 </div>
                 <div class="col-4"></div>
             </div>
@@ -342,32 +342,25 @@
             <div class="row ftco-animate">
                 <div class="col-md-12">
                     <div class="carousel-testimony owl-carousel">
-                        @foreach ($structure as $s)
-                            
-                        <div class="item">
-                            <div class="testimony-wrap p-4 pb-5">
-                                <div class="user-img mb-4"
-                                    style="background-image:url({{ url('/') }}/assets/snapshot/images/person_1.jpg)">
-                                    <span class="quote d-flex align-items-center justify-content-center">
-                                        <i class="icon-quote-left"></i>
-                                    </span>
-                                </div>
-                                <div class="text">
-                                    <p class="mb-5 pl-4 line">{{$s->jabatan}}</p>
-                                    <div class="pl-5">
-                                        <p class="name">{{$s->nama}}</p>
-                                        <span class="position">{{$s->NIA}}</span>
+                        @foreach ($structures as $structure)
+                            <div class="item">
+                                <div class="testimony-wrap p-4 pb-5">
+                                    <div class="user-img mb-4"
+                                        style="background-image:url({{ $structure->image == "noimage.jpg" ? asset('noimage.jpg') : asset('img/anggota/'.$structure->image) }})">
+                                        <span class="quote d-flex align-items-center justify-content-center">
+                                            <i class="icon-quote-left"></i>
+                                        </span>
+                                    </div>
+                                    <div class="text">
+                                        <p class="mb-5 pl-4 line">{{$structure->jabatan}}</p>
+                                        <div class="pl-5">
+                                            <p class="name">{{$structure->nama}}</p>
+                                            <span class="position">{{$structure->nia}}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
                         @endforeach
-                    </div>
-                    <div class="row col-md-12">
-                        <div class="col-4 mx-auto text-center">
-                        <a href="{{ url('/structure')}}" class="btn btn-primary mt-4">Read More</a>
-                        </div>
                     </div>
                 </div>
             </div>

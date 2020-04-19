@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Image;
-use File;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 
 class ImagesController extends Controller
@@ -32,7 +32,7 @@ class ImagesController extends Controller
             // 'text'  => ['nullable']
         ]);
         Image::create([
-            'image' => $this->setImageUpload($request->image,'img'),
+            'image' => $this->setImageUpload($request->image,'img/gallery'),
             // 'text'  => $request->text
         ]);
         return back()->with('success','Foto berhasil ditambahkan');
@@ -52,7 +52,7 @@ class ImagesController extends Controller
             // 'text'  => ['nullable']
         ]);
         if ($request->image) {
-            $image->image = $this->setImageUpload($request->image,'img',$image->image);
+            $image->image = $this->setImageUpload($request->image,'img/gallery',$image->image);
         }
         // $image->text = $request->text;
         $image->save();
@@ -67,7 +67,7 @@ class ImagesController extends Controller
      */
     public function destroy(Image $image)
     {
-        File::delete(public_path('img' . '/' . $image->image));
+        File::delete(public_path('img/gallery' . '/' . $image->image));
         $image->delete();
         return back()->with('success','Foto berhasil dihapus');
     }

@@ -12,26 +12,25 @@
     <div class="row ftco-animate">
         <div class="col-md-12">
             <div class="carousel-testimony owl-carousel">
-                @foreach ($structure as $s)
-                    
+                @foreach ($structures as $structure)
+
                 <div class="item">
                     <div class="testimony-wrap p-4 pb-5">
                         <div class="user-img mb-4"
-                            style="background-image:url({{ url('/') }}/assets/snapshot/images/person_1.jpg)">
+                            style="background-image:url({{ $structure->image == "noimage.jpg" ? asset('noimage.jpg') : asset('img/anggota/'.$structure->image) }})">
                             <span class="quote d-flex align-items-center justify-content-center">
                                 <i class="icon-quote-left"></i>
                             </span>
                         </div>
                         <div class="text">
-                            <p class="mb-5 pl-4 line">{{$s->jabatan}}</p>
+                            <p class="mb-5 pl-4 line">{{$structure->jabatan}}</p>
                             <div class="pl-5">
-                                <p class="name">{{$s->nama}}</p>
-                                <span class="position">{{$s->NIA}}</span>
+                                <p class="name">{{$structure->nama}}</p>
+                                <span class="position">{{$structure->NIA}}</span>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 @endforeach
             </div>
         </div>

@@ -31,13 +31,13 @@
                 @php
                     $i = 1;
                 @endphp
-                <img src="{{ asset('img/'.$images[0]->image) }}" alt="" class="camera in-camera j" id="{{ $i }}">
+                <img src="{{ asset('img/gallery/'.$images[0]->image) }}" alt="" class="camera in-camera j" id="{{ $i }}">
                 @foreach ($images as $image)
                     @if ($image->image != $images[0]->image)
                         @php
                             $i++;
                         @endphp
-                <img src="{{ asset('img/'.$image->image) }}" alt="" class="camera in-camera" id="{{ $i }}">
+                <img src="{{ asset('img/gallery/'.$image->image) }}" alt="" class="camera in-camera" id="{{ $i }}">
                     @endif
                 @endforeach
             </div>
@@ -46,7 +46,7 @@
         <div class="owl-carousel owl-theme" style="margin:0;">
             @foreach ($images as $image)
                 <div class="item" style="margin: 0;padding: 0;">
-                    <img src="{{ asset('img/'.$image->image) }}" alt="">
+                    <img src="{{ asset('img/gallery/'.$image->image) }}" alt="">
                 </div>
             @endforeach
         </div>
@@ -80,7 +80,7 @@
                 onDragged: callback
             });
         function callback(event) {
-            
+
         }
         owl.on('changed.owl.carousel', function (event) {
             var slider = Math.round(event.item.count / 2) - 1;
