@@ -1,7 +1,5 @@
 @extends('layouts.master')
 @section('content')
-
-
     <nav id="navbar" class="navbar">
         <ul class="nav-menu">
             <li>
@@ -16,7 +14,7 @@
             </li>
             <li>
                 <a data-scroll="services" href="#services" class="dot">
-                    <span>Services</span>
+                    <span>Bidang</span>
                 </a>
             </li>
             <li>
@@ -52,8 +50,7 @@
                         <h1 class="mb-4">UKM KESENIAN <br>ETALASE</h1>
                         <p class="mb-4">A small river named Duden flows by their place and supplies it with the
                             necessary regelialia. It is a paradisematic country, in which roasted parts.</p>
-                        <p class="mt-5"><a href="#" class="btn-custom">Find More <span
-                                    class="ion-ios-arrow-round-forward"></span></a></p>
+                        <p class="mt-5"><a href="#" class="btn-custom">Find More <span class="ion-ios-arrow-round-forward"></span></a></p>
                     </div>
                 </div>
             </div>
@@ -82,11 +79,7 @@
                 <div class="col-md-6 col-lg-6 pl-md-5">
                     <div class="heading-section ftco-animate">
                         <h2 class="mb-4">Etalase... <br></h2>
-                        <p>Etalase adalah lkajeqjwdnm lasnlqw smd clqwkndna slkjdq lkjsae lkajseqj lkjqkjwe alkjsd
-                            alksjdq
-                            alksjdljqw lkdjqlkjd alskj dlqkj lkjaslkdj ljelk lka d qlkwjldjq kljsf ioeurlns ch kjw k
-                            jhkqwh kajdh
-                            klndqj lkj asdnmnqw kjasd lkweoiu kjasd khwe</p>
+                        <p>Etalase adalah Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque ipsam quia architecto ad illo odio sapiente perferendis esse amet, maxime, necessitatibus ducimus. Inventore quis magnam commodi voluptas culpa exercitationem molestiae!</p>
                         <div class="counter-wrap ftco-animate d-flex my-md-4">
                             <div class="text">
                                 <p class="mb-4">
@@ -101,20 +94,16 @@
                             <div class="img img-about-2 ml-2"
                                 style="background-image:url({{ url('/') }}/assets/snapshot/images/about-3.jpg);"></div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="col-md-3" style="padding: 1.5rem">
-                                    <a href="#">
-                                        <p class="btn-kotak">Profil Etalase <span
-                                                class="ion-ios-arrow-round-forward"></span></p>
-                                    </a>
-                                </div>
-                                <div class="col-md-3" style="padding: 1.5rem">
-                                    <a href="#">
-                                        <p class="btn-kotak">Sejarah Etalase <span
-                                                class="ion-ios-arrow-round-forward"></span></p>
-                                    </a>
-                                </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6 pr-2">
+                                <a href="#" class="">
+                                    <p class="btn-kotak">Profil Etalase <span lass="ion-ios-arrow-round-forward"></span></p>
+                                </a>
+                            </div>
+                            <div class="col-md-6 pl-2">
+                                <a href="#">
+                                    <p class="btn-kotak">Sejarah Etalase <span class="ion-ios-arrow-round-forward"></span></p>
+                                </a>
                             </div>
                         </div>
                         <!-- <blockquote class="blockquote mt-5">
@@ -295,9 +284,8 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-4 heading-section text-center ftco-animate pb-5">
-                    <h2 class="mb-4">Selected Projects</h2>
-                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It
-                        is a paradisematic country.</p>
+                    <h2 class="mb-4">Gallery</h2>
+                    <p>Gallery Etalase adalah Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas, laboriosam ut obcaecati officiis sequi earum perspiciatis nihil veritatis a amet?</p>
                 </div>
             </div>
         </div>
