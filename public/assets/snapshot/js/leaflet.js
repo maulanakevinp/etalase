@@ -9,4 +9,4 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 L.marker([-8.165683, 113.717000]).addTo(map)
-    .bindPopup('<b>Hello world!</b><br>This is ETALASE.').openPopup();
+    .bindPopup('<b>Hello world!</b><br>This is UKMK ETALASE.').openPopup();
