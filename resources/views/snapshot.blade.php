@@ -1,42 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>UKMK Etalase</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="{{ asset('logo/logo etalase.png') }}" type="image/x-icon">
-
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,400i,700,700i&display=swap" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet"
-        href="{{ url('/') }}/assets/snapshot/{{ url('/') }}/assets/snapshot/css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url('/') }}/assets/snapshot/css/animate.css">
-
-    <link rel="stylesheet" href="{{ url('/') }}/assets/snapshot/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="{{ url('/') }}/assets/snapshot/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="{{ url('/') }}/assets/snapshot/css/magnific-popup.css">
-
-    <link rel="stylesheet" href="{{ url('/') }}/assets/snapshot/css/aos.css">
-
-    <link rel="stylesheet" href="{{ url('/') }}/assets/snapshot/css/ionicons.min.css">
-
-    <link rel="stylesheet" href="{{ url('/') }}/assets/snapshot/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="{{ url('/') }}/assets/snapshot/css/jquery.timepicker.css">
-
-
-    <!-- <link rel="stylesheet" href="{{ url('/') }}/assets/snapshot/css/flaticon.css"> -->
-    <link rel="stylesheet" href="{{ url('/') }}/assets/snapshot/css/flaticonBidang.css">
-    <link rel="stylesheet" href="{{ url('/') }}/assets/snapshot/css/icomoon.css">
-    <link rel="stylesheet" href="{{ url('/') }}/assets/snapshot/css/style.css">
-</head>
-
-<body>
-
-
+@extends('layouts.master')
+@section('content')
     <nav id="navbar" class="navbar">
         <ul class="nav-menu">
             <li>
@@ -51,7 +14,7 @@
             </li>
             <li>
                 <a data-scroll="services" href="#services" class="dot">
-                    <span>Services</span>
+                    <span>Bidang</span>
                 </a>
             </li>
             <li>
@@ -61,7 +24,7 @@
             </li>
             <li>
                 <a data-scroll="testimonial" href="#testimonial" class="dot">
-                    <span>Testimony</span>
+                    <span>Structure</span>
                 </a>
             </li>
             <li>
@@ -87,8 +50,7 @@
                         <h1 class="mb-4">UKM KESENIAN <br>ETALASE</h1>
                         <p class="mb-4">A small river named Duden flows by their place and supplies it with the
                             necessary regelialia. It is a paradisematic country, in which roasted parts.</p>
-                        <p class="mt-5"><a href="#" class="btn-custom">Find More <span
-                                    class="ion-ios-arrow-round-forward"></span></a></p>
+                        <p class="mt-5"><a href="#" class="btn-custom">Find More <span class="ion-ios-arrow-round-forward"></span></a></p>
                     </div>
                 </div>
             </div>
@@ -117,11 +79,7 @@
                 <div class="col-md-6 col-lg-6 pl-md-5">
                     <div class="heading-section ftco-animate">
                         <h2 class="mb-4">Etalase... <br></h2>
-                        <p>Etalase adalah lkajeqjwdnm lasnlqw smd clqwkndna slkjdq lkjsae lkajseqj lkjqkjwe alkjsd
-                            alksjdq
-                            alksjdljqw lkdjqlkjd alskj dlqkj lkjaslkdj ljelk lka d qlkwjldjq kljsf ioeurlns ch kjw k
-                            jhkqwh kajdh
-                            klndqj lkj asdnmnqw kjasd lkweoiu kjasd khwe</p>
+                        <p>Etalase adalah Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque ipsam quia architecto ad illo odio sapiente perferendis esse amet, maxime, necessitatibus ducimus. Inventore quis magnam commodi voluptas culpa exercitationem molestiae!</p>
                         <div class="counter-wrap ftco-animate d-flex my-md-4">
                             <div class="text">
                                 <p class="mb-4">
@@ -136,20 +94,16 @@
                             <div class="img img-about-2 ml-2"
                                 style="background-image:url({{ url('/') }}/assets/snapshot/images/about-3.jpg);"></div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="col-md-3" style="padding: 1.5rem">
-                                    <a href="#">
-                                        <p class="btn-kotak">Profil Etalase <span
-                                                class="ion-ios-arrow-round-forward"></span></p>
-                                    </a>
-                                </div>
-                                <div class="col-md-3" style="padding: 1.5rem">
-                                    <a href="#">
-                                        <p class="btn-kotak">Sejarah Etalase <span
-                                                class="ion-ios-arrow-round-forward"></span></p>
-                                    </a>
-                                </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6 pr-2">
+                                <a href="#" class="">
+                                    <p class="btn-kotak">Profil Etalase <span lass="ion-ios-arrow-round-forward"></span></p>
+                                </a>
+                            </div>
+                            <div class="col-md-6 pl-2">
+                                <a href="#">
+                                    <p class="btn-kotak">Sejarah Etalase <span class="ion-ios-arrow-round-forward"></span></p>
+                                </a>
                             </div>
                         </div>
                         <!-- <blockquote class="blockquote mt-5">
@@ -330,9 +284,8 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-4 heading-section text-center ftco-animate pb-5">
-                    <h2 class="mb-4">Selected Projects</h2>
-                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It
-                        is a paradisematic country.</p>
+                    <h2 class="mb-4">Gallery</h2>
+                    <p>Gallery Etalase adalah Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas, laboriosam ut obcaecati officiis sequi earum perspiciatis nihil veritatis a amet?</p>
                 </div>
             </div>
         </div>
@@ -340,8 +293,8 @@
             <div class="row no-gutters">
                 @foreach ($images as $image)
                     <div class="col-md-4 ftco-animate">
-                        <div class="model img d-flex align-items-end" style="background-image:url({{ asset('img/'.$image->image) }});">
-                            <a href="{{ asset('img/'.$image->image) }}" class="icon image-popup d-flex justify-content-center align-items-center">
+                        <div class="model img d-flex align-items-end" style="background-image:url({{ asset('img/gallery/'.$image->image) }});">
+                            <a href="{{ asset('img/gallery/'.$image->image) }}" class="icon image-popup d-flex justify-content-center align-items-center">
                                 <span class="icon-expand"></span>
                             </a>
                             <div class="desc w-100 px-4">
@@ -355,11 +308,9 @@
                 @endforeach
             </div>
             <div class="row">
-                <div class="col-4"></div>
-                <div class="col-4 text-center">
-                    <a href="{{ url('/gallery') }}" class="btn btn-primary mt-4">Load More</a>
+                <div class="col-4 mx-auto text-center">
+                    <a href="{{ route('gallery') }}" class="btn btn-primary mt-4">Load More</a>
                 </div>
-                <div class="col-4"></div>
             </div>
         </div>
     </section>
@@ -369,105 +320,33 @@
         <div class="container">
             <div class="row justify-content-center mb-5 pb-3">
                 <div class="col-md-4 heading-section ftco-animate">
-                    <span class="subheading">Testimony</span>
-                    <h2 class="mb-4">Our satisfied customer says</h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-                        live the blind texts. Separated they live in</p>
+                    <span class="subheading">Struktur Organisasi</span>
+                    <h2 class="mb-4">PENGURUS UKMK ETALASE</h2>
+                    <p>Berikut adalah susunan kepengurusan UKMK Etalase periode 2019 - 2020 </p>
                 </div>
             </div>
             <div class="row ftco-animate">
                 <div class="col-md-12">
                     <div class="carousel-testimony owl-carousel">
-                        <div class="item">
-                            <div class="testimony-wrap p-4 pb-5">
-                                <div class="user-img mb-4"
-                                    style="background-image:url({{ url('/') }}/assets/snapshot/images/person_1.jpg)">
-                                    <span class="quote d-flex align-items-center justify-content-center">
-                                        <i class="icon-quote-left"></i>
-                                    </span>
-                                </div>
-                                <div class="text">
-                                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the
-                                        countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <div class="pl-5">
-                                        <p class="name">Garreth Smith</p>
-                                        <span class="position">CEO Founder of Commercial Building</span>
+                        @foreach ($structures as $structure)
+                            <div class="item">
+                                <div class="testimony-wrap p-4 pb-5">
+                                    <div class="user-img mb-4"
+                                        style="background-image:url({{ $structure->image == "noimage.jpg" ? asset('noimage.jpg') : asset('img/anggota/'.$structure->image) }})">
+                                        <span class="quote d-flex align-items-center justify-content-center">
+                                            <i class="icon-quote-left"></i>
+                                        </span>
+                                    </div>
+                                    <div class="text">
+                                        <p class="mb-5 pl-4 line">{{$structure->jabatan}}</p>
+                                        <div class="pl-5">
+                                            <p class="name">{{$structure->nama}}</p>
+                                            <span class="position">{{$structure->nia}}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimony-wrap p-4 pb-5">
-                                <div class="user-img mb-4"
-                                    style="background-image:url({{ url('/') }}/assets/snapshot/images/person_2.jpg)">
-                                    <span class="quote d-flex align-items-center justify-content-center">
-                                        <i class="icon-quote-left"></i>
-                                    </span>
-                                </div>
-                                <div class="text">
-                                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the
-                                        countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <div class="pl-5">
-                                        <p class="name">Garreth Smith</p>
-                                        <span class="position">CEO Founder of Interior Design</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimony-wrap p-4 pb-5">
-                                <div class="user-img mb-4"
-                                    style="background-image:url({{ url('/') }}/assets/snapshot/images/person_3.jpg)">
-                                    <span class="quote d-flex align-items-center justify-content-center">
-                                        <i class="icon-quote-left"></i>
-                                    </span>
-                                </div>
-                                <div class="text">
-                                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the
-                                        countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <div class="pl-5">
-                                        <p class="name">Garreth Smith</p>
-                                        <span class="position">Exterior Designer</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimony-wrap p-4 pb-5">
-                                <div class="user-img mb-4"
-                                    style="background-image:url({{ url('/') }}/assets/snapshot/images/person_1.jpg)">
-                                    <span class="quote d-flex align-items-center justify-content-center">
-                                        <i class="icon-quote-left"></i>
-                                    </span>
-                                </div>
-                                <div class="text">
-                                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the
-                                        countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <div class="pl-5">
-                                        <p class="name">Garreth Smith</p>
-                                        <span class="position">Landscape Designer</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimony-wrap p-4 pb-5">
-                                <div class="user-img mb-4"
-                                    style="background-image:url({{ url('/') }}/assets/snapshot/images/person_1.jpg)">
-                                    <span class="quote d-flex align-items-center justify-content-center">
-                                        <i class="icon-quote-left"></i>
-                                    </span>
-                                </div>
-                                <div class="text">
-                                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the
-                                        countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <div class="pl-5">
-                                        <p class="name">Garreth Smith</p>
-                                        <span class="position">System Analyst</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -479,7 +358,7 @@
         <div class="container">
             <div class="row justify-content-center mb-5 pb-3">
                 <div class="col-md-4 heading-section text-center ftco-animate">
-                    <h2 class="mb-4">Contact Me</h2>
+                    <h2 class="mb-4">Contact</h2>
                     <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It
                         is a paradisematic country.</p>
                 </div>
@@ -561,59 +440,4 @@
         </div>
     </section>
     <!-- End Contact Section -->
-
-
-    <!-- Start Footer Section -->
-    <footer class="ftco-footer py-5">
-        <div class="container text-center">
-            <div class="row">
-                <div class="col-md-12 text-center">
-
-                    <p>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;<script>
-                            document.write(new Date().getFullYear());
-
-                        </script> All rights reserved | This template is made with <i class="icon-heart"
-                            aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    </p>
-
-                    <ul class="ftco-footer-social p-0">
-                        <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- End Footer Section -->
-
-
-    <!-- loader -->
-    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
-            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-                stroke="#F96D00" /></svg></div>
-
-
-    <script src="{{ url('/') }}/assets/snapshot/js/jquery.min.js"></script>
-    <script src="{{ url('/') }}/assets/snapshot/js/jquery-migrate-3.0.1.min.js"></script>
-    <script src="{{ url('/') }}/assets/snapshot/js/popper.min.js"></script>
-    <script src="{{ url('/') }}/assets/snapshot/js/bootstrap.min.js"></script>
-    <script src="{{ url('/') }}/assets/snapshot/js/jquery.easing.1.3.js"></script>
-    <script src="{{ url('/') }}/assets/snapshot/js/jquery.waypoints.min.js"></script>
-    <script src="{{ url('/') }}/assets/snapshot/js/jquery.stellar.min.js"></script>
-    <script src="{{ url('/') }}/assets/snapshot/js/owl.carousel.min.js"></script>
-    <script src="{{ url('/') }}/assets/snapshot/js/jquery.magnific-popup.min.js"></script>
-    <script src="{{ url('/') }}/assets/snapshot/js/aos.js"></script>
-    <script src="{{ url('/') }}/assets/snapshot/js/jquery.animateNumber.min.js"></script>
-    <script src="{{ url('/') }}/assets/snapshot/js/scrollax.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false">
-    </script>
-    <script src="{{ url('/') }}/assets/snapshot/js/google-map.js"></script>
-    <script src="{{ url('/') }}/assets/snapshot/js/main.js"></script>
-</body>
-
-</html>
+@endsection

@@ -7,7 +7,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
     <link rel="shortcut icon" href="{{ asset('logo/logo etalase.png') }}" type="image/x-icon">
-    
+
     <style>
         body {
             background-color: #1d1d1d !important;
@@ -65,15 +65,15 @@
         <div class="row">
             @foreach ($images as $image)
                 <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                    <a href="{{ asset('img/'.$image->image) }}" class="fancybox" rel="ligthbox">
-                        <img src="{{ asset('img/'.$image->image) }}" class="zoom img-fluid "  alt="">
+                    <a href="{{ asset('img/gallery/'.$image->image) }}" class="fancybox" rel="ligthbox">
+                        <img src="{{ asset('img/gallery/'.$image->image) }}" class="zoom img-fluid "  alt="{{ asset('img/gallery/'.$image->image) }}">
                     </a>
                 </div>
             @endforeach
         </div>
         {{ $images->links() }}
     </div>
-    
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
