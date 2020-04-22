@@ -24,7 +24,7 @@ $(document).ready(function($) {
 
 	// loader
 	var loader = function() {
-		setTimeout(function() { 
+		setTimeout(function() {
 			if($('#ftco-loader').length > 0) {
 				$('#ftco-loader').removeClass('show');
 			}
@@ -64,9 +64,9 @@ $(document).ready(function($) {
 
 	};
 	fullHeight();
-	
+
 	var counter = function() {
-		
+
 		$('#section-counter, .ftco-about').waypoint( function( direction ) {
 
 			if( direction === 'down' && !$(this.element).hasClass('ftco-animated') ) {
@@ -75,7 +75,6 @@ $(document).ready(function($) {
 				$('.number').each(function(){
 					var $this = $(this),
 						num = $this.data('number');
-						console.log(num);
 					$this.animateNumber(
 					  {
 					    number: num,
@@ -83,7 +82,7 @@ $(document).ready(function($) {
 					  }, 7000
 					);
 				});
-				
+
 			}
 
 		} , { offset: '95%' } );
@@ -96,7 +95,7 @@ $(document).ready(function($) {
 		$('.ftco-animate').waypoint( function( direction ) {
 
 			if( direction === 'down' && !$(this.element).hasClass('ftco-animated') ) {
-				
+
 				i++;
 
 				$(this.element).addClass('item-animate');
@@ -118,9 +117,9 @@ $(document).ready(function($) {
 							el.removeClass('item-animate');
 						},  k * 50, 'easeInOutExpo' );
 					});
-					
+
 				}, 100);
-				
+
 			}
 
 		} , { offset: '95%' } );
@@ -164,9 +163,9 @@ $(document).ready(function($) {
 
 
 $(function() {
-  
+
   var link = $('#navbar a.dot');
-  
+
   // Move to specific section when click on menu link
   link.on('click', function(e) {
     var target = $($(this).attr('href'));
@@ -176,13 +175,13 @@ $(function() {
     $(this).addClass('active');
     e.preventDefault();
   });
-  
+
   // Run the scrNav when scroll
   $(window).on('scroll', function(){
     scrNav();
   });
-  
-  // scrNav function 
+
+  // scrNav function
   // Change active dot according to the active section in the window
   function scrNav() {
     var sTop = $(window).scrollTop();

@@ -308,11 +308,9 @@
                 @endforeach
             </div>
             <div class="row">
-                <div class="col-4"></div>
-                <div class="col-4 text-center">
+                <div class="col-4 mx-auto text-center">
                     <a href="{{ route('gallery') }}" class="btn btn-primary mt-4">Load More</a>
                 </div>
-                <div class="col-4"></div>
             </div>
         </div>
     </section>

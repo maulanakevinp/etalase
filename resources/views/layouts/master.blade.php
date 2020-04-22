@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
 
     <link rel="stylesheet"
-        href="{{ url('/') }}/assets/snapshot/{{ url('/') }}/assets/snapshot/css/open-iconic-bootstrap.min.css">
+        href="{{ url('/') }}/assets/snapshot/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="{{ url('/') }}/assets/snapshot/css/animate.css">
 
     <link rel="stylesheet" href="{{ url('/') }}/assets/snapshot/css/owl.carousel.min.css">
