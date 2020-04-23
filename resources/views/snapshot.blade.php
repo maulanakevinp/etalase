@@ -293,16 +293,10 @@
             <div class="row no-gutters">
                 @foreach ($images as $image)
                     <div class="col-md-4 ftco-animate">
-                        <div class="model img d-flex align-items-end" style="background-image:url({{ asset('img/gallery/'.$image->image) }});">
+                        <div class="model img d-flex align-items-end" style="background-image:url('{{ asset('img/gallery/'.$image->image) }}');">
                             <a href="{{ asset('img/gallery/'.$image->image) }}" class="icon image-popup d-flex justify-content-center align-items-center">
                                 <span class="icon-expand"></span>
                             </a>
-                            <div class="desc w-100 px-4">
-                                <div class="text w-100 mb-3">
-                                    <span>Nature</span>
-                                    <h2><a href="{{asset('assets/snapshot/work-single.html')}}">Beautiful Work</a></h2>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 @endforeach

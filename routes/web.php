@@ -17,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@home')->name('home');
 Route::get('/gallery', 'HomeController@gallery')->name('gallery');
 Route::get('/structure', 'HomeController@structure')->name('structure');
-Route::get('/tes',function(){
-    return view('dashboard');
-});
+Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
 Auth::routes([
     'register' => false, // Registration Routes...
     'reset' => false, // Password Reset Routes...

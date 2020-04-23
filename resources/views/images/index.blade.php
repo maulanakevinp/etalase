@@ -1,20 +1,32 @@
-@extends('layouts.app')
+@extends('layouts.base-admin')
+
 @section('title')
-Images - {{ config('app.name') }}
+Images
 @endsection
+
 @section('content')
-
 <!-- Begin Page Content -->
-<div class="container">
-
-    <!-- Page Heading -->
-    <div class="row mb-4">
-        <div class="col-lg-6">
-            <h3>Images</h3>
-        </div>
-        <div class="col-lg-6">
-            <div class=" text-right">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#newImageModal">Tambah Gambar</button>
+<div class="app-main__inner">
+    <div class="app-page-title">
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+                <div class="page-title-icon">
+                    <i class="pe-7s-camera icon-gradient bg-mean-fruit"> </i>
+                </div>
+                <div>Images
+                    <div class="page-title-subheading">This is an Gallery of UKMK Etalase
+                    </div>
+                </div>
+            </div>
+            <div class="page-title-actions">
+                <div class="d-inline-block dropdown">
+                    <button type="button" data-toggle="modal" data-target="#newImageModal" class="btn-shadow btn btn-info">
+                        <span class="btn-icon-wrapper pr-2 opacity-7">
+                            <i class="fa fa-plus fa-w-20"></i>
+                        </span>
+                        Tambah Gambar
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -43,13 +55,13 @@ Images - {{ config('app.name') }}
         <div class="col-md-6 mb-3">
             <div class="card shadow">
                 <div class="card-body">
-                    <div class="card-img-top" style="background-size: cover; height: 300px; background-image: url({{ asset('img/gallery/'. $image->image) }});" ></div>
+                    <div class="card-img-top" style="background-size: cover; height: 250px; background-image: url('{{ asset('img/gallery/'. $image->image) }}');" ></div>
                     <form action=" {{ route('images.update' ,['image' => $image->id]) }} " method="post" enctype="multipart/form-data">
                         @method('patch')
                         @csrf
                         <div class="form-group mb-3">
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="image" name="image" aria-describedby="image">
+                                <input type="file" class="custom-file-input" name="image" aria-describedby="image">
                                 <label class="custom-file-label" for="image">Pilih foto</label>
                             </div>
                             <div class="input-group-append">
@@ -76,13 +88,38 @@ Images - {{ config('app.name') }}
 </div>
 <!-- /.container-fluid -->
 
-<!-- Modal -->
-<div class="modal fade" id="newImageModal" tabindex="-1" role="dialog" aria-labelledby="newTestinonialModalLabel"
-    aria-hidden="true">
+
+@endsection
+
+@push('scripts')
+<script src="{{ asset('assets/snapshot/js/jquery.min.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        $(".pagination").addClass("justify-content-center");
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            readURL(this);
+        });
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#displayImage').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    });
+</script>
+@endpush
+
+<div class="modal fade" id="newImageModal" tabindex="-1" role="dialog" aria-labelledby="newImageModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="newTestinonialModalLabel">Tambah Gambar</h5>
+                <h5 class="modal-title" id="newImageModalLabel">Tambah Gambar</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -98,13 +135,10 @@ Images - {{ config('app.name') }}
                             <input type="file" class="custom-file-input" id="image" name="image" aria-describedby="image">
                             <label class="custom-file-label" for="image">Pilih gambar</label>
                         </div>
-                        {!! $errors->first('image', '<span class="invalid-feedback" role="alert">:message</span>') !!}
+                        @error('image')
+                            <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                        @enderror
                     </div>
-                    {{-- <div class="form-group">
-                        <label>Keterangan</label>
-                        <input type="text" name="text" id="text" class="form-control">
-                        {!! $errors->first('text', '<span class="invalid-feedback" role="alert">:message</span>') !!}
-                    </div> --}}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
@@ -114,27 +148,3 @@ Images - {{ config('app.name') }}
         </div>
     </div>
 </div>
-@endsection
-
-@push('scripts')
-<script>
-$(document).ready(function () {
-    $(".pagination").addClass("justify-content-center");
-    $(".custom-file-input").on("change", function () {
-        var fileName = $(this).val().split("\\").pop();
-        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-        readURL(this);
-    });
-
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#displayImage').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-});
-</script>
-@endpush

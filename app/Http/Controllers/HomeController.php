@@ -35,4 +35,9 @@ class HomeController extends Controller
         $structures = Structure::all();
         return view('structure',compact('structures'));
     }
+
+    public function dashboard()
+    {
+        return view('dashboard');
+    }
 }
