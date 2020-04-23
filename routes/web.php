@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@home')->name('home');
+Route::get('/about', 'AboutController@index')->name('home');
 Route::get('/gallery', 'HomeController@gallery')->name('gallery');
 Route::get('/structure', 'HomeController@structure')->name('structure');
 

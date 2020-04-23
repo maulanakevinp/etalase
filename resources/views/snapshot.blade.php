@@ -101,7 +101,7 @@
                                 </a>
                             </div>
                             <div class="col-md-6 pl-2">
-                                <a href="#">
+                                <a href="/about">
                                     <p class="btn-kotak">Sejarah Etalase <span class="ion-ios-arrow-round-forward"></span></p>
                                 </a>
                             </div>
