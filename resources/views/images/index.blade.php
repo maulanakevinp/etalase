@@ -34,9 +34,9 @@ Images - {{ config('app.name') }}
     <div class="row">
         @foreach ($images as $image)
         <div class="col-md-6 mb-3">
-            <div class="card shadow h-100">
+            <div class="card shadow">
                 <div class="card-body">
-                    <img src="{{ asset('img/'. $image->image) }}" alt="{{ $image->image }}" width="100%" height="250px">
+                    <div class="card-img-top" style="background-size: cover; height: 300px; background-image: url({{ asset('img/gallery/'. $image->image) }});" ></div>
                     <form action=" {{ route('images.update' ,['image' => $image->id]) }} " method="post" enctype="multipart/form-data">
                         @method('patch')
                         @csrf
@@ -112,6 +112,7 @@ Images - {{ config('app.name') }}
 @push('scripts')
 <script>
 $(document).ready(function () {
+    $(".pagination").addClass("justify-content-center");
     $(".custom-file-input").on("change", function () {
         var fileName = $(this).val().split("\\").pop();
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);

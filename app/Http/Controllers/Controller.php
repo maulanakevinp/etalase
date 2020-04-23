@@ -7,13 +7,13 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\File;
-
+use Illuminate\Support\Str;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function setImageUpload($file, $path, $old_file = null)
     {
-        $file_name = time() . "_" . $file->getClientOriginalName();
+        $file_name = Str::random(40). "." . $file->extension();
         if ($file->move(public_path($path), $file_name)) {
             if ($old_file) {
                 File::delete(public_path($path . '/' . $old_file));

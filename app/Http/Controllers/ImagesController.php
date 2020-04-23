@@ -15,7 +15,7 @@ class ImagesController extends Controller
      */
     public function index()
     {
-        $images = Image::paginate(10);
+        $images = Image::orderBy('id','desc')->paginate(10);
         return view('images.index',compact('images'));
     }
 
