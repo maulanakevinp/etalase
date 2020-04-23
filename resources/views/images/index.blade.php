@@ -8,8 +8,15 @@ Images - {{ config('app.name') }}
 <div class="container">
 
     <!-- Page Heading -->
-    <div class="mb-4">
-        <button class="btn btn-primary" data-toggle="modal" data-target="#newImageModal">Tambah Gambar</button>
+    <div class="row mb-4">
+        <div class="col-lg-6">
+            <h3>Images</h3>
+        </div>
+        <div class="col-lg-6">
+            <div class=" text-right">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#newImageModal">Tambah Gambar</button>
+            </div>
+        </div>
     </div>
 
     <!-- Notification -->
