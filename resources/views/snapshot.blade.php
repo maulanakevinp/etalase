@@ -306,9 +306,7 @@
                         </div>
                     </div>
                 @endforeach
-            </div>
-            <div class="row">
-                <div class="col-4 mx-auto text-center">
+                <div class="col-12 text-center ftco-animate">
                     <a href="{{ route('gallery') }}" class="btn btn-primary mt-4">Load More</a>
                 </div>
             </div>
@@ -433,7 +431,7 @@
                     </form>
                 </div>
 
-                <div class="col-md-6 d-flex align-items-stretch">
+                <div class="col-md-6 d-flex align-items-stretch ftco-animate">
                     <div id="map"></div>
                 </div>
             </div>
