@@ -102,6 +102,10 @@
         </div>
     </section>
 
+    <div>
+        <p>coba</p>
+    </div>
+
 
 
 <script src="{{ url('/') }}/assets/snapshot/js/jquery.min.js"></script>
