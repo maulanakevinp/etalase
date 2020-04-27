@@ -57,9 +57,15 @@
                     </p>
 
                     <ul class="ftco-footer-social p-0">
-                        <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                        @if ($profile->twitter)
+                            <li class="ftco-animate"><a target="_blank" href="{{ $profile->twitter }}"><span class="icon-twitter"></span></a></li>
+                        @endif
+                        @if ($profile->facebook)
+                            <li class="ftco-animate"><a target="_blank" href="{{ $profile->facebook }}"><span class="icon-facebook"></span></a></li>
+                        @endif
+                        @if ($profile->instagram)
+                            <li class="ftco-animate"><a target="_blank" href="{{ $profile->instagram }}"><span class="icon-instagram"></span></a></li>
+                        @endif
                     </ul>
                 </div>
             </div>

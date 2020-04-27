@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Art;
 use App\Image;
+use App\Profile;
 use App\Structure;
 
 class HomeController extends Controller
@@ -14,9 +16,11 @@ class HomeController extends Controller
      */
     public function home()
     {
-        $images = Image::orderBy('id','asc')->paginate(9);
+        $images     = Image::orderBy('id','asc')->paginate(9);
         $structures = Structure::all();
-        return view('snapshot',compact('images' , 'structures'));
+        $profile    = Profile::findOrFail(1);
+        $arts       = Art::all();
+        return view('snapshot',compact('images' , 'structures', 'profile', 'arts'));
     }
 
     /**
