@@ -45,9 +45,9 @@
             <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
                 <div class="col-lg-7 ftco-animate d-flex align-items-center">
                     <div class="text text-center">
-                        <img src="{{ url('/') }}/logo/logo etalase.png" style="width: 10%; margin-bottom: 60pt">
+                        <img src="{{ asset($profile->logo) }}" style="width: 10%; margin-bottom: 60pt">
                         <!-- <h1 class="logo"><a href="index.html"><span class="flaticon-camera-shutter"></span>Snapshot<small>Photographer / San Francisco</small></a></h1> -->
-                        <h1 class="mb-4">UKM KESENIAN <br>ETALASE</h1>
+                        <h1 class="mb-4">{{ $profile->judul }}</h1>
                         <p class="mb-4">A small river named Duden flows by their place and supplies it with the
                             necessary regelialia. It is a paradisematic country, in which roasted parts.</p>
                         <p class="mt-5"><a href="#" class="btn-custom">Find More <span class="ion-ios-arrow-round-forward"></span></a></p>
@@ -78,8 +78,8 @@
                 </div>
                 <div class="col-md-6 col-lg-6 pl-md-5">
                     <div class="heading-section ftco-animate">
-                        <h2 class="mb-4">Etalase... <br></h2>
-                        <p>Etalase adalah Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque ipsam quia architecto ad illo odio sapiente perferendis esse amet, maxime, necessitatibus ducimus. Inventore quis magnam commodi voluptas culpa exercitationem molestiae!</p>
+                        <h2 class="mb-4">{{ $profile->judul }}<br></h2>
+                        <p>{{ $profile->deskripsi }}</p>
                         <div class="counter-wrap ftco-animate d-flex my-md-4">
                             <div class="text">
                                 <p class="mb-4">
@@ -130,66 +130,21 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="media block-6 services d-block ftco-animate">
-                                <div class="icon"><span class="flaticon-music"></span></div>
-                                <div class="media-body">
-                                    <h3 class="heading mb-3">Musik</h3>
-                                    <p>A small river named Duden flows by their place and supplies it with the necessary
-                                        regelialia. It is a paradisematic country, in which roasted parts of sentences.
-                                    </p>
+                        @foreach ($arts as $art)
+                            <div class="col-md-4">
+                                <div class="media block-6 services d-block ftco-animate">
+                                    <div class="icon"><span class="flaticon-music"></span></div>
+                                    <div class="media-body">
+                                        <h3 class="heading mb-3">{{ $art->nama }}</h3>
+                                        <p>{{ $art->deskripsi }}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="media block-6 services d-block ftco-animate">
-                                <div class="icon"><span class="flaticon-belly-dance"></span></div>
-                                <div class="media-body">
-                                    <h3 class="heading mb-3">Tari</h3>
-                                    <p>A small river named Duden flows by their place and supplies it with the necessary
-                                        regelialia. It is a paradisematic country, in which roasted parts of sentences.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="media block-6 services d-block ftco-animate">
-                                <div class="icon"><span class="flaticon-choir"></span></div>
-                                <div class="media-body">
-                                    <h3 class="heading mb-3">PSM</h3>
-                                    <p>A small river named Duden flows by their place and supplies it with the necessary
-                                        regelialia. It is a paradisematic country, in which roasted parts of sentences.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="media block-6 services d-block ftco-animate">
-                                <div class="icon"><span class="flaticon-camera"></span></div>
-                                <div class="media-body">
-                                    <h3 class="heading mb-3">Fotografi</h3>
-                                    <p>A small river named Duden flows by their place and supplies it with the necessary
-                                        regelialia. It is a paradisematic country, in which roasted parts of sentences.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="media block-6 services d-block ftco-animate">
-                                <div class="icon"><span class="flaticon-theater"></span></div>
-                                <div class="media-body">
-                                    <h3 class="heading mb-3">Teater</h3>
-                                    <p>A small river named Duden flows by their place and supplies it with the necessary
-                                        regelialia. It is a paradisematic country, in which roasted parts of sentences.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="col-md-3 d-flex align-items-stretch">
-                    <div class="img w-100"
-                        style="background-image:url({{ url('/') }}/assets/snapshot/images/about.jpg);"></div>
+                    <div class="img w-100" style="background-image:url({{ url('/') }}/assets/snapshot/images/about.jpg);"></div>
                 </div>
             </div>
             <div class="row progress-circle pt-md-5">
@@ -356,51 +311,59 @@
                 </div>
             </div>
 
-            <div class="row mb-5">
-                <div class="col-md-3 d-flex ftco-animate">
-                    <div class="align-self-stretch box text-center p-4">
-                        <div class="icon d-flex align-items-center justify-content-center">
-                            <span class="icon-map-signs"></span>
-                        </div>
-                        <div>
-                            <h3 class="mb-4">Address</h3>
-                            <p>198 West 21th Street, Suite 721 New York NY 10016</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 d-flex ftco-animate">
-                    <div class="align-self-stretch box text-center p-4">
-                        <div class="icon d-flex align-items-center justify-content-center">
-                            <span class="icon-phone2"></span>
-                        </div>
-                        <div>
-                            <h3 class="mb-4">Contact Number</h3>
-                            <p><a href="tel://1234567920">+ 1235 2355 98</a></p>
+            <div class="row mb-5 justify-content-center">
+                @if ($profile->alamat)
+                    <div class="col-md-3 d-flex ftco-animate">
+                        <div class="align-self-stretch box text-center p-4">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="icon-map-signs"></span>
+                            </div>
+                            <div>
+                                <h3 class="mb-4">Address</h3>
+                                <p>{{ $profile->alamat }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3 d-flex ftco-animate">
-                    <div class="align-self-stretch box text-center p-4">
-                        <div class="icon d-flex align-items-center justify-content-center">
-                            <span class="icon-paper-plane"></span>
-                        </div>
-                        <div>
-                            <h3 class="mb-4">Email Address</h3>
-                            <p><a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 d-flex ftco-animate">
-                    <div class="align-self-stretch box text-center p-4">
-                        <div class="icon d-flex align-items-center justify-content-center">
-                            <span class="icon-globe"></span>
-                        </div>
-                        <div>
-                            <h3 class="mb-4">Website</h3>
-                            <p><a href="#">yoursite.com</a></p>
+                @endif
+                @if ($profile->kontak)
+                    <div class="col-md-3 d-flex ftco-animate">
+                        <div class="align-self-stretch box text-center p-4">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="icon-phone2"></span>
+                            </div>
+                            <div>
+                                <h3 class="mb-4">Contact Number</h3>
+                                <p><a href="tel://{{ $profile->kontak }}">{{ $profile->kontak }}</a></p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
+                @if ($profile->email)
+                    <div class="col-md-3 d-flex ftco-animate">
+                        <div class="align-self-stretch box text-center p-4">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="icon-paper-plane"></span>
+                            </div>
+                            <div>
+                                <h3 class="mb-4">Email Address</h3>
+                                <p><a href="mailto:{{ $profile->email }}">{{ $profile->email }}</a></p>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+                @if ($profile->website)
+                    <div class="col-md-3 d-flex ftco-animate">
+                        <div class="align-self-stretch box text-center p-4">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="icon-globe"></span>
+                            </div>
+                            <div>
+                                <h3 class="mb-4">Website</h3>
+                                <p><a href="{{ $profile->website }}">{{ $profile->judul }}</a></p>
+                            </div>
+                        </div>
+                    </div>
+                @endif
             </div>
 
             <div class="row block-9">
