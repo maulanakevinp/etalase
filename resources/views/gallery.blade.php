@@ -56,12 +56,17 @@
             display: none;
         }
     </style>
-    <title>{{ config('app.name') }}</title>
+    <title>{{ config('app.name') }} - Gallery</title>
 </head>
 
 <body>
     <!-- Page Content -->
-    <div class="container page-top">
+    <div class="container page-top mt-4">
+        <div class="text-center">
+            <a href="{{ url('') }}">
+                <img class="mb-5" height="100px" src="{{ asset('logo/logo etalase.png') }}" alt="">
+            </a>
+        </div>
         <div class="row">
             @foreach ($images as $image)
                 <div class="col-lg-3 col-md-4 col-xs-6 thumb">
@@ -80,6 +85,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
     <script>
         $(document).ready(function () {
+            $(".pagination").addClass('justify-content-center');
+            $(".pagination").addClass('mb-5');
             $(".fancybox").fancybox({
                 openEffect: "none",
                 closeEffect: "none"
