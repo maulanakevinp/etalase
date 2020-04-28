@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-    <link rel="shortcut icon" href="{{ asset('logo/logo etalase.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset(Storage::url(\App\Profile::find(1)->logo)) }}" type="image/x-icon">
 
     <style>
         body {
@@ -64,7 +64,7 @@
     <div class="container page-top mt-4">
         <div class="text-center">
             <a href="{{ url('') }}">
-                <img class="mb-5" height="100px" src="{{ asset('logo/logo etalase.png') }}" alt="">
+                <img class="mb-5" height="100px" src="{{ asset(Storage::url(\App\Profile::find(1)->logo)) }}" alt="">
             </a>
         </div>
         <div class="row">

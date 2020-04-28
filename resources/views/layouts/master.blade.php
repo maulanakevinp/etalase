@@ -5,15 +5,14 @@
     <title>UKMK Etalase</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="{{ asset('logo/logo etalase.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset(Storage::url(\App\Profile::find(1)->logo)) }}" type="image/x-icon">
 
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,400i,700,700i&display=swap" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet"
-        href="{{ url('/') }}/assets/snapshot/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url('/') }}/assets/snapshot/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="{{ url('/') }}/assets/snapshot/css/animate.css">
 
     <link rel="stylesheet" href="{{ url('/') }}/assets/snapshot/css/owl.carousel.min.css">
@@ -57,14 +56,14 @@
                     </p>
 
                     <ul class="ftco-footer-social p-0">
-                        @if ($profile->twitter)
-                            <li class="ftco-animate"><a target="_blank" href="{{ $profile->twitter }}"><span class="icon-twitter"></span></a></li>
+                        @if (\App\Profile::find(1)->twitter)
+                            <li class="ftco-animate"><a target="_blank" href="{{ \App\Profile::find(1)->twitter }}"><span class="icon-twitter"></span></a></li>
                         @endif
-                        @if ($profile->facebook)
-                            <li class="ftco-animate"><a target="_blank" href="{{ $profile->facebook }}"><span class="icon-facebook"></span></a></li>
+                        @if (\App\Profile::find(1)->facebook)
+                            <li class="ftco-animate"><a target="_blank" href="{{ \App\Profile::find(1)->facebook }}"><span class="icon-facebook"></span></a></li>
                         @endif
-                        @if ($profile->instagram)
-                            <li class="ftco-animate"><a target="_blank" href="{{ $profile->instagram }}"><span class="icon-instagram"></span></a></li>
+                        @if (\App\Profile::find(1)->instagram)
+                            <li class="ftco-animate"><a target="_blank" href="{{ \App\Profile::find(1)->instagram }}"><span class="icon-instagram"></span></a></li>
                         @endif
                     </ul>
                 </div>

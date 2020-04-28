@@ -20,7 +20,7 @@
     =========================================================
     * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
     -->
-    <link rel="shortcut icon" href="{{ asset('logo/logo etalase.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset(Storage::url(\App\Profile::find(1)->logo)) }}" type="image/x-icon">
     <link href="{{ asset('assets/architectui/main.css') }}" rel="stylesheet">
 
     @yield('styles')

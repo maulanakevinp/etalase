@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Profile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class ProfileController extends Controller
 {
@@ -14,39 +15,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Profile $profile)
-    {
-        //
+        $profile = Profile::findOrFail(1);
+        return view('profile.index', compact('profile'));
     }
 
     /**
@@ -55,9 +25,10 @@ class ProfileController extends Controller
      * @param  \App\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function edit(Profile $profile)
+    public function edit()
     {
-        //
+        $profile = Profile::findOrFail(1);
+        return view('profile.edit', compact('profile'));
     }
 
     /**
@@ -69,17 +40,29 @@ class ProfileController extends Controller
      */
     public function update(Request $request, Profile $profile)
     {
-        //
-    }
+        $data = $request->validate([
+            'judul'     => ['required', 'string', 'max:16'],
+            'logo'      => ['nullable', 'image', 'mimes:png,jpg', 'max:2048'],
+            'deskripsi' => ['required', 'string'],
+            'sejarah'   => ['required', 'string'],
+            'alamat'    => ['nullable', 'string'],
+            'kontak'    => ['nullable', 'string'],
+            'email'     => ['nullable', 'string'],
+            'website'   => ['nullable', 'string'],
+            'instagram' => ['nullable', 'string'],
+            'facebook'  => ['nullable', 'string'],
+            'twitter'   => ['nullable', 'string'],
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Profile $profile)
-    {
-        //
+        if ($request->logo) {
+            File::delete(storage_path('app/'.$profile->logo));
+            $data['logo'] = $request->logo->store('public/logo');
+        } else {
+            $data['logo'] = $profile->logo;
+        }
+
+
+        $profile->update($data);
+        return back()->with('success', 'Profile berhasil diperbarui');
     }
 }

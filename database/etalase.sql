@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 28 Apr 2020 pada 11.38
+-- Generation Time: 28 Apr 2020 pada 15.59
 -- Versi Server: 5.7.29-0ubuntu0.18.04.1
 -- PHP Version: 7.2.24-0ubuntu0.18.04.4
 
@@ -84,7 +84,6 @@ CREATE TABLE `creations` (
 CREATE TABLE `images` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `text` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -93,33 +92,33 @@ CREATE TABLE `images` (
 -- Dumping data untuk tabel `images`
 --
 
-INSERT INTO `images` (`id`, `image`, `text`, `created_at`, `updated_at`) VALUES
-(2, 'public/gallery/1574217824_Bayu6.jpg', 'Buah naga', '2019-11-18 00:02:41', '2019-11-19 19:43:44'),
-(6, 'public/gallery/1574410569_imgonline-com-ua-resize-INrzKfyNr45whNM.jpg', 'Buah Kiwi', '2019-11-18 00:35:39', '2019-11-22 01:16:09'),
-(7, 'public/gallery/1574410686_imgonline-com-ua-resize-4gR1oXR1uzZSTx.jpg', 'Buah Strawberries', '2019-11-18 00:36:10', '2019-11-22 01:18:06'),
-(9, 'public/gallery/1574410775_imgonline-com-ua-resize-DWjotUjdMgLrJLgf.jpg', NULL, '2019-11-21 10:06:57', '2019-11-22 01:19:35'),
-(10, 'public/gallery/1574410855_imgonline-com-ua-resize-XzkV6LJhOa7.jpg', NULL, '2019-11-21 10:38:16', '2019-11-22 01:20:55'),
-(11, 'public/gallery/1574411017_imgonline-com-ua-resize-hZUAuSTlfb.jpg', NULL, '2019-11-22 01:23:37', '2019-11-22 01:23:37'),
-(12, 'public/gallery/1574411176_imgonline-com-ua-resize-IOjjKgAGIG7mG1W.jpg', NULL, '2019-11-22 01:26:16', '2019-11-22 01:26:16'),
-(13, 'public/gallery/1574411240_imgonline-com-ua-resize-jjg3brZUMoc.jpg', NULL, '2019-11-22 01:27:20', '2019-11-22 01:27:20'),
-(14, 'public/gallery/1574412757_imgonline-com-ua-resize-RC5s5A22PPng.jpg', NULL, '2019-11-22 01:52:37', '2019-11-22 01:52:37'),
-(15, 'public/gallery/1574413002_imgonline-com-ua-resize-VsI3W1W77Gt.jpg', NULL, '2019-11-22 01:56:42', '2019-11-22 01:56:42'),
-(17, 'public/gallery/1574413562_imgonline-com-ua-resize-WskFnxVkhsTeAcgr.jpg', NULL, '2019-11-22 02:06:02', '2019-11-22 02:06:02'),
-(18, 'public/gallery/1574413778_imgonline-com-ua-resize-bVlArFF5KzcyXhZ.jpg', NULL, '2019-11-22 02:09:38', '2019-11-22 02:09:38'),
-(19, 'public/gallery/1574414046_imgonline-com-ua-resize-iqD0OpQwJkEGYgM.jpg', NULL, '2019-11-22 02:14:06', '2019-11-22 02:14:06'),
-(20, 'public/gallery/1574415727_imgonline-com-ua-resize-y3YkOYOLoYq4zgIx.jpg', NULL, '2019-11-22 02:42:07', '2019-11-22 02:42:07'),
-(21, 'public/gallery/1574415977_imgonline-com-ua-resize-VcXSNwcksRP.jpg', NULL, '2019-11-22 02:46:17', '2019-11-22 02:46:17'),
-(22, 'public/gallery/1574416396_WhatsApp Image 2019-09-21 at 11.58.50.jpeg', NULL, '2019-11-22 02:53:16', '2019-11-22 02:53:16'),
-(23, 'public/gallery/1574416413_WhatsApp Image 2019-09-21 at 12.00.03.jpeg', NULL, '2019-11-22 02:53:33', '2019-11-22 02:53:33'),
-(24, 'public/gallery/1574416437_WhatsApp Image 2019-09-21 at 12.00.51(1).jpeg', NULL, '2019-11-22 02:53:57', '2019-11-22 02:53:57'),
-(25, 'public/gallery/1574416637_adek.jpg', NULL, '2019-11-22 02:57:17', '2019-11-22 02:57:17'),
-(26, 'public/gallery/1574416764_imgonline-com-ua-resize-3QS5qKAKnPBLjhWg.jpg', NULL, '2019-11-22 02:59:24', '2019-11-22 02:59:24'),
-(27, 'public/gallery/1574416883_imgonline-com-ua-resize-QMW5ItYRnsDPYfx.jpg', NULL, '2019-11-22 03:01:23', '2019-11-22 03:01:23'),
-(28, 'public/gallery/1574417195_IMG_20190401_000856(Indahnya.jpg', NULL, '2019-11-22 03:06:35', '2019-11-22 03:06:35'),
-(29, 'public/gallery/1574417389_IMG_20190401_001617 (Penenang dalam Perjalanan).jpg', NULL, '2019-11-22 03:09:49', '2019-11-22 03:09:49'),
-(30, 'public/gallery/1574417804_DSC_00257 [].JPG', NULL, '2019-11-22 03:16:44', '2019-11-22 03:16:44'),
-(31, 'public/gallery/1574417848_DSC_003618 [].JPG', NULL, '2019-11-22 03:17:28', '2019-11-22 03:17:28'),
-(32, 'public/gallery/1574418302_imgonline-com-ua-resize-kpgh1lvDX8EYUh.jpg', NULL, '2019-11-22 03:25:02', '2019-11-22 03:25:02');
+INSERT INTO `images` (`id`, `image`, `created_at`, `updated_at`) VALUES
+(2, 'public/gallery/1574217824_Bayu6.jpg', '2019-11-18 00:02:41', '2019-11-19 19:43:44'),
+(6, 'public/gallery/1574410569_imgonline-com-ua-resize-INrzKfyNr45whNM.jpg', '2019-11-18 00:35:39', '2019-11-22 01:16:09'),
+(7, 'public/gallery/1574410686_imgonline-com-ua-resize-4gR1oXR1uzZSTx.jpg', '2019-11-18 00:36:10', '2019-11-22 01:18:06'),
+(9, 'public/gallery/1574410775_imgonline-com-ua-resize-DWjotUjdMgLrJLgf.jpg', '2019-11-21 10:06:57', '2019-11-22 01:19:35'),
+(10, 'public/gallery/1574410855_imgonline-com-ua-resize-XzkV6LJhOa7.jpg', '2019-11-21 10:38:16', '2019-11-22 01:20:55'),
+(11, 'public/gallery/1574411017_imgonline-com-ua-resize-hZUAuSTlfb.jpg', '2019-11-22 01:23:37', '2019-11-22 01:23:37'),
+(12, 'public/gallery/1574411176_imgonline-com-ua-resize-IOjjKgAGIG7mG1W.jpg', '2019-11-22 01:26:16', '2019-11-22 01:26:16'),
+(13, 'public/gallery/1574411240_imgonline-com-ua-resize-jjg3brZUMoc.jpg', '2019-11-22 01:27:20', '2019-11-22 01:27:20'),
+(14, 'public/gallery/1574412757_imgonline-com-ua-resize-RC5s5A22PPng.jpg', '2019-11-22 01:52:37', '2019-11-22 01:52:37'),
+(15, 'public/gallery/1574413002_imgonline-com-ua-resize-VsI3W1W77Gt.jpg', '2019-11-22 01:56:42', '2019-11-22 01:56:42'),
+(17, 'public/gallery/1574413562_imgonline-com-ua-resize-WskFnxVkhsTeAcgr.jpg', '2019-11-22 02:06:02', '2019-11-22 02:06:02'),
+(18, 'public/gallery/1574413778_imgonline-com-ua-resize-bVlArFF5KzcyXhZ.jpg', '2019-11-22 02:09:38', '2019-11-22 02:09:38'),
+(19, 'public/gallery/1574414046_imgonline-com-ua-resize-iqD0OpQwJkEGYgM.jpg', '2019-11-22 02:14:06', '2019-11-22 02:14:06'),
+(20, 'public/gallery/1574415727_imgonline-com-ua-resize-y3YkOYOLoYq4zgIx.jpg', '2019-11-22 02:42:07', '2019-11-22 02:42:07'),
+(21, 'public/gallery/1574415977_imgonline-com-ua-resize-VcXSNwcksRP.jpg', '2019-11-22 02:46:17', '2019-11-22 02:46:17'),
+(22, 'public/gallery/1574416396_WhatsApp Image 2019-09-21 at 11.58.50.jpeg', '2019-11-22 02:53:16', '2019-11-22 02:53:16'),
+(23, 'public/gallery/1574416413_WhatsApp Image 2019-09-21 at 12.00.03.jpeg', '2019-11-22 02:53:33', '2019-11-22 02:53:33'),
+(24, 'public/gallery/1574416437_WhatsApp Image 2019-09-21 at 12.00.51(1).jpeg', '2019-11-22 02:53:57', '2019-11-22 02:53:57'),
+(25, 'public/gallery/1574416637_adek.jpg', '2019-11-22 02:57:17', '2019-11-22 02:57:17'),
+(26, 'public/gallery/1574416764_imgonline-com-ua-resize-3QS5qKAKnPBLjhWg.jpg', '2019-11-22 02:59:24', '2019-11-22 02:59:24'),
+(27, 'public/gallery/1574416883_imgonline-com-ua-resize-QMW5ItYRnsDPYfx.jpg', '2019-11-22 03:01:23', '2019-11-22 03:01:23'),
+(28, 'public/gallery/1574417195_IMG_20190401_000856(Indahnya.jpg', '2019-11-22 03:06:35', '2019-11-22 03:06:35'),
+(29, 'public/gallery/1574417389_IMG_20190401_001617 (Penenang dalam Perjalanan).jpg', '2019-11-22 03:09:49', '2019-11-22 03:09:49'),
+(30, 'public/gallery/1574417804_DSC_00257 [].JPG', '2019-11-22 03:16:44', '2019-11-22 03:16:44'),
+(31, 'public/gallery/1574417848_DSC_003618 [].JPG', '2019-11-22 03:17:28', '2019-11-22 03:17:28'),
+(32, 'public/gallery/1574418302_imgonline-com-ua-resize-kpgh1lvDX8EYUh.jpg', '2019-11-22 03:25:02', '2019-11-22 03:25:02');
 
 -- --------------------------------------------------------
 
@@ -185,7 +184,7 @@ CREATE TABLE `profiles` (
 --
 
 INSERT INTO `profiles` (`id`, `logo`, `judul`, `deskripsi`, `sejarah`, `alamat`, `kontak`, `email`, `website`, `instagram`, `facebook`, `twitter`) VALUES
-(1, 'logo/logo etalase.png', 'UKMK Etalase', 'Etalase adalah Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque ipsam quia architecto ad illo odio sapiente perferendis esse amet, maxime, necessitatibus ducimus. Inventore quis magnam commodi voluptas culpa exercitationem molestiae!', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque ipsam quia architecto ad illo odio sapiente perferendis esse amet, maxime, necessitatibus ducimus. Inventore quis magnam commodi voluptas culpa exercitationem molestiae!', 'Jalan. Kalimantan No. 37, Kampus Tegalboto, Jember, Jawa Timur, 68121, Indonesia', NULL, NULL, 'https://etalase.lavinza.me', 'https://instagram.com/etalase.gallery', NULL, NULL);
+(1, 'public/logo/etalase.png', 'UKMK Etalase', 'Etalase adalah Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque ipsam quia architecto ad illo odio sapiente perferendis esse amet, maxime, necessitatibus ducimus. Inventore quis magnam commodi voluptas culpa exercitationem molestiae!', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque ipsam quia architecto ad illo odio sapiente perferendis esse amet, maxime, necessitatibus ducimus. Inventore quis magnam commodi voluptas culpa exercitationem molestiae!', 'Jalan. Kalimantan No. 37, Kampus Tegalboto, Jember, Jawa Timur, 68121, Indonesia', NULL, NULL, 'https://etalase.lavinza.me', 'https://instagram.com/etalase.gallery', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -320,7 +319,7 @@ ALTER TABLE `creations`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
