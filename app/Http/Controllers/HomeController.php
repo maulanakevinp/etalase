@@ -14,13 +14,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function home()
+    public function index()
     {
-        $images     = Image::orderBy('id','asc')->paginate(9);
+        $images     = Image::orderBy('id','desc')->paginate(9);
         $structures = Structure::all();
         $profile    = Profile::findOrFail(1);
         $arts       = Art::all();
-        return view('snapshot',compact('images' , 'structures', 'profile', 'arts'));
+        return view('index',compact('images' , 'structures', 'profile', 'arts'));
     }
 
     /**
@@ -30,8 +30,8 @@ class HomeController extends Controller
      */
     public function gallery()
     {
-        $images = Image::orderBy('id','asc')->paginate(8);
-        return view('index',compact('images' ));
+        $images = Image::orderBy('id','desc')->paginate(8);
+        return view('gallery',compact('images'));
     }
 
     public function structure()

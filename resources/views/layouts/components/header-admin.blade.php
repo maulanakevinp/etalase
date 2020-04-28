@@ -48,12 +48,10 @@
                         <div class="widget-content-left">
                             <div class="btn-group">
                                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                    <img width="42" class="rounded-circle" src="{{ asset('noimage.jpg') }}" alt="">
+                                    <img width="42" class="rounded-circle" src="{{ asset(Storage::url('noavatar.jpg')) }}" alt="">
                                     <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                 </a>
                                 <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                    <a href="#" class="dropdown-item">User Account</a>
-                                    <div tabindex="-1" class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>

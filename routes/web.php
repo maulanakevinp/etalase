@@ -14,7 +14,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', 'HomeController@home')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('/gallery', 'HomeController@gallery')->name('gallery');
 Route::get('/structure', 'HomeController@structure')->name('structure');
 Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
@@ -30,5 +30,5 @@ Auth::routes([
 
 Route::group(['middleware' => ['web','auth']], function () {
     Route::resource('/structures', 'StructureController');
-    Route::resource('/images', 'ImagesController');
+    Route::resource('/images', 'ImagesController')->except(['update', 'show', 'create', 'edit']);
 });

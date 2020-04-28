@@ -14,8 +14,7 @@ Images
                     <i class="pe-7s-camera icon-gradient bg-mean-fruit"> </i>
                 </div>
                 <div>Images
-                    <div class="page-title-subheading">This is an Gallery of UKMK Etalase
-                    </div>
+                    <div class="page-title-subheading">This is an Gallery of UKMK Etalase</div>
                 </div>
             </div>
             <div class="page-title-actions">
@@ -24,7 +23,7 @@ Images
                         <span class="btn-icon-wrapper pr-2 opacity-7">
                             <i class="fa fa-plus fa-w-20"></i>
                         </span>
-                        Tambah Gambar
+                        Tambah
                     </button>
                 </div>
             </div>
@@ -55,29 +54,13 @@ Images
         <div class="col-md-6 mb-3">
             <div class="card shadow">
                 <div class="card-body">
-                    <div class="card-img-top" style="background-size: cover; height: 250px; background-image: url('{{ asset('img/gallery/'. $image->image) }}');" ></div>
-                    <form action=" {{ route('images.update' ,['image' => $image->id]) }} " method="post" enctype="multipart/form-data">
-                        @method('patch')
-                        @csrf
-                        <div class="form-group mb-3">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" name="image" aria-describedby="image">
-                                <label class="custom-file-label" for="image">Pilih foto</label>
-                            </div>
-                            <div class="input-group-append">
-                            </div>
-                        </div>
-                        {{-- <div class="form-group mb-3">
-                            <label>Keterangan</label>
-                            <input type="text" name="text" id="text" class="form-control" value="{{ old('text', $image->text) }}">
-                            {!! $errors->first('text', '<span class="invalid-feedback" role="alert">:message</span>') !!}
-                        </div> --}}
-                        <button class="btn btn-success float-right" type="submit">Perbarui</button>
-                    </form>
-                    <form class="mb-3" action="{{ route('images.destroy' , ['image' => $image->id]) }}" method="post">
+                    <a class="modalDisplay" href="#displayImageModal" data-toggle="modal" data-src="{{ asset(Storage::url($image->image)) }}">
+                        <div class="card-img-top zoom-image" style="background-size: cover; height: 250px; background-image: url('{{ asset(Storage::url($image->image)) }}');" ></div>
+                    </a>
+                    <form class="mb-0" action="{{ route('images.destroy' , ['image' => $image->id]) }}" method="post">
                         @method('delete')
                         @csrf
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus foto ini? ');">Hapus</button>
+                        <button type="submit" title="Hapus" class="btn btn-danger hapus" onclick="return confirm('Apakah anda yakin ingin menghapus foto ini? ');"><i class="fas fa-trash"></i></button>
                     </form>
                 </div>
             </div>
@@ -87,33 +70,20 @@ Images
     {{ $images->links() }}
 </div>
 <!-- /.container-fluid -->
-
-
 @endsection
 
-@push('scripts')
-<script src="{{ asset('assets/snapshot/js/jquery.min.js') }}"></script>
-<script>
-    $(document).ready(function () {
-        $(".pagination").addClass("justify-content-center");
-        $(".custom-file-input").on("change", function () {
-            var fileName = $(this).val().split("\\").pop();
-            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-            readURL(this);
-        });
-
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#displayImage').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
+@section('styles')
+    <style>
+        .hapus{
+            position: absolute;
+            top: 25;
+            right: 25;
         }
-    });
-</script>
-@endpush
+        .zoom-image:hover{
+            opacity: 0.5;
+        }
+    </style>
+@endsection
 
 <div class="modal fade" id="newImageModal" tabindex="-1" role="dialog" aria-labelledby="newImageModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -128,17 +98,9 @@ Images
                 @csrf
                 <div class="modal-body">
                     <div class="text-center">
-                        <img class="mw-100" id="displayImage" src="" alt="">
+                        <img title="Upload Image" class="mw-100" id="displayImage" src="{{ asset('img/plus-img.png') }}">
                     </div>
-                    <div class="form-group input-group">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="image" name="image" aria-describedby="image">
-                            <label class="custom-file-label" for="image">Pilih gambar</label>
-                        </div>
-                        @error('image')
-                            <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                        @enderror
-                    </div>
+                    <input type="file" id="image" name="image" style="display: none">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
@@ -148,3 +110,53 @@ Images
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="displayImageModal" tabindex="-1" role="dialog" aria-labelledby="displayImageModalLabel" aria-hidden="true">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true" class="text-white h1">&times;</span>
+    </button>
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <img class="mw-100" id="imageDisplay" src="">
+            </div>
+        </div>
+    </div>
+</div>
+
+@push('scripts')
+<script src="{{ asset('assets/snapshot/js/jquery.min.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        $(".modalDisplay").on('click', function(){
+            let src = $(this).data('src');
+            document.getElementById('imageDisplay').src = src;
+        });
+        $(".pagination").addClass("justify-content-center");
+        const imgAvatar = document.getElementById("displayImage");
+        const inputAvatar = document.getElementById("image");
+        imgAvatar.onmouseenter = function(){
+            this.style.opacity = "0.5";
+            this.style.cursor = "pointer";
+        }
+        imgAvatar.onmouseleave = function(){
+            this.style.opacity = "1";
+            this.style.cursor = "default";
+        }
+        imgAvatar.onclick = function () {
+            inputAvatar.click();
+        };
+
+        inputAvatar.onchange = function () {
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    imgAvatar.src = e.target.result;
+                }
+                reader.readAsDataURL(this.files[0]);
+            }
+        };
+    });
+</script>
+@endpush
