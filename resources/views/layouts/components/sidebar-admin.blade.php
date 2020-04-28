@@ -54,6 +54,12 @@
                         Images
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('structures.index') }}" class="@if(Request::segment(1) == "structures") mm-active @endif">
+                        <i class="metismenu-icon pe-7s-vector"></i>
+                        Structure
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

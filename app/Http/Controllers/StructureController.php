@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Structure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Validation\Rule;
 
 class StructureController extends Controller
 {
@@ -15,7 +17,7 @@ class StructureController extends Controller
     public function index()
     {
         $structures = Structure::all();
-        return view('structure',compact('structures'));
+        return view('structures.index',compact('structures'));
     }
 
     /**
@@ -25,7 +27,7 @@ class StructureController extends Controller
      */
     public function create()
     {
-        //
+        return view('structures.create');
     }
 
     /**
@@ -36,7 +38,21 @@ class StructureController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'nia'       =>  ['required', 'string', 'max:16', 'unique:structures,nia'],
+            'nama'      =>  ['required', 'string', 'max:32'],
+            'jabatan'   =>  ['required', 'string', 'max:16'],
+            'image'     =>  ['nullable', 'image', 'mimes:jpeg,png,gif', 'max:2048']
+        ]);
+
+        if ($request->image) {
+            $data['image'] = $request->image->store('public/anggota');
+        } else {
+            $data['image'] = 'public/noavatar.jpg';
+        }
+
+        $structure = Structure::create($data);
+        return redirect()->route('structures.show', $structure)->with('success', 'Strucuture berhasil ditambahkan');
     }
 
     /**
@@ -47,7 +63,7 @@ class StructureController extends Controller
      */
     public function show(Structure $structure)
     {
-        //
+        return view('structures.show', compact('structure'));
     }
 
     /**
@@ -58,7 +74,7 @@ class StructureController extends Controller
      */
     public function edit(Structure $structure)
     {
-        //
+        return view('structures.edit', compact('structure'));
     }
 
     /**
@@ -70,7 +86,24 @@ class StructureController extends Controller
      */
     public function update(Request $request, Structure $structure)
     {
-        //
+        $data = $request->validate([
+            'nia'       =>  ['required', 'string', 'max:16', Rule::unique('structures','nia')->ignore($structure->id)],
+            'nama'      =>  ['required', 'string', 'max:32'],
+            'jabatan'   =>  ['required', 'string', 'max:16'],
+            'image'     =>  ['nullable', 'image', 'mimes:jpeg,png,gif', 'max:2048']
+        ]);
+
+        if ($request->image) {
+            if ($structure->image != 'public/noavatar.jpg') {
+                File::delete(storage_path('app/'.$structure->image));
+            }
+            $data['image'] = $request->image->store('public/anggota');
+        } else {
+            $data['image'] = $structure->image;
+        }
+
+        $structure->update($data);
+        return redirect()->route('structures.show', $structure)->with('success', 'Strucuture berhasil perbarui');
     }
 
     /**
@@ -81,6 +114,10 @@ class StructureController extends Controller
      */
     public function destroy(Structure $structure)
     {
-        //
+        if ($structure->image != 'public/noavatar.jpg') {
+            File::delete(storage_path('app/'.$structure->image));
+        }
+        $structure->delete();
+        return redirect()->route('structures.index')->with('success', 'Structure Berhasil dihapus');
     }
 }
