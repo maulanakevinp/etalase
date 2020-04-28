@@ -133,7 +133,7 @@
                         @foreach ($arts as $art)
                             <div class="col-md-4">
                                 <div class="media block-6 services d-block ftco-animate">
-                                    <div class="icon"><span class="flaticon-music"></span></div>
+                                    <div class="icon"><span class="{{ $art->ikon }}"></span></div>
                                     <div class="media-body">
                                         <h3 class="heading mb-3">{{ $art->nama }}</h3>
                                         <p>{{ $art->deskripsi }}</p>

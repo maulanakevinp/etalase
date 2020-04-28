@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 28 Apr 2020 pada 15.59
+-- Generation Time: 28 Apr 2020 pada 18.25
 -- Versi Server: 5.7.29-0ubuntu0.18.04.1
 -- PHP Version: 7.2.24-0ubuntu0.18.04.4
 
@@ -55,11 +55,11 @@ CREATE TABLE `arts` (
 --
 
 INSERT INTO `arts` (`id`, `nama`, `gambar`, `deskripsi`, `ikon`) VALUES
-(1, 'MUSIK', 'noimage.jpg', 'A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences.', 'flaticon music'),
-(2, 'TARI', 'noimage.jpg', 'A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences.', 'flaticon-belly-dance'),
-(3, 'PSM', 'noimage.jpg', 'A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences.', 'flaticon-choir'),
-(4, 'FOTOGRAFI', 'noimage.jpg', 'A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences.', 'flaticon-camera'),
-(5, 'TEATER', 'noimage.jpg', 'A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences.', 'flaticon-theater');
+(1, 'MUSIK', 'public/noimage.jpg', 'A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences.', 'flaticon-music'),
+(2, 'TARI', 'public/noimage.jpg', 'A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences.', 'flaticon-belly-dance'),
+(3, 'PSM', 'public/noimage.jpg', 'A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences.', 'flaticon-choir'),
+(4, 'FOTOGRAFI', 'public/noimage.jpg', 'A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences.', 'flaticon-camera'),
+(5, 'TEATER', 'public/noimage.jpg', 'A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences.', 'flaticon-theater');
 
 -- --------------------------------------------------------
 
@@ -334,7 +334,7 @@ ALTER TABLE `profiles`
 -- AUTO_INCREMENT for table `structures`
 --
 ALTER TABLE `structures`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `users`
 --

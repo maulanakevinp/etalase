@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Art;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Validation\Rule;
 
 class ArtController extends Controller
 {
@@ -14,7 +16,8 @@ class ArtController extends Controller
      */
     public function index()
     {
-        //
+        $arts = Art::all();
+        return view('arts.index',compact('arts'));
     }
 
     /**
@@ -24,7 +27,7 @@ class ArtController extends Controller
      */
     public function create()
     {
-        //
+        return view('arts.create');
     }
 
     /**
@@ -35,7 +38,21 @@ class ArtController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'nama'      =>  ['required', 'string', 'max:16', 'unique:arts,nama'],
+            'ikon'      =>  ['required', 'string', 'max:32'],
+            'deskripsi' =>  ['required', 'string'],
+            'gambar'    =>  ['nullable', 'image', 'mimes:jpeg,png,gif', 'max:2048']
+        ]);
+
+        if ($request->gambar) {
+            $data['gambar'] = $request->gambar->store('public/art');
+        } else {
+            $data['gambar'] = 'public/noimage.jpg';
+        }
+
+        $art = Art::create($data);
+        return redirect()->route('arts.show', $art)->with('success', 'Art berhasil ditambahkan');
     }
 
     /**
@@ -46,7 +63,7 @@ class ArtController extends Controller
      */
     public function show(Art $art)
     {
-        //
+        return view('arts.show', compact('art'));
     }
 
     /**
@@ -57,7 +74,7 @@ class ArtController extends Controller
      */
     public function edit(Art $art)
     {
-        //
+        return view('arts.edit', compact('art'));
     }
 
     /**
@@ -69,7 +86,24 @@ class ArtController extends Controller
      */
     public function update(Request $request, Art $art)
     {
-        //
+        $data = $request->validate([
+            'nama'      =>  ['required', 'string', 'max:16', Rule::unique('arts','nama')->ignore($art->id)],
+            'ikon'      =>  ['required', 'string', 'max:32'],
+            'deskripsi' =>  ['required', 'string'],
+            'gambar'    =>  ['nullable', 'image', 'mimes:jpeg,png,gif', 'max:2048']
+        ]);
+
+        if ($request->gambar) {
+            if ($art->gambar != 'public/noimage.jpg') {
+                File::delete(storage_path('app/'.$art->gambar));
+            }
+            $data['gambar'] = $request->gambar->store('public/art');
+        } else {
+            $data['gambar'] = $art->gambar;
+        }
+
+        $art->update($data);
+        return redirect()->route('arts.show', $art)->with('success', 'Art berhasil perbarui');
     }
 
     /**
@@ -80,6 +114,10 @@ class ArtController extends Controller
      */
     public function destroy(Art $art)
     {
-        //
+        if ($art->gambar != 'public/noimage.jpg') {
+            File::delete(storage_path('app/'.$art->gambar));
+        }
+        $art->delete();
+        return redirect()->route('arts.index')->with('success', 'Art Berhasil dihapus');
     }
 }
