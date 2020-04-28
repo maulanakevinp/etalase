@@ -24,7 +24,7 @@ Images
                         <span class="btn-icon-wrapper pr-2 opacity-7">
                             <i class="fa fa-plus fa-w-20"></i>
                         </span>
-                        Tambah Gambar
+                        Tambah
                     </button>
                 </div>
             </div>

@@ -29,11 +29,9 @@ class ImagesController extends Controller
     {
         $request->validate([
             'image' => ['required','image','mimes:jpeg,png,gif','max:2048'],
-            // 'text'  => ['nullable']
         ]);
         Image::create([
-            'image' => $this->setImageUpload($request->image,'img/gallery'),
-            // 'text'  => $request->text
+            'image' => $request->image->store('public/gallery')
         ]);
         return back()->with('success','Foto berhasil ditambahkan');
     }
@@ -49,12 +47,11 @@ class ImagesController extends Controller
     {
         $request->validate([
             'image' => ['required','image','mimes:jpeg,png,gif','max:2048'],
-            // 'text'  => ['nullable']
         ]);
         if ($request->image) {
-            $image->image = $this->setImageUpload($request->image,'img/gallery',$image->image);
+            File::delete(storage_path('app/'.$image->image));
+            $image->image = $request->image->store('public/gallery');
         }
-        // $image->text = $request->text;
         $image->save();
         return back()->with('success','Foto berhasil diperbarui');
     }
@@ -67,7 +64,7 @@ class ImagesController extends Controller
      */
     public function destroy(Image $image)
     {
-        File::delete(public_path('img/gallery' . '/' . $image->image));
+        File::delete(storage_path('app/'.$image->image));
         $image->delete();
         return back()->with('success','Foto berhasil dihapus');
     }
