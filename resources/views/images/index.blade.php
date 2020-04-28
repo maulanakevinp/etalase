@@ -114,7 +114,7 @@ Images
 
 <div class="modal fade" id="displayImageModal" tabindex="-1" role="dialog" aria-labelledby="displayImageModalLabel" aria-hidden="true">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true" class="text-white">&times;</span>
+        <span aria-hidden="true" class="text-white h1">&times;</span>
     </button>
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
