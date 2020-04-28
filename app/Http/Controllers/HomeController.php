@@ -14,7 +14,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function home()
+    public function index()
     {
         $images     = Image::orderBy('id','desc')->paginate(9);
         $structures = Structure::all();

@@ -55,24 +55,13 @@ Images
         <div class="col-md-6 mb-3">
             <div class="card shadow">
                 <div class="card-body">
-                    <div class="card-img-top" style="background-size: cover; height: 250px; background-image: url('{{ asset(Storage::url($image->image)) }}');" ></div>
-                    <form action=" {{ route('images.update' ,['image' => $image->id]) }} " method="post" enctype="multipart/form-data">
-                        @method('patch')
-                        @csrf
-                        <div class="form-group mb-3">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" name="image" aria-describedby="image">
-                                <label class="custom-file-label" for="image">Pilih foto</label>
-                            </div>
-                            <div class="input-group-append">
-                            </div>
-                        </div>
-                        <button class="btn btn-success float-right" type="submit">Perbarui</button>
-                    </form>
-                    <form class="mb-3" action="{{ route('images.destroy' , ['image' => $image->id]) }}" method="post">
+                    <a class="modalDisplay" href="#displayImageModal" data-toggle="modal" data-src="{{ asset(Storage::url($image->image)) }}">
+                        <div class="card-img-top zoom-image" style="background-size: cover; height: 250px; background-image: url('{{ asset(Storage::url($image->image)) }}');" ></div>
+                    </a>
+                    <form class="mb-0" action="{{ route('images.destroy' , ['image' => $image->id]) }}" method="post">
                         @method('delete')
                         @csrf
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus foto ini? ');">Hapus</button>
+                        <button type="submit" title="Hapus" class="btn btn-danger hapus" onclick="return confirm('Apakah anda yakin ingin menghapus foto ini? ');"><i class="fas fa-trash"></i></button>
                     </form>
                 </div>
             </div>
@@ -82,6 +71,19 @@ Images
     {{ $images->links() }}
 </div>
 <!-- /.container-fluid -->
+@endsection
+
+@section('styles')
+    <style>
+        .hapus{
+            position: absolute;
+            top: 25;
+            right: 25;
+        }
+        .zoom-image:hover{
+            opacity: 0.5;
+        }
+    </style>
 @endsection
 
 <div class="modal fade" id="newImageModal" tabindex="-1" role="dialog" aria-labelledby="newImageModalLabel" aria-hidden="true">
@@ -110,10 +112,27 @@ Images
     </div>
 </div>
 
+<div class="modal fade" id="displayImageModal" tabindex="-1" role="dialog" aria-labelledby="displayImageModalLabel" aria-hidden="true">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true" class="text-white">&times;</span>
+    </button>
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <img class="mw-100" id="imageDisplay" src="">
+            </div>
+        </div>
+    </div>
+</div>
+
 @push('scripts')
 <script src="{{ asset('assets/snapshot/js/jquery.min.js') }}"></script>
 <script>
     $(document).ready(function () {
+        $(".modalDisplay").on('click', function(){
+            let src = $(this).data('src');
+            document.getElementById('imageDisplay').src = src;
+        });
         $(".pagination").addClass("justify-content-center");
         const imgAvatar = document.getElementById("displayImage");
         const inputAvatar = document.getElementById("image");

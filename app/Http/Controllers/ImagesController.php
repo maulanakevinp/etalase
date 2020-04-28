@@ -37,26 +37,6 @@ class ImagesController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Image  $image
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Image $image)
-    {
-        $request->validate([
-            'image' => ['required','image','mimes:jpeg,png,gif','max:2048'],
-        ]);
-        if ($request->image) {
-            File::delete(storage_path('app/'.$image->image));
-            $image->image = $request->image->store('public/gallery');
-        }
-        $image->save();
-        return back()->with('success','Foto berhasil diperbarui');
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Image  $image
