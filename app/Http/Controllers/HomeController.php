@@ -18,9 +18,8 @@ class HomeController extends Controller
     {
         $images     = Image::orderBy('id','desc')->paginate(9);
         $structures = Structure::all();
-        $profile    = Profile::findOrFail(1);
         $arts       = Art::all();
-        return view('index',compact('images' , 'structures', 'profile', 'arts'));
+        return view('index',compact('images' , 'structures', 'arts'));
     }
 
     /**

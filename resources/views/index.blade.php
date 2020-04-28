@@ -45,9 +45,9 @@
             <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
                 <div class="col-lg-7 ftco-animate d-flex align-items-center">
                     <div class="text text-center">
-                        <img src="{{ asset($profile->logo) }}" style="width: 10%; margin-bottom: 60pt">
+                        <img src="{{ asset(Storage::url(\App\Profile::find(1)->logo)) }}" style="width: 10%; margin-bottom: 60pt">
                         <!-- <h1 class="logo"><a href="index.html"><span class="flaticon-camera-shutter"></span>Snapshot<small>Photographer / San Francisco</small></a></h1> -->
-                        <h1 class="mb-4">{{ $profile->judul }}</h1>
+                        <h1 class="mb-4">{{ \App\Profile::find(1)->judul }}</h1>
                         <p class="mb-4">A small river named Duden flows by their place and supplies it with the
                             necessary regelialia. It is a paradisematic country, in which roasted parts.</p>
                         <p class="mt-5"><a href="#" class="btn-custom">Find More <span class="ion-ios-arrow-round-forward"></span></a></p>
@@ -78,8 +78,8 @@
                 </div>
                 <div class="col-md-6 col-lg-6 pl-md-5">
                     <div class="heading-section ftco-animate">
-                        <h2 class="mb-4">{{ $profile->judul }}<br></h2>
-                        <p>{{ $profile->deskripsi }}</p>
+                        <h2 class="mb-4">{{ \App\Profile::find(1)->judul }}<br></h2>
+                        <p>{{ \App\Profile::find(1)->deskripsi }}</p>
                         <div class="counter-wrap ftco-animate d-flex my-md-4">
                             <div class="text">
                                 <p class="mb-4">
@@ -312,7 +312,7 @@
             </div>
 
             <div class="row mb-5 justify-content-center">
-                @if ($profile->alamat)
+                @if (\App\Profile::find(1)->alamat)
                     <div class="col-md-3 d-flex ftco-animate">
                         <div class="align-self-stretch box text-center p-4">
                             <div class="icon d-flex align-items-center justify-content-center">
@@ -320,12 +320,12 @@
                             </div>
                             <div>
                                 <h3 class="mb-4">Address</h3>
-                                <p>{{ $profile->alamat }}</p>
+                                <p>{{ \App\Profile::find(1)->alamat }}</p>
                             </div>
                         </div>
                     </div>
                 @endif
-                @if ($profile->kontak)
+                @if (\App\Profile::find(1)->kontak)
                     <div class="col-md-3 d-flex ftco-animate">
                         <div class="align-self-stretch box text-center p-4">
                             <div class="icon d-flex align-items-center justify-content-center">
@@ -333,12 +333,12 @@
                             </div>
                             <div>
                                 <h3 class="mb-4">Contact Number</h3>
-                                <p><a href="tel://{{ $profile->kontak }}">{{ $profile->kontak }}</a></p>
+                                <p><a href="tel://{{ \App\Profile::find(1)->kontak }}">{{ \App\Profile::find(1)->kontak }}</a></p>
                             </div>
                         </div>
                     </div>
                 @endif
-                @if ($profile->email)
+                @if (\App\Profile::find(1)->email)
                     <div class="col-md-3 d-flex ftco-animate">
                         <div class="align-self-stretch box text-center p-4">
                             <div class="icon d-flex align-items-center justify-content-center">
@@ -346,12 +346,12 @@
                             </div>
                             <div>
                                 <h3 class="mb-4">Email Address</h3>
-                                <p><a href="mailto:{{ $profile->email }}">{{ $profile->email }}</a></p>
+                                <p><a href="mailto:{{ \App\Profile::find(1)->email }}">{{ \App\Profile::find(1)->email }}</a></p>
                             </div>
                         </div>
                     </div>
                 @endif
-                @if ($profile->website)
+                @if (\App\Profile::find(1)->website)
                     <div class="col-md-3 d-flex ftco-animate">
                         <div class="align-self-stretch box text-center p-4">
                             <div class="icon d-flex align-items-center justify-content-center">
@@ -359,7 +359,7 @@
                             </div>
                             <div>
                                 <h3 class="mb-4">Website</h3>
-                                <p><a href="{{ $profile->website }}">{{ $profile->judul }}</a></p>
+                                <p><a href="{{ \App\Profile::find(1)->website }}">{{ \App\Profile::find(1)->judul }}</a></p>
                             </div>
                         </div>
                     </div>

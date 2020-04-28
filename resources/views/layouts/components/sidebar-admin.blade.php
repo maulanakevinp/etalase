@@ -43,6 +43,12 @@
                 </li>
                 <li class="app-sidebar__heading">Menu</li>
                 <li>
+                    <a href="{{ route('profile.edit', 1) }}" class="@if(Request::segment(1) == "profile") mm-active @endif">
+                        <i class="metismenu-icon pe-7s-user"></i>
+                        Profile
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('images.index') }}" class="@if(Request::segment(1) == "images") mm-active @endif">
                         <i class="metismenu-icon pe-7s-camera"></i>
                         Images

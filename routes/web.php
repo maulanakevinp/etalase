@@ -29,6 +29,7 @@ Auth::routes([
 ]);
 
 Route::group(['middleware' => ['web','auth']], function () {
+    Route::resource('/profile', 'ProfileController')->except(['create','store','show','destroy']);
     Route::resource('/structures', 'StructureController');
     Route::resource('/images', 'ImagesController')->except(['update', 'show', 'create', 'edit']);
 });

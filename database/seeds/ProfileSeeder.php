@@ -13,7 +13,7 @@ class ProfileSeeder extends Seeder
     public function run()
     {
         Profile::create([
-            'logo'      => 'logo/logo etalase.png',
+            'logo'      => 'public/logo/etalase.png',
             'judul'     => 'UKMK Etalase',
             'deskripsi' => 'Etalase adalah Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque ipsam quia architecto ad illo odio sapiente perferendis esse amet, maxime, necessitatibus ducimus. Inventore quis magnam commodi voluptas culpa exercitationem molestiae!',
             'sejarah'   => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque ipsam quia architecto ad illo odio sapiente perferendis esse amet, maxime, necessitatibus ducimus. Inventore quis magnam commodi voluptas culpa exercitationem molestiae!',
