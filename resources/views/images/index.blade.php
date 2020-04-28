@@ -67,11 +67,6 @@ Images
                             <div class="input-group-append">
                             </div>
                         </div>
-                        {{-- <div class="form-group mb-3">
-                            <label>Keterangan</label>
-                            <input type="text" name="text" id="text" class="form-control" value="{{ old('text', $image->text) }}">
-                            {!! $errors->first('text', '<span class="invalid-feedback" role="alert">:message</span>') !!}
-                        </div> --}}
                         <button class="btn btn-success float-right" type="submit">Perbarui</button>
                     </form>
                     <form class="mb-3" action="{{ route('images.destroy' , ['image' => $image->id]) }}" method="post">
@@ -87,33 +82,7 @@ Images
     {{ $images->links() }}
 </div>
 <!-- /.container-fluid -->
-
-
 @endsection
-
-@push('scripts')
-<script src="{{ asset('assets/snapshot/js/jquery.min.js') }}"></script>
-<script>
-    $(document).ready(function () {
-        $(".pagination").addClass("justify-content-center");
-        $(".custom-file-input").on("change", function () {
-            var fileName = $(this).val().split("\\").pop();
-            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-            readURL(this);
-        });
-
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#displayImage').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-    });
-</script>
-@endpush
 
 <div class="modal fade" id="newImageModal" tabindex="-1" role="dialog" aria-labelledby="newImageModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -128,17 +97,9 @@ Images
                 @csrf
                 <div class="modal-body">
                     <div class="text-center">
-                        <img class="mw-100" id="displayImage" src="" alt="">
+                        <img title="Upload Image" class="mw-100" id="displayImage" src="{{ asset('img/plus-img.png') }}">
                     </div>
-                    <div class="form-group input-group">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="image" name="image" aria-describedby="image">
-                            <label class="custom-file-label" for="image">Pilih gambar</label>
-                        </div>
-                        @error('image')
-                            <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                        @enderror
-                    </div>
+                    <input type="file" id="image" name="image" style="display: none">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
@@ -148,3 +109,36 @@ Images
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script src="{{ asset('assets/snapshot/js/jquery.min.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        $(".pagination").addClass("justify-content-center");
+        const imgAvatar = document.getElementById("displayImage");
+        const inputAvatar = document.getElementById("image");
+        imgAvatar.onmouseenter = function(){
+            this.style.opacity = "0.5";
+            this.style.cursor = "pointer";
+        }
+        imgAvatar.onmouseleave = function(){
+            this.style.opacity = "1";
+            this.style.cursor = "default";
+        }
+        imgAvatar.onclick = function () {
+            inputAvatar.click();
+        };
+
+        inputAvatar.onchange = function () {
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    imgAvatar.src = e.target.result;
+                }
+                reader.readAsDataURL(this.files[0]);
+            }
+        };
+    });
+</script>
+@endpush
