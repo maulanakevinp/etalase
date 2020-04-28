@@ -16,7 +16,7 @@ class ArtSeeder extends Seeder
             'nama'      => 'MUSIK',
             'gambar'    => 'noimage.jpg',
             'deskripsi' => 'A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences.',
-            'ikon'      => 'flaticon music',
+            'ikon'      => 'flaticon-music',
         ]);
         Art::create([
             'nama'      => 'TARI',
