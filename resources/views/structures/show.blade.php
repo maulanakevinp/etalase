@@ -57,7 +57,9 @@
                     <div class="col-md-2 text-center">
                         <div class="position-relative form-group">
                             <span>Image</span>
-                            <img title="detail image" id="img-image" class="mw-100 img-thumbnail" src="{{ asset(Storage::url($structure->image)) }}" alt="">
+                            <a class="modalDisplay" href="#displayImageModal" data-toggle="modal" data-src="{{ asset(Storage::url($structure->image)) }}">
+                                <img title="detail image" id="img-image" class="mw-100 img-thumbnail" src="{{ asset(Storage::url($structure->image)) }}" alt="">
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-10">
@@ -93,8 +95,27 @@
 </div>
 @endsection
 
-@push('scripts')
-    <script>
+<div class="modal fade" id="displayImageModal" tabindex="-1" role="dialog" aria-labelledby="displayImageModalLabel" aria-hidden="true">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true" class="text-white h1">&times;</span>
+    </button>
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <img class="mw-100" id="imageDisplay" src="">
+            </div>
+        </div>
+    </div>
+</div>
 
+@push('scripts')
+    <script src="{{ asset('assets/snapshot/js/jquery.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $(".modalDisplay").on('click', function(){
+                let src = $(this).data('src');
+                document.getElementById('imageDisplay').src = src;
+            });
+        });
     </script>
 @endpush
