@@ -14,8 +14,7 @@ Images
                     <i class="pe-7s-camera icon-gradient bg-mean-fruit"> </i>
                 </div>
                 <div>Images
-                    <div class="page-title-subheading">This is an Gallery of UKMK Etalase
-                    </div>
+                    <div class="page-title-subheading">This is an Gallery of UKMK Etalase</div>
                 </div>
             </div>
             <div class="page-title-actions">
