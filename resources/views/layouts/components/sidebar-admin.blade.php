@@ -60,6 +60,12 @@
                         Structure
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('arts.index') }}" class="@if(Request::segment(1) == "arts") mm-active @endif">
+                        <i class="metismenu-icon pe-7s-box2"></i>
+                        Art
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
