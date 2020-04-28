@@ -55,7 +55,7 @@ Images
         <div class="col-md-6 mb-3">
             <div class="card shadow">
                 <div class="card-body">
-                    <div class="card-img-top" style="background-size: cover; height: 250px; background-image: url('{{ asset('img/gallery/'. $image->image) }}');" ></div>
+                    <div class="card-img-top" style="background-size: cover; height: 250px; background-image: url('{{ asset(Storage::url($image->image)) }}');" ></div>
                     <form action=" {{ route('images.update' ,['image' => $image->id]) }} " method="post" enctype="multipart/form-data">
                         @method('patch')
                         @csrf

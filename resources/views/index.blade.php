@@ -65,8 +65,8 @@
         <div class="row">
             @foreach ($images as $image)
                 <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                    <a href="{{ asset('img/gallery/'.$image->image) }}" class="fancybox" rel="ligthbox">
-                        <img src="{{ asset('img/gallery/'.$image->image) }}" class="zoom img-fluid "  alt="{{ asset('img/gallery/'.$image->image) }}">
+                    <a href="{{ asset(Storage::url($image->image)) }}" class="fancybox" rel="ligthbox">
+                        <img src="{{ asset(Storage::url($image->image)) }}" class="zoom img-fluid "  alt="{{ asset(Storage::url($image->image)) }}">
                     </a>
                 </div>
             @endforeach

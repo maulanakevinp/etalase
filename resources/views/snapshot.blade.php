@@ -248,8 +248,8 @@
             <div class="row no-gutters">
                 @foreach ($images as $image)
                     <div class="col-md-4 ftco-animate">
-                        <div class="model img d-flex align-items-end" style="background-image:url('{{ asset('img/gallery/'.$image->image) }}');">
-                            <a href="{{ asset('img/gallery/'.$image->image) }}" class="icon image-popup d-flex justify-content-center align-items-center">
+                        <div class="model img d-flex align-items-end" style="background-image:url('{{ asset(Storage::url($image->image)) }}');">
+                            <a href="{{ asset(Storage::url($image->image)) }}" class="icon image-popup d-flex justify-content-center align-items-center">
                                 <span class="icon-expand"></span>
                             </a>
                         </div>
@@ -279,7 +279,7 @@
                             <div class="item">
                                 <div class="testimony-wrap p-4 pb-5">
                                     <div class="user-img mb-4"
-                                        style="background-image:url({{ $structure->image == "noimage.jpg" ? asset('noimage.jpg') : asset('img/anggota/'.$structure->image) }})">
+                                        style="background-image:url({{ asset(Storage::url($structure->image)) }})">
                                         <span class="quote d-flex align-items-center justify-content-center">
                                             <i class="icon-quote-left"></i>
                                         </span>
