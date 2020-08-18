@@ -4,9 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Structure extends Model
+class Video extends Model
 {
     protected $guarded = [];
-
-    public $timestamps = false;
 }

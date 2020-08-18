@@ -4,6 +4,10 @@
     Detail structure
 @endsection
 
+@section('styles')
+<link rel="stylesheet" href="{{ asset('css/jquery.fancybox.css') }}">
+@endsection
+
 @section('content')
 <div class="app-main__inner">
     <div class="app-page-title">
@@ -57,7 +61,7 @@
                     <div class="col-md-2 text-center">
                         <div class="position-relative form-group">
                             <span>Image</span>
-                            <a class="modalDisplay" href="#displayImageModal" data-toggle="modal" data-src="{{ asset(Storage::url($structure->image)) }}">
+                            <a href="{{ asset(Storage::url($structure->image)) }}" data-fancybox data-caption="{{ $structure->nama }}">
                                 <img title="detail image" id="img-image" class="mw-100 img-thumbnail" src="{{ asset(Storage::url($structure->image)) }}" alt="">
                             </a>
                         </div>
@@ -109,13 +113,6 @@
 </div>
 
 @push('scripts')
-    <script src="{{ asset('assets/snapshot/js/jquery.min.js') }}"></script>
-    <script>
-        $(document).ready(function () {
-            $(".modalDisplay").on('click', function(){
-                let src = $(this).data('src');
-                document.getElementById('imageDisplay').src = src;
-            });
-        });
-    </script>
+<script src="{{ asset('assets/snapshot/js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/jquery.fancybox.js') }}"></script>
 @endpush

@@ -40,6 +40,10 @@
                         <i class="metismenu-icon pe-7s-rocket"></i>
                         Dashboard
                     </a>
+                    <a href="{{ url('') }}">
+                        <i class="metismenu-icon pe-7s-home"></i>
+                        Home
+                    </a>
                 </li>
                 <li class="app-sidebar__heading">Menu</li>
                 <li>
@@ -51,7 +55,7 @@
                 <li>
                     <a href="{{ route('images.index') }}" class="@if(Request::segment(1) == "images") mm-active @endif">
                         <i class="metismenu-icon pe-7s-camera"></i>
-                        Images
+                        Gallery
                     </a>
                 </li>
                 <li>

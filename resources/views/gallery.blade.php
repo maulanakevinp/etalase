@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+    <link rel="stylesheet" href="{{ asset('css/jquery.fancybox.css') }}">
     <link rel="shortcut icon" href="{{ asset(Storage::url(\App\Profile::find(1)->logo)) }}" type="image/x-icon">
 
     <style>
@@ -20,9 +20,6 @@
             height: 100%;
             position: relative;
             overflow: hidden;
-        }
-        .green {
-            background-color: #6fb936;
         }
         .thumb {
             margin-bottom: 30px;
@@ -41,19 +38,10 @@
             -ms-transition: all .3s ease-in-out;
         }
         .transition {
-            -webkit-transform: scale(1.2);
-            -moz-transform: scale(1.2);
-            -o-transform: scale(1.2);
-            transform: scale(1.2);
-        }
-        .modal-header {
-            border-bottom: none;
-        }
-        .modal-title {
-            color: #000;
-        }
-        .modal-footer {
-            display: none;
+            -webkit-transform: scale(1.1);
+            -moz-transform: scale(1.1);
+            -o-transform: scale(1.1);
+            transform: scale(1.1);
         }
     </style>
     <title>{{ config('app.name') }} - Gallery</title>
@@ -68,25 +56,37 @@
             </a>
         </div>
         <div class="row">
-            @foreach ($images as $image)
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                    <a href="{{ asset(Storage::url($image->image)) }}" class="fancybox" rel="ligthbox">
-                        <img src="{{ asset(Storage::url($image->image)) }}" class="zoom img-fluid "  alt="{{ asset(Storage::url($image->image)) }}">
-                    </a>
+            @forelse ($galleries as $item)
+                @if ($item['jenis'] == 1)
+                    <div class="col-md-4 col-sm-6 thumb">
+                        <a href="{{ asset(Storage::url($item['gambar'])) }}" data-fancybox="images">
+                            <img src="{{ asset(Storage::url($item['gambar'])) }}" class="zoom img-fluid"  alt="{{ asset(Storage::url($item['gambar'])) }}">
+                        </a>
+                    </div>
+                @else
+                    <div class="col-md-4 col-sm-6 thumb">
+                        <a href="https://www.youtube.com/watch?v={{ $item['id'] }}" data-fancybox="images" data-caption="{{ $item['caption'] }}">
+                            <img src="{{ $item['gambar'] }}" class="zoom img-fluid"  alt="{{ asset(Storage::url($item['gambar'])) }}">
+                        </a>
+                    </div>
+                @endif
+            @empty
+                <div class="col">
+                    <div class="card shadow">
+                        <div class="card-body text-center">
+                            <h4>Data belum tersedia</h4>
+                        </div>
+                    </div>
                 </div>
-            @endforeach
+            @endforelse
         </div>
-        {{ $images->links() }}
     </div>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+    <script src="{{ asset('assets/snapshot/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.fancybox.js') }}"></script>
     <script>
         $(document).ready(function () {
-            $(".pagination").addClass('justify-content-center');
-            $(".pagination").addClass('mb-5');
             $(".fancybox").fancybox({
                 openEffect: "none",
                 closeEffect: "none"

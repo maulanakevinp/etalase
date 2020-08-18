@@ -6,14 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Art extends Model
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'nama', 'gambar', 'deskripsi', 'ikon',
-    ];
-
+    protected $table = "arts";
+    protected $guarded = [];
     public $timestamps = false;
 }

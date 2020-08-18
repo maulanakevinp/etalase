@@ -6,6 +6,7 @@ use App\Art;
 use App\Image;
 use App\Profile;
 use App\Structure;
+use App\Video;
 
 class HomeController extends Controller
 {
@@ -16,10 +17,38 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $images     = Image::orderBy('id','desc')->paginate(9);
         $structures = Structure::all();
         $arts       = Art::all();
-        return view('index',compact('images' , 'structures', 'arts'));
+        $images = Image::orderBy('id','desc')->get();
+        $videos = Video::all();
+        $galleries = array();
+
+        foreach ($images as $key => $value) {
+            $gambar = [
+                'gambar'    => $value->image,
+                'id'        => $value->id,
+                'caption'   => "",
+                'jenis'     => 1,
+                'created_at'=> strtotime($value->created_at),
+            ];
+            array_push($galleries, $gambar);
+        }
+
+        foreach ($videos as $key => $value) {
+            $gambar = [
+                'gambar'    => $value->gambar,
+                'id'        => $value->video_id,
+                'caption'   => $value->caption,
+                'jenis'     => 2,
+                'created_at'=> strtotime($value->published_at),
+            ];
+            array_push($galleries, $gambar);
+        }
+
+        usort($galleries, function($a, $b) {
+            return $a['created_at'] < $b['created_at'];
+        });
+        return view('index',compact('galleries' , 'structures', 'arts'));
     }
 
     /**
@@ -29,8 +58,37 @@ class HomeController extends Controller
      */
     public function gallery()
     {
-        $images = Image::orderBy('id','desc')->paginate(8);
-        return view('gallery',compact('images'));
+        $images = Image::orderBy('id','desc')->get();
+        $videos = Video::all();
+        $galleries = array();
+
+        foreach ($images as $key => $value) {
+            $gambar = [
+                'gambar'    => $value->image,
+                'id'        => $value->id,
+                'caption'   => "",
+                'jenis'     => 1,
+                'created_at'=> strtotime($value->created_at),
+            ];
+            array_push($galleries, $gambar);
+        }
+
+        foreach ($videos as $key => $value) {
+            $gambar = [
+                'gambar'    => $value->gambar,
+                'id'        => $value->video_id,
+                'caption'   => $value->caption,
+                'jenis'     => 2,
+                'created_at'=> strtotime($value->published_at),
+            ];
+            array_push($galleries, $gambar);
+        }
+
+        usort($galleries, function($a, $b) {
+            return $a['created_at'] < $b['created_at'];
+        });
+
+        return view('gallery',compact('galleries'));
     }
 
     public function structure()
