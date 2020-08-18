@@ -178,42 +178,69 @@ Images
     };
 
     $(document).ready(function(){
-        $.get("{{ route('gallery.load') }}", function (data) {
-            if (data.length > 0) {
-                $.each(data, function(index,result){
-                    if (result.jenis == 1) {
-                        $("#gallery").append(`
-                            <div class="col-md-4 col-sm-6 thumb">
-                                <a href="${result.gambar}" data-fancybox="images">
-                                    <img src="${result.gambar}" class="zoom img-fluid"  alt="${result.caption}">
-                                </a>
-                                <form class="mb-0" action="{{ url('images') }}/${result.id}" method="post">
-                                    <input type="hidden" name="_method" value="delete">
-                                    {{ csrf_field() }}
-                                    <button type="submit" title="Hapus" class="btn btn-danger hapus" onclick="return confirm('Apakah anda yakin ingin menghapus foto ini? ');" style="position: absolute; top: 0; right: 15px;"><i class="fas fa-trash"></i></button>
-                                </form>
-                            </div>
-                        `);
-                    } else {
-                        $("#gallery").append(`
-                            <div class="col-lg-4 col-md-6 mb-3 animate-zoom">
-                                <a href="https://www.youtube.com/watch?v=${result.id}" data-fancybox="images" data-caption="${result.caption}">
-                                    <img src="${result.gambar}" class="zoom img-fluid"  alt="${result.caption}">
-                                </a>
-                            </div>
-                        `);
-                    }
-                });
-            } else {
-                $("#gallery").append(`
-                    <div class="col">
-                        <div class="card shadow">
-                            <div class="card-body text-center">
-                                <h4>Data belum tersedia</h4>
-                            </div>
-                        </div>
+        $.ajax({
+            url: "{{ route('gallery.load') }}",
+            method: "GET",
+            beforeSend: function () {
+                $("#gallery").html(`
+                    <div class="col-md-4 col-sm-6 thumb">
+                        <img src="{{ url("img/img-lazy-loading.gif") }}" class="zoom img-fluid"  alt="Loading">
+                    </div>
+                    <div class="col-md-4 col-sm-6 thumb">
+                        <img src="{{ url("img/img-lazy-loading.gif") }}" class="zoom img-fluid"  alt="Loading">
+                    </div>
+                    <div class="col-md-4 col-sm-6 thumb">
+                        <img src="{{ url("img/img-lazy-loading.gif") }}" class="zoom img-fluid"  alt="Loading">
+                    </div>
+                    <div class="col-md-4 col-sm-6 thumb">
+                        <img src="{{ url("img/img-lazy-loading.gif") }}" class="zoom img-fluid"  alt="Loading">
+                    </div>
+                    <div class="col-md-4 col-sm-6 thumb">
+                        <img src="{{ url("img/img-lazy-loading.gif") }}" class="zoom img-fluid"  alt="Loading">
+                    </div>
+                    <div class="col-md-4 col-sm-6 thumb">
+                        <img src="{{ url("img/img-lazy-loading.gif") }}" class="zoom img-fluid"  alt="Loading">
                     </div>
                 `);
+            },
+            success: function (data) {
+                $("#gallery").html(``);
+                if (data.length > 0) {
+                    $.each(data, function(index,result){
+                        if (result.jenis == 1) {
+                            $("#gallery").append(`
+                                <div class="col-md-4 col-sm-6 thumb">
+                                    <a href="${result.gambar}" data-fancybox="images">
+                                        <img src="${result.gambar}" class="zoom img-fluid"  alt="${result.caption}">
+                                    </a>
+                                    <form class="mb-0" action="{{ url('images') }}/${result.id}" method="post">
+                                        <input type="hidden" name="_method" value="delete">
+                                        {{ csrf_field() }}
+                                        <button type="submit" title="Hapus" class="btn btn-danger hapus" onclick="return confirm('Apakah anda yakin ingin menghapus foto ini? ');" style="position: absolute; top: 0; right: 15px;"><i class="fas fa-trash"></i></button>
+                                    </form>
+                                </div>
+                            `);
+                        } else {
+                            $("#gallery").append(`
+                                <div class="col-lg-4 col-md-6 mb-3 animate-zoom">
+                                    <a href="https://www.youtube.com/watch?v=${result.id}" data-fancybox="images" data-caption="${result.caption}">
+                                        <img src="${result.gambar}" class="zoom img-fluid"  alt="${result.caption}">
+                                    </a>
+                                </div>
+                            `);
+                        }
+                    });
+                } else {
+                    $("#gallery").append(`
+                        <div class="col">
+                            <div class="card shadow">
+                                <div class="card-body text-center">
+                                    <h4>Data belum tersedia</h4>
+                                </div>
+                            </div>
+                        </div>
+                    `);
+                }
             }
         });
     });
