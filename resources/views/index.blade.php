@@ -16,7 +16,7 @@
     .thumb {
         margin-bottom: 30px;
     }
-    .transition {
+    img.zoom:hover {
         -webkit-transform: scale(1.1);
         -moz-transform: scale(1.1);
         -o-transform: scale(1.1);
@@ -270,7 +270,7 @@
         <div class="container">
             <div class="row">
                 @if (count($galleries) > 0)
-                    @for ($i = 0; $i < 12; $i++)
+                    @for ($i = 0; $i < 9; $i++)
                         @if ($galleries[$i]['jenis'] == 1)
                             <div class="col-md-4 col-sm-6 thumb">
                                 <a href="{{ asset(Storage::url($galleries[$i]['gambar'])) }}" data-fancybox="images">
@@ -440,11 +440,7 @@
 <script src="{{ asset('js/jquery.fancybox.js') }}"></script>
 <script>
     $(document).ready(function () {
-        $(".zoom").hover(function () {
-            $(this).addClass('transition');
-        }, function () {
-            $(this).removeClass('transition');
-        });
+
     });
 </script>
 @endpush

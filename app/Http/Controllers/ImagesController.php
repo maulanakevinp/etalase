@@ -16,37 +16,7 @@ class ImagesController extends Controller
      */
     public function index()
     {
-        $images = Image::orderBy('id','desc')->get();
-        $videos = Video::all();
-        $galleries = array();
-
-        foreach ($images as $key => $value) {
-            $gambar = [
-                'gambar'    => $value->image,
-                'id'        => $value->id,
-                'caption'   => "",
-                'jenis'     => 1,
-                'created_at'=> strtotime($value->created_at),
-            ];
-            array_push($galleries, $gambar);
-        }
-
-        foreach ($videos as $key => $value) {
-            $gambar = [
-                'gambar'    => $value->gambar,
-                'id'        => $value->video_id,
-                'caption'   => $value->caption,
-                'jenis'     => 2,
-                'created_at'=> strtotime($value->published_at),
-            ];
-            array_push($galleries, $gambar);
-        }
-
-        usort($galleries, function($a, $b) {
-            return $a['created_at'] < $b['created_at'];
-        });
-
-        return view('images.index',compact('galleries'));
+        return view('images.index');
     }
 
     /**

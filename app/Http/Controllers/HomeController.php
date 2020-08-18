@@ -7,6 +7,7 @@ use App\Image;
 use App\Profile;
 use App\Structure;
 use App\Video;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -58,13 +59,18 @@ class HomeController extends Controller
      */
     public function gallery()
     {
+        return view('gallery');
+    }
+
+    public function loadGallery()
+    {
         $images = Image::orderBy('id','desc')->get();
         $videos = Video::all();
         $galleries = array();
 
         foreach ($images as $key => $value) {
             $gambar = [
-                'gambar'    => $value->image,
+                'gambar'    => asset(Storage::url($value->image)),
                 'id'        => $value->id,
                 'caption'   => "",
                 'jenis'     => 1,
@@ -88,7 +94,7 @@ class HomeController extends Controller
             return $a['created_at'] < $b['created_at'];
         });
 
-        return view('gallery',compact('galleries'));
+        return response()->json($galleries);
     }
 
     public function structure()

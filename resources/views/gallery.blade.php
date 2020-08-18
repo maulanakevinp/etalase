@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
+    <title>Gallery UKMK Etalase UNEJ</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -37,14 +39,13 @@
             -o-transition: all .3s ease-in-out;
             -ms-transition: all .3s ease-in-out;
         }
-        .transition {
+        img.zoom:hover {
             -webkit-transform: scale(1.1);
             -moz-transform: scale(1.1);
             -o-transform: scale(1.1);
             transform: scale(1.1);
         }
     </style>
-    <title>{{ config('app.name') }} - Gallery</title>
 </head>
 
 <body>
@@ -55,30 +56,7 @@
                 <img class="mb-5" height="100px" src="{{ asset(Storage::url(\App\Profile::find(1)->logo)) }}" alt="">
             </a>
         </div>
-        <div class="row">
-            @forelse ($galleries as $item)
-                @if ($item['jenis'] == 1)
-                    <div class="col-md-4 col-sm-6 thumb">
-                        <a href="{{ asset(Storage::url($item['gambar'])) }}" data-fancybox="images">
-                            <img src="{{ asset(Storage::url($item['gambar'])) }}" class="zoom img-fluid"  alt="{{ asset(Storage::url($item['gambar'])) }}">
-                        </a>
-                    </div>
-                @else
-                    <div class="col-md-4 col-sm-6 thumb">
-                        <a href="https://www.youtube.com/watch?v={{ $item['id'] }}" data-fancybox="images" data-caption="{{ $item['caption'] }}">
-                            <img src="{{ $item['gambar'] }}" class="zoom img-fluid"  alt="{{ asset(Storage::url($item['gambar'])) }}">
-                        </a>
-                    </div>
-                @endif
-            @empty
-                <div class="col">
-                    <div class="card shadow">
-                        <div class="card-body text-center">
-                            <h4>Data belum tersedia</h4>
-                        </div>
-                    </div>
-                </div>
-            @endforelse
+        <div id="gallery" class="row">
         </div>
     </div>
 
@@ -87,15 +65,38 @@
     <script src="{{ asset('js/jquery.fancybox.js') }}"></script>
     <script>
         $(document).ready(function () {
-            $(".fancybox").fancybox({
-                openEffect: "none",
-                closeEffect: "none"
-            });
-
-            $(".zoom").hover(function () {
-                $(this).addClass('transition');
-            }, function () {
-                $(this).removeClass('transition');
+            $.get("{{ route('gallery.load') }}", function (data) {
+                if (data.length > 0) {
+                    $.each(data, function(index,result){
+                        if (result.jenis == 1) {
+                            $("#gallery").append(`
+                                <div class="col-md-4 col-sm-6 thumb">
+                                    <a href="${result.gambar}" data-fancybox="images">
+                                        <img src="${result.gambar}" class="zoom img-fluid"  alt="${result.caption}">
+                                    </a>
+                                </div>
+                            `);
+                        } else {
+                            $("#gallery").append(`
+                                <div class="col-lg-4 col-md-6 mb-3 animate-zoom">
+                                    <a href="https://www.youtube.com/watch?v=${result.id}" data-fancybox="images" data-caption="${result.caption}">
+                                        <img src="${result.gambar}" class="zoom img-fluid"  alt="${result.caption}">
+                                    </a>
+                                </div>
+                            `);
+                        }
+                    });
+                } else {
+                    $("#gallery").append(`
+                        <div class="col">
+                            <div class="card shadow">
+                                <div class="card-body text-center">
+                                    <h4>Data belum tersedia</h4>
+                                </div>
+                            </div>
+                        </div>
+                    `);
+                }
             });
         });
     </script>

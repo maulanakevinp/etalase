@@ -29,7 +29,7 @@ Images
     .thumb {
         margin-bottom: 30px;
     }
-    .transition {
+    img.zoom:hover {
         -webkit-transform: scale(1.1);
         -moz-transform: scale(1.1);
         -o-transform: scale(1.1);
@@ -84,35 +84,7 @@ Images
     </div>
     @if ($errors->any())<div class="alert alert-danger alert-dismissible fade show"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><ul>@foreach ($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul></div>@endif
 
-    <div class="row">
-        @forelse ($galleries as $item)
-            @if ($item['jenis'] == 1)
-                <div class="col-md-4 col-sm-6 thumb">
-                    <a href="{{ asset(Storage::url($item['gambar'])) }}" data-fancybox="images">
-                        <img src="{{ asset(Storage::url($item['gambar'])) }}" class="zoom img-fluid"  alt="{{ $item['caption'] }}">
-                    </a>
-                    <form class="mb-0" action="{{ route('images.destroy' , ['image' => $item['id']]) }}" method="post">
-                        @method('delete')
-                        @csrf
-                        <button type="submit" title="Hapus" class="btn btn-danger hapus" onclick="return confirm('Apakah anda yakin ingin menghapus foto ini? ');" style="position: absolute; top: 0; right: 15px;"><i class="fas fa-trash"></i></button>
-                    </form>
-                </div>
-            @else
-                <div class="col-lg-4 col-md-6 mb-3 animate-zoom">
-                    <a href="https://www.youtube.com/watch?v={{ $item['id'] }}" data-fancybox="images" data-caption="{{ $item['caption'] }}">
-                        <img src="{{ $item['gambar'] }}" class="zoom img-fluid"  alt="{{ $item['caption'] }}">
-                    </a>
-                </div>
-            @endif
-        @empty
-            <div class="col">
-                <div class="card shadow">
-                    <div class="card-body text-center">
-                        <h4>Data belum tersedia</h4>
-                    </div>
-                </div>
-            </div>
-        @endforelse
+    <div id="gallery" class="row">
     </div>
 </div>
 <!-- /.container-fluid -->
@@ -206,10 +178,43 @@ Images
     };
 
     $(document).ready(function(){
-        $(".zoom").hover(function () {
-            $(this).addClass('transition');
-        }, function () {
-            $(this).removeClass('transition');
+        $.get("{{ route('gallery.load') }}", function (data) {
+            if (data.length > 0) {
+                $.each(data, function(index,result){
+                    if (result.jenis == 1) {
+                        $("#gallery").append(`
+                            <div class="col-md-4 col-sm-6 thumb">
+                                <a href="${result.gambar}" data-fancybox="images">
+                                    <img src="${result.gambar}" class="zoom img-fluid"  alt="${result.caption}">
+                                </a>
+                                <form class="mb-0" action="{{ url('images') }}/${result.id}" method="post">
+                                    <input type="hidden" name="_method" value="delete">
+                                    {{ csrf_field() }}
+                                    <button type="submit" title="Hapus" class="btn btn-danger hapus" onclick="return confirm('Apakah anda yakin ingin menghapus foto ini? ');" style="position: absolute; top: 0; right: 15px;"><i class="fas fa-trash"></i></button>
+                                </form>
+                            </div>
+                        `);
+                    } else {
+                        $("#gallery").append(`
+                            <div class="col-lg-4 col-md-6 mb-3 animate-zoom">
+                                <a href="https://www.youtube.com/watch?v=${result.id}" data-fancybox="images" data-caption="${result.caption}">
+                                    <img src="${result.gambar}" class="zoom img-fluid"  alt="${result.caption}">
+                                </a>
+                            </div>
+                        `);
+                    }
+                });
+            } else {
+                $("#gallery").append(`
+                    <div class="col">
+                        <div class="card shadow">
+                            <div class="card-body text-center">
+                                <h4>Data belum tersedia</h4>
+                            </div>
+                        </div>
+                    </div>
+                `);
+            }
         });
     });
 </script>
