@@ -92,7 +92,6 @@
                 },
                 success: function (data) {
                     $("#gallery").html(``);
-                    console.log('tes')
                     if (data.length > 0) {
                         $.each(data, function(index,result){
                             if (result.jenis == 1) {
