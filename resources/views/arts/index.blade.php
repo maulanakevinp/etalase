@@ -11,7 +11,7 @@ Arts
         <div class="page-title-wrapper">
             <div class="page-title-heading">
                 <div class="page-title-icon">
-                    <i class="pe-7s-vector"> </i>
+                    <i class="pe-7s-box2"> </i>
                 </div>
                 <div>Arts
                     <div class="page-title-subheading">This is an Arts of UKMK Etalase</div>

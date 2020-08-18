@@ -10,7 +10,7 @@
         <div class="page-title-wrapper">
             <div class="page-title-heading">
                 <div class="page-title-icon">
-                    <i class="pe-7s-camera icon-gradient bg-mean-fruit"> </i>
+                    <i class="pe-7s-user icon-gradient bg-mean-fruit"> </i>
                 </div>
                 <div>Profile
                     <div class="page-title-subheading">This is an Profile of UKMK Etalase</div>
@@ -103,6 +103,26 @@
                 <div class="position-relative form-group">
                     <label for="deskripsi" class="">Deskripsi</label>
                     <textarea name="deskripsi" id="deskripsi" class="form-control" rows="3">{{ old('deskripsi', $profile->deskripsi) }}</textarea>
+                </div>
+                <div class="position-relative form-group">
+                    <label for="kalimat_pembuka" class="">Kalimat Pembuka</label>
+                    <textarea name="kalimat_pembuka" id="kalimat_pembuka" class="form-control" rows="3">{{ old('kalimat_pembuka', $profile->kalimat_pembuka) }}</textarea>
+                </div>
+                <div class="position-relative form-group">
+                    <label for="bidang" class="">Bidang</label>
+                    <textarea name="bidang" id="bidang" class="form-control" rows="3">{{ old('bidang', $profile->bidang) }}</textarea>
+                </div>
+                <div class="position-relative form-group">
+                    <label for="gallery" class="">Gallery</label>
+                    <textarea name="gallery" id="gallery" class="form-control" rows="3">{{ old('gallery', $profile->gallery) }}</textarea>
+                </div>
+                <div class="position-relative form-group">
+                    <label for="pengurus" class="">Pengurus</label>
+                    <textarea name="pengurus" id="pengurus" class="form-control" rows="3">{{ old('pengurus', $profile->pengurus) }}</textarea>
+                </div>
+                <div class="position-relative form-group">
+                    <label for="contact" class="">Contact</label>
+                    <textarea name="contact" id="contact" class="form-control" rows="3">{{ old('contact', $profile->contact) }}</textarea>
                 </div>
                 <div class="position-relative form-group">
                     <label for="sejarah" class="">Sejarah</label>

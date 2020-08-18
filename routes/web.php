@@ -33,4 +33,7 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::resource('/structures', 'StructureController');
     Route::resource('/arts', 'ArtController');
     Route::resource('/images', 'ImagesController')->except(['update', 'show', 'create', 'edit']);
+
+    Route::post('/video', 'VideoController@store')->name('video.store');
+    Route::patch('/video/update', 'VideoController@update')->name('video.update');
 });

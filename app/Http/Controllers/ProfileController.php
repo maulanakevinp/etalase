@@ -41,17 +41,22 @@ class ProfileController extends Controller
     public function update(Request $request, Profile $profile)
     {
         $data = $request->validate([
-            'judul'     => ['required', 'string', 'max:16'],
-            'logo'      => ['nullable', 'image', 'mimes:png,jpg', 'max:2048'],
-            'deskripsi' => ['required', 'string'],
-            'sejarah'   => ['required', 'string'],
-            'alamat'    => ['nullable', 'string'],
-            'kontak'    => ['nullable', 'string'],
-            'email'     => ['nullable', 'string'],
-            'website'   => ['nullable', 'string'],
-            'instagram' => ['nullable', 'string'],
-            'facebook'  => ['nullable', 'string'],
-            'twitter'   => ['nullable', 'string'],
+            'judul'             => ['required', 'string', 'max:16'],
+            'logo'              => ['nullable', 'image', 'mimes:png,jpg', 'max:2048'],
+            'deskripsi'         => ['required', 'string'],
+            'kalimat_pembuka'   => ['required', 'string'],
+            'bidang'            => ['required', 'string'],
+            'gallery'           => ['required', 'string'],
+            'pengurus'          => ['required', 'string'],
+            'contact'           => ['required', 'string'],
+            'sejarah'           => ['required', 'string'],
+            'alamat'            => ['nullable', 'string'],
+            'kontak'            => ['nullable', 'string'],
+            'email'             => ['nullable', 'string'],
+            'website'           => ['nullable', 'string'],
+            'instagram'         => ['nullable', 'string'],
+            'facebook'          => ['nullable', 'string'],
+            'twitter'           => ['nullable', 'string'],
         ]);
 
         if ($request->logo) {

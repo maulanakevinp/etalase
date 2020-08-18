@@ -1,4 +1,30 @@
 @extends('layouts.master')
+
+@section('styles')
+<link rel="stylesheet" href="{{ asset('css/jquery.fancybox.css') }}">
+<style>
+    img.zoom {
+        width: 100%;
+        height: 200px;
+        border-radius: 5px;
+        object-fit: cover;
+        -webkit-transition: all .3s ease-in-out;
+        -moz-transition: all .3s ease-in-out;
+        -o-transition: all .3s ease-in-out;
+        -ms-transition: all .3s ease-in-out;
+    }
+    .thumb {
+        margin-bottom: 30px;
+    }
+    .transition {
+        -webkit-transform: scale(1.1);
+        -moz-transform: scale(1.1);
+        -o-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+</style>
+@endsection
+
 @section('content')
     <nav id="navbar" class="navbar">
         <ul class="nav-menu">
@@ -48,8 +74,7 @@
                         <img src="{{ asset(Storage::url(\App\Profile::find(1)->logo)) }}" style="width: 10%; margin-bottom: 60pt">
                         <!-- <h1 class="logo"><a href="index.html"><span class="flaticon-camera-shutter"></span>Snapshot<small>Photographer / San Francisco</small></a></h1> -->
                         <h1 class="mb-4">{{ \App\Profile::find(1)->judul }}</h1>
-                        <p class="mb-4">A small river named Duden flows by their place and supplies it with the
-                            necessary regelialia. It is a paradisematic country, in which roasted parts.</p>
+                        <p class="mb-4">{{ \App\Profile::find(1)->kalimat_pembuka }}</p>
                         <p class="mt-5"><a href="#" class="btn-custom">Find More <span class="ion-ios-arrow-round-forward"></span></a></p>
                     </div>
                 </div>
@@ -125,8 +150,7 @@
                     <div class="row">
                         <div class="col-md-5 heading-section ftco-animate pb-5">
                             <h2 class="mb-4" style="font-size: 25pt">Bidang di Etalase</h2>
-                            <p>Terdapat lima bidang seni di UKMK Etalase yang
-                                sehingga anggota dapat berproses sesuai ketertarikannya masing-masing</p>
+                            <p>{{ \App\Profile::find(1)->bidang }}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -218,8 +242,7 @@
                         <div class="col-md-3"></div>
                         <div class="col-md-5 ftco-animate text-center" style="padding: 1.5rem">
                             <a href="#">
-                                <p class="btn-kotak">Lihat pengurus lengkap <span
-                                        class="ion-ios-arrow-round-forward"></span></p>
+                                <p class="btn-kotak">Lihat pengurus lengkap <span class="ion-ios-arrow-round-forward"></span></p>
                             </a>
                         </div>
                         <div class="col-md-3"></div>
@@ -240,24 +263,40 @@
             <div class="row justify-content-center">
                 <div class="col-md-4 heading-section text-center ftco-animate pb-5">
                     <h2 class="mb-4">Gallery</h2>
-                    <p>Gallery Etalase adalah Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas, laboriosam ut obcaecati officiis sequi earum perspiciatis nihil veritatis a amet?</p>
+                    <p>{{ \App\Profile::find(1)->gallery }}</p>
                 </div>
             </div>
         </div>
-        <div class="container-fluid px-md-0">
-            <div class="row no-gutters">
-                @foreach ($images as $image)
-                    <div class="col-md-4 ftco-animate">
-                        <div class="model img d-flex align-items-end" style="background-image:url('{{ asset(Storage::url($image->image)) }}');">
-                            <a href="{{ asset(Storage::url($image->image)) }}" class="icon image-popup d-flex justify-content-center align-items-center">
-                                <span class="icon-expand"></span>
-                            </a>
+        <div class="container">
+            <div class="row">
+                @if (count($galleries) > 0)
+                    @for ($i = 0; $i < 12; $i++)
+                        @if ($galleries[$i]['jenis'] == 1)
+                            <div class="col-md-4 col-sm-6 thumb">
+                                <a href="{{ asset(Storage::url($galleries[$i]['gambar'])) }}" data-fancybox="images">
+                                    <img src="{{ asset(Storage::url($galleries[$i]['gambar'])) }}" class="zoom img-fluid"  alt="{{ asset(Storage::url($galleries[$i]['caption'])) }}">
+                                </a>
+                            </div>
+                        @else
+                            <div class="col-md-4 col-sm-6 thumb">
+                                <a href="https://www.youtube.com/watch?v={{ $galleries[$i]['id'] }}" data-fancybox="images" data-caption="{{ $galleries[$i]['caption'] }}">
+                                    <img src="{{ $galleries[$i]['gambar'] }}" class="zoom img-fluid"  alt="{{ $galleries[$i]['caption'] }}">
+                                </a>
+                            </div>
+                        @endif
+                    @endfor
+                    <div class="col-12 text-center ftco-animate">
+                        <a href="{{ route('gallery') }}" class="btn btn-primary mt-4">Load More</a>
+                    </div>
+                @else
+                    <div class="col-12 text-center ftco-animate">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>Data Tidak Tersedia</h4>
+                            </div>
                         </div>
                     </div>
-                @endforeach
-                <div class="col-12 text-center ftco-animate">
-                    <a href="{{ route('gallery') }}" class="btn btn-primary mt-4">Load More</a>
-                </div>
+                @endif
             </div>
         </div>
     </section>
@@ -269,7 +308,7 @@
                 <div class="col-md-4 heading-section ftco-animate">
                     <span class="subheading">Struktur Organisasi</span>
                     <h2 class="mb-4">PENGURUS UKMK ETALASE</h2>
-                    <p>Berikut adalah susunan kepengurusan UKMK Etalase periode 2019 - 2020 </p>
+                    <p>{{ \App\Profile::find(1)->pengurus }}</p>
                 </div>
             </div>
             <div class="row ftco-animate">
@@ -306,8 +345,7 @@
             <div class="row justify-content-center mb-5 pb-3">
                 <div class="col-md-4 heading-section text-center ftco-animate">
                     <h2 class="mb-4">Contact</h2>
-                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It
-                        is a paradisematic country.</p>
+                    <p>{{ \App\Profile::find(1)->contact }}</p>
                 </div>
             </div>
 
@@ -396,3 +434,17 @@
     </section>
     <!-- End Contact Section -->
 @endsection
+
+@push('scripts')
+<script src="{{ asset('assets/snapshot/js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/jquery.fancybox.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        $(".zoom").hover(function () {
+            $(this).addClass('transition');
+        }, function () {
+            $(this).removeClass('transition');
+        });
+    });
+</script>
+@endpush

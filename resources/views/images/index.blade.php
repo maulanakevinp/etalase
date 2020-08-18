@@ -4,6 +4,40 @@
 Images
 @endsection
 
+@section('styles')
+<link rel="stylesheet" href="{{ asset('css/jquery.fancybox.css') }}">
+<link rel="stylesheet" href="{{ asset('css/dropzone.css') }}">
+<link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+<script src="{{ asset('js/dropzone.js') }}"></script>
+
+<style>
+    .hapus{
+        position: absolute;
+        top: 25;
+        right: 25;
+    }
+    img.zoom {
+        width: 100%;
+        height: 200px;
+        border-radius: 5px;
+        object-fit: cover;
+        -webkit-transition: all .3s ease-in-out;
+        -moz-transition: all .3s ease-in-out;
+        -o-transition: all .3s ease-in-out;
+        -ms-transition: all .3s ease-in-out;
+    }
+    .thumb {
+        margin-bottom: 30px;
+    }
+    .transition {
+        -webkit-transform: scale(1.1);
+        -moz-transform: scale(1.1);
+        -o-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+</style>
+@endsection
+
 @section('content')
 <!-- Begin Page Content -->
 <div class="app-main__inner">
@@ -13,12 +47,13 @@ Images
                 <div class="page-title-icon">
                     <i class="pe-7s-camera icon-gradient bg-mean-fruit"> </i>
                 </div>
-                <div>Images
+                <div>Gallery
                     <div class="page-title-subheading">This is an Gallery of UKMK Etalase</div>
                 </div>
             </div>
             <div class="page-title-actions">
                 <div class="d-inline-block dropdown">
+                    <a href="#video-modal" data-toggle="modal" class="btn btn-primary"><i class="fas fa-video mr-2"></i> Pengaturan Video</a>
                     <button type="button" data-toggle="modal" data-target="#newImageModal" class="btn-shadow btn btn-info">
                         <span class="btn-icon-wrapper pr-2 opacity-7">
                             <i class="fa fa-plus fa-w-20"></i>
@@ -50,43 +85,41 @@ Images
     @if ($errors->any())<div class="alert alert-danger alert-dismissible fade show"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><ul>@foreach ($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul></div>@endif
 
     <div class="row">
-        @foreach ($images as $image)
-        <div class="col-md-6 mb-3">
-            <div class="card shadow">
-                <div class="card-body">
-                    <a class="modalDisplay" href="#displayImageModal" data-toggle="modal" data-src="{{ asset(Storage::url($image->image)) }}">
-                        <div class="card-img-top zoom-image" style="background-size: cover; height: 250px; background-image: url('{{ asset(Storage::url($image->image)) }}');" ></div>
+        @forelse ($galleries as $item)
+            @if ($item['jenis'] == 1)
+                <div class="col-md-4 col-sm-6 thumb">
+                    <a href="{{ asset(Storage::url($item['gambar'])) }}" data-fancybox="images">
+                        <img src="{{ asset(Storage::url($item['gambar'])) }}" class="zoom img-fluid"  alt="{{ $item['caption'] }}">
                     </a>
-                    <form class="mb-0" action="{{ route('images.destroy' , ['image' => $image->id]) }}" method="post">
+                    <form class="mb-0" action="{{ route('images.destroy' , ['image' => $item['id']]) }}" method="post">
                         @method('delete')
                         @csrf
-                        <button type="submit" title="Hapus" class="btn btn-danger hapus" onclick="return confirm('Apakah anda yakin ingin menghapus foto ini? ');"><i class="fas fa-trash"></i></button>
+                        <button type="submit" title="Hapus" class="btn btn-danger hapus" onclick="return confirm('Apakah anda yakin ingin menghapus foto ini? ');" style="position: absolute; top: 0; right: 15px;"><i class="fas fa-trash"></i></button>
                     </form>
                 </div>
+            @else
+                <div class="col-lg-4 col-md-6 mb-3 animate-zoom">
+                    <a href="https://www.youtube.com/watch?v={{ $item['id'] }}" data-fancybox="images" data-caption="{{ $item['caption'] }}">
+                        <img src="{{ $item['gambar'] }}" class="zoom img-fluid"  alt="{{ $item['caption'] }}">
+                    </a>
+                </div>
+            @endif
+        @empty
+            <div class="col">
+                <div class="card shadow">
+                    <div class="card-body text-center">
+                        <h4>Data belum tersedia</h4>
+                    </div>
+                </div>
             </div>
-        </div>
-        @endforeach
+        @endforelse
     </div>
-    {{ $images->links() }}
 </div>
 <!-- /.container-fluid -->
 @endsection
 
-@section('styles')
-    <style>
-        .hapus{
-            position: absolute;
-            top: 25;
-            right: 25;
-        }
-        .zoom-image:hover{
-            opacity: 0.5;
-        }
-    </style>
-@endsection
-
 <div class="modal fade" id="newImageModal" tabindex="-1" role="dialog" aria-labelledby="newImageModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="newImageModalLabel">Tambah Gambar</h5>
@@ -94,69 +127,90 @@ Images
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('images.store') }}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-body">
-                    <div class="text-center">
-                        <img title="Upload Image" class="mw-100" id="displayImage" src="{{ asset('img/plus-img.png') }}">
-                    </div>
-                    <input type="file" id="image" name="image" style="display: none">
+            <div class="modal-body">
+                <form action="{{ route("images.store") }}" class="dropzone dz-clickable" id="dropzoneForm">
+                    @csrf
+                    <div class="dz-default dz-message"><span class="h3 mb-0 text-primary">Click or drop files here to upload - max file size is 2mb</span></div>
+                </form>
+                <div class="text-center mt-3">
+                    <button type="button" class="btn btn-success" id="submit-all">Upload</button>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="Submit" class="btn btn-primary">Tambah</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="displayImageModal" tabindex="-1" role="dialog" aria-labelledby="displayImageModalLabel" aria-hidden="true">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true" class="text-white h1">&times;</span>
-    </button>
-    <div class="modal-dialog modal-lg" role="document">
+<div class="modal fade" id="video-modal" tabindex="-1" role="dialog" aria-labelledby="video-modal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-body text-center">
-                <img class="mw-100" id="imageDisplay" src="">
+            <div class="modal-header">
+                <h6 class="modal-title" id="modal-title-delete">Pengaturan Video</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
             </div>
+
+            <div class="modal-body pt-0">
+                <form class="d-inline" action="{{ route("video.update") }}" method="POST" >
+                    @csrf @method('patch')
+                    <div class="form-group">
+                        <label class="form-control-label">Channel ID Youtube</label>
+                        <input type="text" name="channel_id" id="channel_id" class="form-control" value="{{ \App\Profile::find(1)->channel_id }}">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </form>
+                <form class="d-inline" action="{{ route("video.store") }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-success"><i class="fas fa-sync"></i> Sync</button>
+                </form>
+                <button type="button" class="btn btn-white" data-dismiss="modal">Batal</button>
+            </div>
+
         </div>
     </div>
 </div>
 
 @push('scripts')
 <script src="{{ asset('assets/snapshot/js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/jquery.fancybox.js') }}"></script>
 <script>
-    $(document).ready(function () {
-        $(".modalDisplay").on('click', function(){
-            let src = $(this).data('src');
-            document.getElementById('imageDisplay').src = src;
-        });
-        $(".pagination").addClass("justify-content-center");
-        const imgAvatar = document.getElementById("displayImage");
-        const inputAvatar = document.getElementById("image");
-        imgAvatar.onmouseenter = function(){
-            this.style.opacity = "0.5";
-            this.style.cursor = "pointer";
-        }
-        imgAvatar.onmouseleave = function(){
-            this.style.opacity = "1";
-            this.style.cursor = "default";
-        }
-        imgAvatar.onclick = function () {
-            inputAvatar.click();
-        };
 
-        inputAvatar.onchange = function () {
-            if (this.files && this.files[0]) {
-                var reader = new FileReader();
+    Dropzone.options.dropzoneForm = {
+        autoProcessQueue: false,
+        parallelUploads: 10,
+        maxFilesize: 2,
+        acceptedFiles: "image/*",
+        addRemoveLinks: true,
+        dictRemoveFile: 'Remove file',
+        dictFileTooBig: 'Image is larger than 2MB',
+        init: function() {
+            var submitButton = document.querySelector("#submit-all");
+            myDropzone = this;
 
-                reader.onload = function (e) {
-                    imgAvatar.src = e.target.result;
+            submitButton.addEventListener("click", function(){
+                myDropzone.processQueue();
+            });
+
+            // Execute when file uploads are complete
+            this.on("complete", function() {
+            // If all files have been uploaded
+                if (this.getQueuedFiles().length == 0 && this.getUploadingFiles().length == 0)
+                {
+                    var _this = this;
+                    // Remove all files
+                    _this.removeAllFiles();
                 }
-                reader.readAsDataURL(this.files[0]);
-            }
-        };
+                location.reload();
+            });
+        }
+    };
+
+    $(document).ready(function(){
+        $(".zoom").hover(function () {
+            $(this).addClass('transition');
+        }, function () {
+            $(this).removeClass('transition');
+        });
     });
 </script>
 @endpush
