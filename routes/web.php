@@ -18,6 +18,8 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/gallery', 'HomeController@gallery')->name('gallery');
 Route::get('/structure', 'HomeController@structure')->name('structure');
 Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
+Route::get('/load-gallery', 'HomeController@loadGallery')->name('gallery.load');
+
 Auth::routes([
     'register' => false, // Registration Routes...
     'reset' => false, // Password Reset Routes...
@@ -34,7 +36,6 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::resource('/arts', 'ArtController');
     Route::resource('/images', 'ImagesController')->except(['update', 'show', 'create', 'edit']);
 
-    Route::get('/load-gallery', 'HomeController@loadGallery')->name('gallery.load');
     Route::post('/video', 'VideoController@store')->name('video.store');
     Route::patch('/video/update', 'VideoController@update')->name('video.update');
 });
