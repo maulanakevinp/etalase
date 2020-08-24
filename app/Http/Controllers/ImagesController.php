@@ -39,6 +39,8 @@ class ImagesController extends Controller
             ]);
         }
 
+        $this->updateGallery();
+
         return response()->json([
             'success' => true
         ]);
@@ -50,10 +52,12 @@ class ImagesController extends Controller
      * @param  \App\Image  $image
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Image $image)
+    public function destroy($id)
     {
+        $image = Image::findOrFail($id);
         File::delete(storage_path('app/'.$image->image));
         $image->delete();
+        $this->updateGallery();
         return back()->with('success','Foto berhasil dihapus');
     }
 }
