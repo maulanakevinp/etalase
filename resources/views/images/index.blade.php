@@ -26,9 +26,6 @@ Images
         -o-transition: all .3s ease-in-out;
         -ms-transition: all .3s ease-in-out;
     }
-    .thumb {
-        margin-bottom: 30px;
-    }
     img.zoom:hover {
         -webkit-transform: scale(1.1);
         -moz-transform: scale(1.1);
@@ -84,7 +81,17 @@ Images
     </div>
     @if ($errors->any())<div class="alert alert-danger alert-dismissible fade show"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><ul>@foreach ($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul></div>@endif
 
-    <div id="gallery" class="row">
+    <div id="gallery" class="row"></div>
+    <div id="loading" class="row">
+        <div class="col-lg-4 col-md-6 mb-3">
+            <img src="{{ url("img/img-lazy-loading.gif") }}" class="zoom img-fluid"  alt="Loading">
+        </div>
+        <div class="col-lg-4 col-md-6 mb-3">
+            <img src="{{ url("img/img-lazy-loading.gif") }}" class="zoom img-fluid"  alt="Loading">
+        </div>
+        <div class="col-lg-4 col-md-6 mb-3">
+            <img src="{{ url("img/img-lazy-loading.gif") }}" class="zoom img-fluid"  alt="Loading">
+        </div>
     </div>
 </div>
 <!-- /.container-fluid -->
@@ -129,18 +136,18 @@ Images
                         <label class="form-control-label">Channel ID Youtube</label>
                         <input type="text" name="channel_id" id="channel_id" class="form-control" value="{{ \App\Profile::find(1)->channel_id }}">
                     </div>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-sync"></i> Update</button>
                 </form>
-                <form class="d-inline" action="{{ route("video.store") }}" method="POST">
-                    @csrf
-                    <button type="submit" class="btn btn-success"><i class="fas fa-sync"></i> Sync</button>
-                </form>
-                <button type="button" class="btn btn-white" data-dismiss="modal">Batal</button>
+                <button type="button" class="btn btn-light" data-dismiss="modal">Batal</button>
             </div>
 
         </div>
     </div>
 </div>
+
+<form class="delete-image" action="" method="POST">
+    @csrf @method('delete')
+</form>
 
 @push('scripts')
 <script src="{{ asset('assets/snapshot/js/jquery.min.js') }}"></script>
@@ -177,72 +184,87 @@ Images
         }
     };
 
-    $(document).ready(function(){
+    let page = 1;
+    let dataExists = true;
+
+    load_more(page);
+
+    $(window).scroll(function() { //detect page scroll
+        if($(window).scrollTop() + $(window).height() >= $(document).height()) { //if user scrolled from top to bottom of the page
+            if (dataExists) {
+                page++; //page number increment
+                load_more(page); //load content
+            }
+        }
+    });
+
+    $(document).on('click','.hapus', function() {
+        $('.delete-image').attr('action', "{{ url('delete-image') }}/" + $(this).data('id'));
+        if(confirm('Apakah anda yakin ingin menghapus foto ini? ')){
+            $('.delete-image').submit();
+        };
+    });
+
+    function load_more(page) {
         $.ajax({
-            url: "{{ route('gallery.load') }}",
+            url: "{{ url('load-gallery') }}?page="+page,
             method: "GET",
             beforeSend: function () {
-                $("#gallery").html(`
-                    <div class="col-md-4 col-sm-6 thumb">
-                        <img src="{{ url("img/img-lazy-loading.gif") }}" class="zoom img-fluid"  alt="Loading">
-                    </div>
-                    <div class="col-md-4 col-sm-6 thumb">
-                        <img src="{{ url("img/img-lazy-loading.gif") }}" class="zoom img-fluid"  alt="Loading">
-                    </div>
-                    <div class="col-md-4 col-sm-6 thumb">
-                        <img src="{{ url("img/img-lazy-loading.gif") }}" class="zoom img-fluid"  alt="Loading">
-                    </div>
-                    <div class="col-md-4 col-sm-6 thumb">
-                        <img src="{{ url("img/img-lazy-loading.gif") }}" class="zoom img-fluid"  alt="Loading">
-                    </div>
-                    <div class="col-md-4 col-sm-6 thumb">
-                        <img src="{{ url("img/img-lazy-loading.gif") }}" class="zoom img-fluid"  alt="Loading">
-                    </div>
-                    <div class="col-md-4 col-sm-6 thumb">
-                        <img src="{{ url("img/img-lazy-loading.gif") }}" class="zoom img-fluid"  alt="Loading">
-                    </div>
-                `);
+                $("#loading").show();
             },
-            success: function (data) {
-                $("#gallery").html(``);
-                if (data.length > 0) {
-                    $.each(data, function(index,result){
-                        if (result.jenis == 1) {
-                            $("#gallery").append(`
-                                <div class="col-md-4 col-sm-6 thumb">
-                                    <a href="${result.gambar}" data-fancybox="images">
-                                        <img src="${result.gambar}" class="zoom img-fluid"  alt="${result.caption}">
-                                    </a>
-                                    <form class="mb-0" action="{{ url('images') }}/${result.id}" method="post">
-                                        <input type="hidden" name="_method" value="delete">
-                                        {{ csrf_field() }}
-                                        <button type="submit" title="Hapus" class="btn btn-danger hapus" onclick="return confirm('Apakah anda yakin ingin menghapus foto ini? ');" style="position: absolute; top: 0; right: 15px;"><i class="fas fa-trash"></i></button>
-                                    </form>
-                                </div>
-                            `);
-                        } else {
-                            $("#gallery").append(`
-                                <div class="col-lg-4 col-md-6 mb-3 animate-zoom">
-                                    <a href="https://www.youtube.com/watch?v=${result.id}" data-fancybox="images" data-caption="${result.caption}">
-                                        <img src="${result.gambar}" class="zoom img-fluid"  alt="${result.caption}">
-                                    </a>
-                                </div>
-                            `);
-                        }
-                    });
-                } else {
-                    $("#gallery").append(`
-                        <div class="col">
-                            <div class="card shadow">
-                                <div class="card-body text-center">
-                                    <h4>Data belum tersedia</h4>
-                                </div>
-                            </div>
-                        </div>
-                    `);
+            success: function (response) {
+                $("#loading").hide();
+
+                if (response.data.length == 0) {
+                    dataExists = false;
                 }
+
+                if (page == 1 && dataExists == false) {
+                    showNothing();
+                }
+
+                $.each(response.data, function(index,result){
+                    if (result.jenis == 1) {
+                        showImage(result);
+                    } else {
+                        showVideo(result);
+                    }
+                });
             }
         });
-    });
+    }
+
+    function showImage(result){
+        $("#gallery").append(`
+            <div class="col-lg-4 col-md-6 mb-3">
+                <a href="${result.gambar}" data-fancybox="images">
+                    <img src="${result.gambar}" class="zoom img-fluid" alt="${result.caption}">
+                </a>
+                <button type="button" data-id="${result.gallery_id}" title="Hapus" class="btn btn-danger hapus" style="position: absolute; top: 0; right: 15px;"><i class="fas fa-trash"></i></button>
+            </div>
+        `);
+    }
+
+    function showVideo(result) {
+        $("#gallery").append(`
+            <div class="col-lg-4 col-md-6 mb-3">
+                <a href="https://www.youtube.com/watch?v=${result.gallery_id}" data-fancybox="images" data-caption="${result.caption}">
+                    <img src="${result.gambar}" class="zoom img-fluid" alt="${result.caption}">
+                </a>
+            </div>
+        `);
+    }
+
+    function showNothing(){
+        $("#gallery").append(`
+            <div class="col">
+                <div class="card shadow">
+                    <div class="card-body text-center">
+                        <h4>Data belum tersedia</h4>
+                    </div>
+                </div>
+            </div>
+        `);
+    }
 </script>
 @endpush

@@ -31,11 +31,13 @@ Auth::routes([
 ]);
 
 Route::group(['middleware' => ['web','auth']], function () {
+
+    Route::patch('/video/update', 'VideoController@update')->name('video.update');
+    Route::delete('/delete-image/{id}', 'ImagesController@destroy')->name('images.destroy');
+
+    Route::resource('/images', 'ImagesController')->except(['update', 'show', 'create', 'edit','destroy']);
     Route::resource('/profile', 'ProfileController')->except(['create','store','show','destroy']);
     Route::resource('/structures', 'StructureController');
     Route::resource('/arts', 'ArtController');
-    Route::resource('/images', 'ImagesController')->except(['update', 'show', 'create', 'edit']);
 
-    Route::post('/video', 'VideoController@store')->name('video.store');
-    Route::patch('/video/update', 'VideoController@update')->name('video.update');
 });
