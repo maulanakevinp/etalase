@@ -119,7 +119,7 @@
                         } else {
                             $("#gallery").append(`
                                 <div class="col-lg-4 col-md-6 mb-3">
-                                    <a href="https://www.youtube.com/watch?v=${result.id}" data-fancybox="images" data-caption="${result.caption}">
+                                    <a href="https://www.youtube.com/watch?v=${result.gallery_id}" data-fancybox="images" data-caption="${result.caption}">
                                         <img src="${result.gambar}" class="zoom img-fluid" alt="${result.caption}">
                                     </a>
                                 </div>
