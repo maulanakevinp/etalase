@@ -220,39 +220,51 @@ Images
                 }
 
                 if (page == 1 && dataExists == false) {
-                    $("#gallery").append(`
-                        <div class="col">
-                            <div class="card shadow">
-                                <div class="card-body text-center">
-                                    <h4>Data belum tersedia</h4>
-                                </div>
-                            </div>
-                        </div>
-                    `);
+                    showNothing();
                 }
 
                 $.each(response.data, function(index,result){
                     if (result.jenis == 1) {
-                        $("#gallery").append(`
-                            <div class="col-lg-4 col-md-6 mb-3">
-                                <a href="${result.gambar}" data-fancybox="images">
-                                    <img src="${result.gambar}" class="zoom img-fluid" alt="${result.caption}">
-                                </a>
-                                <button type="button" data-id="${result.gallery_id}" title="Hapus" class="btn btn-danger hapus" style="position: absolute; top: 0; right: 15px;"><i class="fas fa-trash"></i></button>
-                            </div>
-                        `);
+                        showImage(result);
                     } else {
-                        $("#gallery").append(`
-                            <div class="col-lg-4 col-md-6 mb-3">
-                                <a href="https://www.youtube.com/watch?v=${result.gallery_id}" data-fancybox="images" data-caption="${result.caption}">
-                                    <img src="${result.gambar}" class="zoom img-fluid" alt="${result.caption}">
-                                </a>
-                            </div>
-                        `);
+                        showVideo(result);
                     }
                 });
             }
         });
+    }
+
+    function showImage(result){
+        $("#gallery").append(`
+            <div class="col-lg-4 col-md-6 mb-3">
+                <a href="${result.gambar}" data-fancybox="images">
+                    <img src="${result.gambar}" class="zoom img-fluid" alt="${result.caption}">
+                </a>
+                <button type="button" data-id="${result.gallery_id}" title="Hapus" class="btn btn-danger hapus" style="position: absolute; top: 0; right: 15px;"><i class="fas fa-trash"></i></button>
+            </div>
+        `);
+    }
+
+    function showVideo(result) {
+        $("#gallery").append(`
+            <div class="col-lg-4 col-md-6 mb-3">
+                <a href="https://www.youtube.com/watch?v=${result.gallery_id}" data-fancybox="images" data-caption="${result.caption}">
+                    <img src="${result.gambar}" class="zoom img-fluid" alt="${result.caption}">
+                </a>
+            </div>
+        `);
+    }
+
+    function showNothing(){
+        $("#gallery").append(`
+            <div class="col">
+                <div class="card shadow">
+                    <div class="card-body text-center">
+                        <h4>Data belum tersedia</h4>
+                    </div>
+                </div>
+            </div>
+        `);
     }
 </script>
 @endpush
