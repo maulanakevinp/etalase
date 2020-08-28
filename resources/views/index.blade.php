@@ -290,7 +290,7 @@
                     </div>
                 @else
                     <div class="col-12 text-center ftco-animate">
-                        <div class="card">
+                        <div class="card bg-secondary">
                             <div class="card-body">
                                 <h4>Data Tidak Tersedia</h4>
                             </div>
