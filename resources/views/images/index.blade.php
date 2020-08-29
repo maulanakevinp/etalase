@@ -153,6 +153,8 @@ Images
 <script src="{{ asset('assets/snapshot/js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/jquery.fancybox.js') }}"></script>
 <script>
+    let page = 1;
+    let dataExists = true;
 
     Dropzone.options.dropzoneForm = {
         autoProcessQueue: false,
@@ -178,14 +180,11 @@ Images
                     var _this = this;
                     // Remove all files
                     _this.removeAllFiles();
+                    location.reload();
                 }
-                location.reload();
             });
         }
     };
-
-    let page = 1;
-    let dataExists = true;
 
     load_more(page);
 
