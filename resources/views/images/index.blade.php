@@ -59,6 +59,7 @@ Images
                 <div class="d-inline-block dropdown">
                     <input type="checkbox" id="check-all" class="mb-2" title="centang untuk menghapus semua">
                     <button type="button" id="delete-check" class="btn btn-danger mb-2"><i class="fas fa-trash"></i> Hapus</button>
+                    <button type="button" id="refresh" class="btn btn-success mb-2"><i class="fas fa-sync"></i> Refresh</button>
                     <a href="#video-modal" data-toggle="modal" class="btn btn-primary mb-2"><i class="fas fa-video mr-2 "></i> Pengaturan Video</a>
                     <button type="button" data-toggle="modal" data-target="#newImageModal" class="btn-shadow btn btn-info mb-2">
                         <span class="btn-icon-wrapper pr-2 opacity-7">
@@ -203,6 +204,17 @@ Images
             });
         }
     };
+
+    $(document).on("click", "#refresh", function () {
+        $.get("{{ route('gallery-update') }}", function (response) {
+            if (response.success) {
+                page = 1;
+                dataExists = true;
+                $("#gallery").html("");
+                load_more(page);
+            }
+        })
+    })
 
     load_more(page);
 
