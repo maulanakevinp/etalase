@@ -39,8 +39,6 @@ class ImagesController extends Controller
             ]);
         }
 
-        $this->updateGallery();
-
         return response()->json([
             'success' => true
         ]);
@@ -59,5 +57,25 @@ class ImagesController extends Controller
         $image->delete();
         $this->updateGallery();
         return back()->with('success','Foto berhasil dihapus');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Image  $image
+     * @return \Illuminate\Http\Response
+     */
+    public function destroys(Request $request)
+    {
+        foreach ($request->id as $id) {
+            $image = Image::findOrFail($id);
+            File::delete(storage_path('app/'.$image->image));
+            $image->delete();
+        }
+
+        $this->updateGallery();
+        return response()->json([
+            'success' => true
+        ]);
     }
 }
