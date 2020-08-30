@@ -63,6 +63,12 @@ class HomeController extends Controller
         return view('gallery');
     }
 
+    public function galleryUpdate()
+    {
+        $this->updateGallery();
+        return response()->json(['success'  => true]);
+    }
+
     public function loadGallery()
     {
         $galleries = Gallery::orderBy('id','desc')->paginate(9);
