@@ -120,7 +120,7 @@ Images
                     @csrf
                     <div class="dz-default dz-message"><span class="h3 mb-0 text-primary">Click or drop files here to upload - max file size is 2mb</span></div>
                 </form>
-                <small>Sistem hanya bisa memproses 10 file per upload jika file lebih dari 10 tekan tombol upload lagi sampai semua file terupload</small>
+                <small>Sistem hanya bisa memproses 10 file per upload</small>
                 <div class="text-center mt-3">
                     <button type="button" class="btn btn-success" id="submit-all">Upload</button>
                 </div>
@@ -169,6 +169,7 @@ Images
     Dropzone.options.dropzoneForm = {
         autoProcessQueue: false,
         parallelUploads: 10,
+        maxFiles: 10,
         maxFilesize: 2,
         acceptedFiles: "image/*",
         addRemoveLinks: true,
