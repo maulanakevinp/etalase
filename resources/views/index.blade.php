@@ -334,6 +334,11 @@
                             </div>
                         @endforeach
                     </div>
+                    <div class="col-md-5 ftco-animate text-center mx-auto" style="padding: 1.5rem">
+                        <a href="{{ route('structure') }}">
+                            <p class="btn-kotak">Lihat Selengkapnya <span class="ion-ios-arrow-round-forward"></span></p>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
