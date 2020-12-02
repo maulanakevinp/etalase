@@ -32,8 +32,10 @@ Auth::routes([
 
 Route::group(['middleware' => ['web','auth']], function () {
 
+    Route::get('/gallery-update', 'HomeController@galleryUpdate')->name('gallery-update');
     Route::patch('/video/update', 'VideoController@update')->name('video.update');
     Route::delete('/delete-image/{id}', 'ImagesController@destroy')->name('images.destroy');
+    Route::delete('/delete-images', 'ImagesController@destroys')->name('images.destroys');
 
     Route::resource('/images', 'ImagesController')->except(['update', 'show', 'create', 'edit','destroy']);
     Route::resource('/profile', 'ProfileController')->except(['create','store','show','destroy']);

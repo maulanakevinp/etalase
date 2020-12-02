@@ -32,6 +32,13 @@ Images
         -o-transform: scale(1.1);
         transform: scale(1.1);
     }
+    #check-all{
+        -ms-transform: scale(2); /* IE */
+        -moz-transform: scale(2); /* FF */
+        -webkit-transform: scale(2); /* Safari and Chrome */
+        -o-transform: scale(2); /* Opera */
+        transform: scale(1.5);
+    }
 </style>
 @endsection
 
@@ -50,8 +57,11 @@ Images
             </div>
             <div class="page-title-actions">
                 <div class="d-inline-block dropdown">
-                    <a href="#video-modal" data-toggle="modal" class="btn btn-primary"><i class="fas fa-video mr-2"></i> Pengaturan Video</a>
-                    <button type="button" data-toggle="modal" data-target="#newImageModal" class="btn-shadow btn btn-info">
+                    <input type="checkbox" id="check-all" class="mb-2" title="centang untuk menghapus semua">
+                    <button type="button" id="delete-check" class="btn btn-danger mb-2"><i class="fas fa-trash"></i> Hapus</button>
+                    <button type="button" id="refresh" class="btn btn-success mb-2"><i class="fas fa-sync"></i> Refresh</button>
+                    <a href="#video-modal" data-toggle="modal" class="btn btn-primary mb-2"><i class="fas fa-video mr-2 "></i> Pengaturan Video</a>
+                    <button type="button" data-toggle="modal" data-target="#newImageModal" class="btn-shadow btn btn-info mb-2">
                         <span class="btn-icon-wrapper pr-2 opacity-7">
                             <i class="fa fa-plus fa-w-20"></i>
                         </span>
@@ -111,6 +121,7 @@ Images
                     @csrf
                     <div class="dz-default dz-message"><span class="h3 mb-0 text-primary">Click or drop files here to upload - max file size is 2mb</span></div>
                 </form>
+                <small>Sistem hanya bisa memproses 10 file per upload</small>
                 <div class="text-center mt-3">
                     <button type="button" class="btn btn-success" id="submit-all">Upload</button>
                 </div>
@@ -153,10 +164,13 @@ Images
 <script src="{{ asset('assets/snapshot/js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/jquery.fancybox.js') }}"></script>
 <script>
+    let page = 1;
+    let dataExists = true;
 
     Dropzone.options.dropzoneForm = {
         autoProcessQueue: false,
         parallelUploads: 10,
+        maxFiles: 10,
         maxFilesize: 2,
         acceptedFiles: "image/*",
         addRemoveLinks: true,
@@ -178,14 +192,29 @@ Images
                     var _this = this;
                     // Remove all files
                     _this.removeAllFiles();
+                    $.get("{{ route('gallery-update') }}", function (response) {
+                        if (response.success) {
+                            page = 1;
+                            dataExists = true;
+                            $("#gallery").html("");
+                            load_more(page);
+                        }
+                    })
                 }
-                location.reload();
             });
         }
     };
 
-    let page = 1;
-    let dataExists = true;
+    $(document).on("click", "#refresh", function () {
+        $.get("{{ route('gallery-update') }}", function (response) {
+            if (response.success) {
+                page = 1;
+                dataExists = true;
+                $("#gallery").html("");
+                load_more(page);
+            }
+        })
+    })
 
     load_more(page);
 
@@ -195,6 +224,45 @@ Images
                 page++; //page number increment
                 load_more(page); //load content
             }
+        }
+    });
+
+    $(document).on("click", "#delete-check", function (){
+        let id = [];
+        let btn = this;
+
+        $(".gambar-check").each(function () {
+            id.push(this.value);
+        });
+
+        if (id.length > 0) {
+            if (confirm("Apakah anda yakin ingin menghapus data ini?")) {
+                $.ajax({
+                    url     : "{{ url('/delete-images')}}",
+                    method  : "delete",
+                    data : {
+                        _token  : "{{ csrf_token() }}",
+                        id      : id
+                    },
+                    beforeSend : function () {
+                        $(btn).html("Loading ...");
+                        $(btn).attr("disabled", "disabled");
+                    },
+                    success : function (response) {
+                        if (response.success) {
+                            location.reload();
+                        }
+                    }
+                })
+            }
+        }
+    });
+
+    $(document).on("click", "#check-all", function(){
+        if (this.checked) {
+            $(".gambar-check").prop('checked',true);
+        } else {
+            $(".gambar-check").prop('checked',false);
         }
     });
 
@@ -240,6 +308,7 @@ Images
                 <a href="${result.gambar}" data-fancybox="images">
                     <img src="${result.gambar}" class="zoom img-fluid" alt="${result.caption}">
                 </a>
+                <input type="checkbox" class="gambar-check" name="delete[]" title="centang untuk menghapus beberapa gambar" value="${result.gallery_id}" style="transform:scale(1.5);position: absolute; top: 5; left: 20px;">
                 <button type="button" data-id="${result.gallery_id}" title="Hapus" class="btn btn-danger hapus" style="position: absolute; top: 0; right: 15px;"><i class="fas fa-trash"></i></button>
             </div>
         `);
