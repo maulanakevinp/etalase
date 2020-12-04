@@ -34,17 +34,6 @@
     <div class="scrollbar-sidebar">
         <div class="app-sidebar__inner">
             <ul class="vertical-nav-menu">
-                <li class="app-sidebar__heading">Dashboards</li>
-                <li>
-                    <a href="{{ route('dashboard') }}" class="@if(Request::segment(1) == "dashboard") mm-active @endif">
-                        <i class="metismenu-icon pe-7s-rocket"></i>
-                        Dashboard
-                    </a>
-                    <a href="{{ url('') }}">
-                        <i class="metismenu-icon pe-7s-home"></i>
-                        Home
-                    </a>
-                </li>
                 <li class="app-sidebar__heading">Menu</li>
                 <li>
                     <a href="{{ route('profile.edit', 1) }}" class="@if(Request::segment(1) == "profile") mm-active @endif">
@@ -60,14 +49,20 @@
                 </li>
                 <li>
                     <a href="{{ route('structures.index') }}" class="@if(Request::segment(1) == "structures") mm-active @endif">
-                        <i class="metismenu-icon pe-7s-vector"></i>
+                        <i class="metismenu-icon pe-7s-users"></i>
                         Structure
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('arts.index') }}" class="@if(Request::segment(1) == "arts") mm-active @endif">
-                        <i class="metismenu-icon pe-7s-box2"></i>
-                        Art
+                        <i class="metismenu-icon pe-7s-music"></i>
+                        Bidang
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('') }}">
+                        <i class="metismenu-icon pe-7s-home"></i>
+                        Website
                     </a>
                 </li>
             </ul>

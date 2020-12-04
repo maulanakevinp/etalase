@@ -54,13 +54,25 @@
         font-size: 13px;
         line-height: 16px;
     }
+    #container{
+        width: 100%;
+    }
+    #pengurus{
+        display: none;
+    }
 
     @media screen and (max-width: 600px) {
         #container h4 {
             font-size: 2.3vw;
             line-height: 3vw;
         }
-
+        #container{
+            display: none;
+            position: absolute;
+        }
+        #pengurus{
+            display: block;
+        }
         #container p {
             font-size: 2.3vw;
             line-height: 3vw;
@@ -80,16 +92,13 @@
             <p>Berikut adalah susunan kepengurusan UKMK Etalase periode 2019 - 2020 </p>
         </div>
     </div>
-    <figure class="highcharts-figure">
-        <div id="container"></div>
-        <p class="highcharts-description">
-            Organization charts are a common case of hierarchical network charts,
-            where the parent/child relationships between nodes are visualized.
-            Highcharts includes a dedicated organization chart type that streamlines
-            the process of creating these types of visualizations.
-        </p>
+    <figure class="highcharts-figure col-md-6 text-center mb-5">
+        <div id="container" class="col-md-12 text-center ml-0"></div>
     </figure>
-    <div class="row ftco-animate">
+            <div class="col-md-6 mx-auto mb-5" id="pengurus">
+                <img src="{{asset('img/pengurus.png')}}" alt="" class="img-fluid">
+            </div>
+    {{-- <div class="row ftco-animate">
         <div class="col-md-12">
             <div class="carousel-testimony owl-carousel">
                 @foreach ($structures as $structure)
@@ -114,12 +123,12 @@
                 @endforeach
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 <script>
     Highcharts.chart('container', {
         chart: {
-            height: 600,
+            height: 800,
             inverted: true,
             backgroundColor: 'transparent'
         },

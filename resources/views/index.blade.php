@@ -64,7 +64,7 @@
 
     <!-- Start Home Section -->
     <section id="home" class="hero-wrap js-fullheight"
-        style="background-image:url({{ url('/') }}/assets/snapshot/images/bg-1.jpg);"
+        style="background-image:url({{ url('/') }}/img/0.jpg);"
         data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
@@ -90,14 +90,8 @@
                 <div class="col-md-6 col-lg-6 d-flex">
                     <div class="img-about img d-flex align-items-stretch">
                         <div class="overlay"></div>
-                        <div class="img img-video d-flex align-self-stretch align-items-center"
-                            style="background-image:url({{ url('/') }}/assets/snapshot/images/about-2.jpg);">
-                            <div class="video justify-content-center">
-                                <a href="https://vimeo.com/45830194"
-                                    class="icon-video popup-vimeo d-flex justify-content-center align-items-center">
-                                    <span class="ion-ios-play"></span>
-                                </a>
-                            </div>
+                        <div class="img d-flex align-self-stretch align-items-center"
+                            style="background-image:url({{ url('/') }}/img/4.jpg);">
                         </div>
                     </div>
                 </div>
@@ -114,18 +108,11 @@
                             </div>
                         </div>
                         <div class="d-flex w-100">
-                            <div class="img img-about-2 mr-2"
-                                style="background-image:url({{ url('/') }}/assets/snapshot/images/about.jpg);"></div>
                             <div class="img img-about-2 ml-2"
-                                style="background-image:url({{ url('/') }}/assets/snapshot/images/about-3.jpg);"></div>
+                                style="background-image:url({{ url('/') }}/img/2.jpg);"></div>
                         </div>
                         <div class="row mt-2">
-                            <div class="col-md-6 pr-2">
-                                <a href="#" class="">
-                                    <p class="btn-kotak">Profil Etalase <span lass="ion-ios-arrow-round-forward"></span></p>
-                                </a>
-                            </div>
-                            <div class="col-md-6 pl-2">
+                            <div class="col-md-6 ml-2">
                                 <a href="#">
                                     <p class="btn-kotak">Sejarah Etalase <span class="ion-ios-arrow-round-forward"></span></p>
                                 </a>
@@ -168,89 +155,7 @@
                     </div>
                 </div>
                 <div class="col-md-3 d-flex align-items-stretch">
-                    <div class="img w-100" style="background-image:url({{ url('/') }}/assets/snapshot/images/about.jpg);"></div>
-                </div>
-            </div>
-            <div class="row progress-circle pt-md-5">
-                <div class="col-md-7 order-md-last py-md-5">
-                    <h2 class="ftco-animate text-center" style="margin-bottom: 50px">Pengurus Harian UKMK Etalase</h2>
-                    <div class="row">
-                        <div class="col-md-4 mb-md-0 mb-4 ftco-animate">
-                            <div class="">
-                                <h2 class="text-center mb-4">Ketua Umum</h2>
-
-                                <!-- Progress bar 1 -->
-                                <div class="progress mx-auto" data-value='90'>
-                                    <!-- <span class="progress-left">
-		                  <span class="progress-bar border-primary"></span>
-					          </span>
-					          <span class="progress-right">
-		                  <span class="progress-bar border-primary"></span>
-					          </span> -->
-                                    <div
-                                        class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                                        <h1 style="font-size: 50pt"><i class="flaticonBidang-music"></i></h1>
-                                    </div>
-                                </div>
-                                <!-- END -->
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 mb-md-0 mb-4 ftco-animate">
-                            <div class="">
-                                <h2 class="text-center mb-4">Sekretaris</h2>
-
-                                <!-- Progress bar 1 -->
-                                <div class="progress mx-auto" data-value='80'>
-                                    <!-- <span class="progress-left">
-		                  <span class="progress-bar border-primary"></span>
-					          </span>
-					          <span class="progress-right">
-		                  <span class="progress-bar border-primary"></span>
-					          </span> -->
-                                    <div
-                                        class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                                        <div class="h5">80<sup class="small">%</sup></div>
-                                    </div>
-                                </div>
-                                <!-- END -->
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 mb-md-0 mb-4 ftco-animate">
-                            <div class="">
-                                <h2 class="text-center mb-4">Bendahara</h2>
-
-                                <!-- Progress bar 1 -->
-                                <div class="progress mx-auto" data-value='75'>
-                                    <!-- <span class="progress-left">
-		                  <span class="progress-bar border-primary"></span>
-					          </span>
-					          <span class="progress-right">
-		                  <span class="progress-bar border-primary"></span>
-					          </span> -->
-                                    <div
-                                        class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                                        <div class="h5">75<sup class="small">%</sup></div>
-                                    </div>
-                                </div>
-                                <!-- END -->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-top: 40px">
-                        <div class="col-md-3"></div>
-                        <div class="col-md-5 ftco-animate text-center" style="padding: 1.5rem">
-                            <a href="#">
-                                <p class="btn-kotak">Lihat pengurus lengkap <span class="ion-ios-arrow-round-forward"></span></p>
-                            </a>
-                        </div>
-                        <div class="col-md-3"></div>
-                    </div>
-                </div>
-                <div class="col-md-5 d-flex align-items-stretch">
-                    <div class="img w-100"
-                        style="background-image:url({{ url('/') }}/assets/snapshot/images/about-2.jpg);"></div>
+                    <div class="img w-100" style="background-image:url({{ url('/') }}/img/3.jpg);"></div>
                 </div>
             </div>
         </div>
@@ -305,7 +210,7 @@
     <section class="ftco-section testimony-section" id="testimonial">
         <div class="container">
             <div class="row justify-content-center mb-5 pb-3">
-                <div class="col-md-4 heading-section ftco-animate">
+                <div class="col-md-4 heading-section ftco-animate text-center">
                     <span class="subheading">Struktur Organisasi</span>
                     <h2 class="mb-4">PENGURUS UKMK ETALASE</h2>
                     <p>{{ \App\Profile::find(1)->pengurus }}</p>

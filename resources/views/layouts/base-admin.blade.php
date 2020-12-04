@@ -29,12 +29,10 @@
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         @include('layouts.components.header-admin')
-        @include('layouts.components.ui-theme-settings-admin')
         <div class="app-main">
             @include('layouts.components.sidebar-admin')
             <div class="app-main__outer">
                 @yield('content')
-                @include('layouts.components.footer-admin')
             </div>
         </div>
     </div>

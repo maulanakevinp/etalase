@@ -11,10 +11,10 @@ Arts
         <div class="page-title-wrapper">
             <div class="page-title-heading">
                 <div class="page-title-icon">
-                    <i class="pe-7s-box2"> </i>
+                    <i class="pe-7s-music"> </i>
                 </div>
-                <div>Arts
-                    <div class="page-title-subheading">This is an Arts of UKMK Etalase</div>
+                <div>Bidang
+                    <div class="page-title-subheading">This is an Bidang of UKMK Etalase</div>
                 </div>
             </div>
             <div class="page-title-actions">

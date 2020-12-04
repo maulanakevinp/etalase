@@ -11,7 +11,7 @@ Structures
         <div class="page-title-wrapper">
             <div class="page-title-heading">
                 <div class="page-title-icon">
-                    <i class="pe-7s-vector"> </i>
+                    <i class="pe-7s-users"> </i>
                 </div>
                 <div>Structures
                     <div class="page-title-subheading">This is an Strucutures of UKMK Etalase</div>
