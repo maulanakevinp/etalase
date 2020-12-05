@@ -20,8 +20,9 @@ class HomeController extends Controller
     public function index()
     {
         $structures = Structure::all();
+        $profile = Profile::all();
         $arts       = Art::all();
-        $images = Image::orderBy('id','desc')->get();
+        $images = Image::orderBy('id', 'desc')->get();
         $videos = Video::all();
         $galleries = array();
 
@@ -31,7 +32,7 @@ class HomeController extends Controller
                 'id'        => $value->id,
                 'caption'   => "",
                 'jenis'     => 1,
-                'created_at'=> strtotime($value->created_at),
+                'created_at' => strtotime($value->created_at),
             ];
             array_push($galleries, $gambar);
         }
@@ -42,15 +43,15 @@ class HomeController extends Controller
                 'id'        => $value->video_id,
                 'caption'   => $value->caption,
                 'jenis'     => 2,
-                'created_at'=> strtotime($value->published_at),
+                'created_at' => strtotime($value->published_at),
             ];
             array_push($galleries, $gambar);
         }
 
-        usort($galleries, function($a, $b) {
+        usort($galleries, function ($a, $b) {
             return $a['created_at'] < $b['created_at'];
         });
-        return view('index',compact('galleries' , 'structures', 'arts'));
+        return view('index', compact('galleries', 'structures', 'arts', 'profile'));
     }
 
     /**
@@ -71,14 +72,14 @@ class HomeController extends Controller
 
     public function loadGallery()
     {
-        $galleries = Gallery::orderBy('id','desc')->paginate(9);
+        $galleries = Gallery::orderBy('id', 'desc')->paginate(9);
         return response()->json($galleries);
     }
 
     public function structure()
     {
         $structures = Structure::all();
-        return view('structure',compact('structures'));
+        return view('structure', compact('structures'));
     }
 
     public function dashboard()

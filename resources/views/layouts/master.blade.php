@@ -31,8 +31,10 @@
     <link rel="stylesheet" href="{{ url('/') }}/assets/snapshot/css/flaticonBidang.css">
     <link rel="stylesheet" href="{{ url('/') }}/assets/snapshot/css/icomoon.css">
     <link rel="stylesheet" href="{{ url('/') }}/assets/snapshot/css/style.css">
+    <!-- animated css -->
+    <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css"> -->
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin=""/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" />
     @yield('styles')
 </head>
 
@@ -50,21 +52,19 @@
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         Copyright &copy;<script>
                             document.write(new Date().getFullYear());
-
-                        </script> All rights reserved | This template is made with <i class="icon-heart"
-                            aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        </script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </p>
 
                     <ul class="ftco-footer-social p-0">
                         @if (\App\Profile::find(1)->twitter)
-                            <li class="ftco-animate"><a target="_blank" href="{{ \App\Profile::find(1)->twitter }}"><span class="icon-twitter"></span></a></li>
+                        <li class="ftco-animate"><a target="_blank" href="{{ \App\Profile::find(1)->twitter }}"><span class="icon-twitter"></span></a></li>
                         @endif
                         @if (\App\Profile::find(1)->facebook)
-                            <li class="ftco-animate"><a target="_blank" href="{{ \App\Profile::find(1)->facebook }}"><span class="icon-facebook"></span></a></li>
+                        <li class="ftco-animate"><a target="_blank" href="{{ \App\Profile::find(1)->facebook }}"><span class="icon-facebook"></span></a></li>
                         @endif
                         @if (\App\Profile::find(1)->instagram)
-                            <li class="ftco-animate"><a target="_blank" href="{{ \App\Profile::find(1)->instagram }}"><span class="icon-instagram"></span></a></li>
+                        <li class="ftco-animate"><a target="_blank" href="{{ \App\Profile::find(1)->instagram }}"><span class="icon-instagram"></span></a></li>
                         @endif
                     </ul>
                 </div>
@@ -77,8 +77,7 @@
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-                stroke="#F96D00" /></svg></div>
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
 
 
     <script src="{{ url('/') }}/assets/snapshot/js/jquery.min.js"></script>
