@@ -340,8 +340,6 @@
                 <div class="col-md-4 heading-section ftco-animate">
                     <img src="{{ asset(Storage::url(\App\Profile::find(1)->logo)) }}" style="width: 20%; margin-bottom: 30pt">
                     <span class="subheading d-block">Sejarah Organisasi</span>
-                    <h2 class="mb-4">UKMK ETALASE</h2>
-                    <p>Berikut adalah terbentuknya UKMK ETALASE </p>
                 </div>
             </div>
 
