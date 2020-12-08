@@ -75,7 +75,9 @@
                     <!-- <h1 class="logo"><a href="index.html"><span class="flaticon-camera-shutter"></span>Snapshot<small>Photographer / San Francisco</small></a></h1> -->
                     <h1 class="mb-4">{{ \App\Profile::find(1)->judul }}</h1>
                     <p class="mb-4">{{ \App\Profile::find(1)->kalimat_pembuka }}</p>
-                    <p class="mt-5"><a href="#" class="btn-custom">Find More <span class="ion-ios-arrow-round-forward"></span></a></p>
+                    <p class="mt-5 navbar">
+                                <a data-scroll="about" href="#about" class="btn-custom dot active">Find More <span class="ion-ios-arrow-round-forward"></span></a>
+                    </p>
                 </div>
             </div>
         </div>
@@ -98,14 +100,6 @@
                 <div class="heading-section ftco-animate">
                     <h2 class="mb-4">{{ \App\Profile::find(1)->judul }}<br></h2>
                     <p>{{ \App\Profile::find(1)->deskripsi }}</p>
-                    <div class="counter-wrap ftco-animate d-flex my-md-4">
-                        <div class="text">
-                            <p class="mb-4">
-                                <span class="number" data-number="120">0</span>
-                                <span>Project complete</span>
-                            </p>
-                        </div>
-                    </div>
                     <div class="d-flex w-100">
                         <div class="img img-about-2 ml-2" style="background-image:url({{ url('/') }}/img/2.jpg);"></div>
                     </div>
@@ -257,80 +251,62 @@
             </div>
         </div>
 
-        <div class="row mb-5 justify-content-center">
-            @if (\App\Profile::find(1)->alamat)
-            <div class="col-md-3 d-flex ftco-animate">
-                <div class="align-self-stretch box text-center p-4">
-                    <div class="icon d-flex align-items-center justify-content-center">
-                        <span class="icon-map-signs"></span>
-                    </div>
-                    <div>
-                        <h3 class="mb-4">Address</h3>
-                        <p>{{ \App\Profile::find(1)->alamat }}</p>
-                    </div>
-                </div>
-            </div>
-            @endif
-            @if (\App\Profile::find(1)->kontak)
-            <div class="col-md-3 d-flex ftco-animate">
-                <div class="align-self-stretch box text-center p-4">
-                    <div class="icon d-flex align-items-center justify-content-center">
-                        <span class="icon-phone2"></span>
-                    </div>
-                    <div>
-                        <h3 class="mb-4">Contact Number</h3>
-                        <p><a href="tel://{{ \App\Profile::find(1)->kontak }}">{{ \App\Profile::find(1)->kontak }}</a></p>
-                    </div>
-                </div>
-            </div>
-            @endif
-            @if (\App\Profile::find(1)->email)
-            <div class="col-md-3 d-flex ftco-animate">
-                <div class="align-self-stretch box text-center p-4">
-                    <div class="icon d-flex align-items-center justify-content-center">
-                        <span class="icon-paper-plane"></span>
-                    </div>
-                    <div>
-                        <h3 class="mb-4">Email Address</h3>
-                        <p><a href="mailto:{{ \App\Profile::find(1)->email }}">{{ \App\Profile::find(1)->email }}</a></p>
-                    </div>
-                </div>
-            </div>
-            @endif
-            @if (\App\Profile::find(1)->website)
-            <div class="col-md-3 d-flex ftco-animate">
-                <div class="align-self-stretch box text-center p-4">
-                    <div class="icon d-flex align-items-center justify-content-center">
-                        <span class="icon-globe"></span>
-                    </div>
-                    <div>
-                        <h3 class="mb-4">Website</h3>
-                        <p><a href="{{ \App\Profile::find(1)->website }}">{{ \App\Profile::find(1)->judul }}</a></p>
-                    </div>
-                </div>
-            </div>
-            @endif
-        </div>
-
         <div class="row block-9">
             <div class="col-md-6 ftco-animate">
-                <form action="#" class="contact-form p-4 p-md-5 py-md-5">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Your Name">
+                <div class="row col-md-12">
+                    @if (\App\Profile::find(1)->alamat)
+                    <div class="col-md-6 d-flex mb-5 ftco-animate">
+                        <div class="align-self-stretch box text-center p-4">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="icon-map-signs"></span>
+                            </div>
+                            <div>
+                                <h3 class="mb-4">Address</h3>
+                                <p>{{ \App\Profile::find(1)->alamat }}</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Your Email">
+                    @endif
+                    @if (\App\Profile::find(1)->kontak)
+                    <div class="col-md-6 d-flex mb-5  ftco-animate">
+                        <div class="align-self-stretch box text-center p-4">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="icon-phone2"></span>
+                            </div>
+                            <div>
+                                <h3 class="mb-4">Contact Number</h3>
+                                <p><a href="tel://{{ \App\Profile::find(1)->kontak }}">{{ \App\Profile::find(1)->kontak }}</a></p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Subject">
+                    @endif
+                    @if (\App\Profile::find(1)->email)
+                    <div class="col-md-6 d-flex    ftco-animate">
+                        <div class="align-self-stretch box text-center py-5 p-4">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="icon-paper-plane"></span>
+                            </div>
+                            <div>
+                                <h3 class="mb-4">Email Address</h3>
+                                <p><a href="mailto:{{ \App\Profile::find(1)->email }}">{{ \App\Profile::find(1)->email }}</a></p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+                    @endif
+                    @if (\App\Profile::find(1)->website)
+                    <div class="col-md-6 d-flex   ftco-animate">
+                        <div class="align-self-stretch box text-center py-5 p-4">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="icon-globe"></span>
+                            </div>
+                            <div>
+                                <h3 class="mb-4">Website</h3>
+                                <p><a href="{{ \App\Profile::find(1)->website }}">{{ \App\Profile::find(1)->judul }}</a></p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
-                    </div>
-                </form>
+                    @endif
+                </div>
             </div>
 
             <div class="col-md-6 d-flex align-items-stretch ftco-animate">
