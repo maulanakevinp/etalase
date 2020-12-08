@@ -76,7 +76,7 @@
                     <h1 class="mb-4">{{ \App\Profile::find(1)->judul }}</h1>
                     <p class="mb-4">{{ \App\Profile::find(1)->kalimat_pembuka }}</p>
                     <p class="mt-5 navbar">
-                                <a data-scroll="about" href="#about" class="btn-custom dot active">Find More <span class="ion-ios-arrow-round-forward"></span></a>
+                                <a data-scroll="about" href="#about" class="btn-custom">Find More <span class="ion-ios-arrow-round-forward"></span></a>
                     </p>
                 </div>
             </div>
