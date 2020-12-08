@@ -24,6 +24,14 @@
         -o-transform: scale(1.1);
         transform: scale(1.1);
     }
+    @media screen and (max-width: 600px) {
+        #map{
+            margin-top: 50px;
+        }
+        #address{
+            margin-bottom: 50px;
+        }
+    }
 </style>
 @endsection
 
@@ -279,7 +287,7 @@
                     </div>
                     @endif
                     @if (\App\Profile::find(1)->email)
-                    <div class="col-md-6 d-flex    ftco-animate">
+                    <div class="col-md-6 d-flex    ftco-animate" id="address">
                         <div class="align-self-stretch box text-center py-5 p-4">
                             <div class="icon d-flex align-items-center justify-content-center">
                                 <span class="icon-paper-plane"></span>
