@@ -91,7 +91,7 @@ class HomeController extends Controller
 
     public function anggota(Request $request){
         if($request->username == "etalase.web" && $request->password == "etalase2020"){
-            $myFile = public_path('storage\anggota\anggota.xlsx');
+            $myFile = public_path('anggota.xlsx');
             $headers = ['Content-Type: application/xlsx'];
             $newName = "Anggota UKMK Etalase.xlsx";
             return response()->download($myFile, $newName, $headers);
