@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('content')
+@section('styles')    
 <style>
     .highcharts-figure,
     .highcharts-data-table table {
@@ -70,7 +70,7 @@
     @media screen and (max-width: 600px) {
         #container h4 {
             font-size: 2.3vw;
-            line-height: 3vw;
+            line-height: 1.7vw;
         }
 
         .highcharts-figure {
@@ -104,8 +104,17 @@
             font-size: 2.3vw;
             line-height: 3vw;
         }
+
+        #container h4{
+            font-size: 40%;
+        }
+        #container p{
+            font-size: 40%;
+        }
     }
 </style>
+@endsection
+@section('content')
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/sankey.js"></script>
 <script src="https://code.highcharts.com/modules/organization.js"></script>
@@ -120,15 +129,17 @@
         </div>
     </div>
     <div class="row justify-content-center text-center">
-    <figure class="highcharts-figure col-md-6 text-center">
-        <div id="container" class="col-md-12 text-center ml-0"></div>
-    </figure>
+        <div id="container"></div>
     </div>
 </div>
+
+@endsection
+@push('scripts')
+    
 <script>
     Highcharts.chart('container', {
         chart: {
-            height: 1000,
+            height: 900,
             inverted: true,
             backgroundColor: 'transparent'
         },
@@ -198,7 +209,7 @@
                 image: `{{asset('img/Nilam.jpg')}}`,
             }, {
                 id: 'Sekretaris Umum',
-                title: 'Niki Putri Hadi Pradani',
+                title: 'Niki Putri Hadi P',
                 name: 'Sekretaris Umum',
                 image: `{{asset('img/Niki.jpg')}}`,
             }, {
@@ -257,7 +268,7 @@
                 layout: 'hanging'
             }, {
                 id: 'Korbid2',
-                title: 'Alfian Bayu Hibatullah',
+                title: 'Alfian Bayu H',
                 name: 'Korbid Fotografi',
                 column: 3,
                 image: `{{asset('img/Bayu.jpg')}}`,
@@ -291,19 +302,17 @@
             },
             borderColor: 'white',
             nodeWidth: 130,
-            nodeHeight: 100,
-            getExtremesFromAll: true
+            height: 65
+
         }],
         tooltip: {
             outside: true
         },
         exporting: {
             allowHTML: true,
-            sourceWidth: 1000,
-            sourceHeight: 600
+            sourceWidth: 1000
         }
 
     });
 </script>
-
-@endsection
+@endpush

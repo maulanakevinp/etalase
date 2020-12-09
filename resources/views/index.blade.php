@@ -380,27 +380,13 @@
             </div>
 
             <div class="col heading-section ftco-animate col-md-6 mx-auto ">
-                <div class="row">
-                    <div class="col-lg">
-                        @if (session('success'))
-                            <div class="alert alert-success alert-dismissible fade show">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                {{ session('success') }}
-                            </div>
-                        @endif
-                       
-                    </div>
-                </div>
                 <form action="{{url('/anggota')}}" method="post" class="contact-form p-4 p-md-5 py-md-5">
                     @csrf
-                    <div class="form-group">
-                      <input type="text" name="username" class="form-control text-center" placeholder="Username">
-                    </div>
                     <div class="form-group mb-5">
                       <input type="text" name="password" class="form-control text-center" placeholder="Password">
                     </div>
                     <div class="form-group">
-                      <input type="submit" value="Download" class="btn btn-primary py-3 px-5">
+                      <input type="submit" value="Submit" class="btn btn-primary py-3 px-5">
                     </div>
                   </form>
             </div>
@@ -433,12 +419,12 @@
 @if (session('failed'))
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
+          <div class="modal-content col-6 mx-auto">
             <div class="modal-body text-center py-5">
                 {{ session('failed') }}
             </div>
             <div class="modal-footer text-center">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close">Close</button>
+              <button type="button" class="btn btn-secondary mx-auto" data-dismiss="modal" id="close">Close</button>
             </div>
           </div>
         </div>

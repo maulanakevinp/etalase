@@ -90,13 +90,10 @@ class HomeController extends Controller
     }
 
     public function anggota(Request $request){
-        if($request->username == "etalase.web" && $request->password == "etalase2020"){
-            $myFile = public_path('anggota.xlsx');
-            $headers = ['Content-Type: application/xlsx'];
-            $newName = "Anggota UKMK Etalase.xlsx";
-            return response()->download($myFile, $newName, $headers);
+        if($request->password == "etalase2020.web"){
+            return redirect()->away('https://drive.google.com/file/d/1ZB1DT3Yw1DaiDMTXzhP_M6-bAGd3b0as/view?usp=sharing');
         }else{
-            return back()->with('failed', 'Username atau Passoword salah');
+            return back()->with('failed', 'Passoword Salah');
         }
     }
 }
