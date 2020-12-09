@@ -383,7 +383,7 @@
                 <form action="{{url('/anggota')}}" method="post" class="contact-form p-4 p-md-5 py-md-5">
                     @csrf
                     <div class="form-group mb-5">
-                      <input type="text" name="password" class="form-control text-center" placeholder="Password">
+                      <input type="password" name="password" class="form-control text-center" placeholder="Password">
                     </div>
                     <div class="form-group">
                       <input type="submit" value="Submit" class="btn btn-primary py-3 px-5">
@@ -432,7 +432,10 @@
 <script type="text/javascript">
     $(window).on('load',function(){
         $('#myModal').modal('show');
-    });  
+    });
+    $('#close').click(function() {
+    location.reload();
+    });
 </script>
 @endif
 @endpush
