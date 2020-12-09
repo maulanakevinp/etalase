@@ -107,12 +107,17 @@
                     <h2 class="mb-4">{{ \App\Profile::find(1)->judul }}<br></h2>
                     <p>{{ \App\Profile::find(1)->deskripsi }}</p>
                     <div class="d-flex w-100">
-                        <div class="img img-about-2 ml-2" style="background-image:url({{ url('/') }}/img/2.jpg);"></div>
+                        <div class="img img-about-2" style="background-image:url({{ url('/') }}/img/2.jpg);"></div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-6 ml-2">
+                        <div class="col-md-6">
                             <a id="demo02" href="#animatedModal">
                                 <p class="btn-kotak">Sejarah Etalase <span class="ion-ios-arrow-round-forward"></span></p>
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <a id="demo01" href="#animatedModal1">
+                                <p class="btn-kotak">Daftar Anggota <span class="ion-ios-arrow-round-forward"></span></p>
                             </a>
                         </div>
                     </div>
@@ -325,6 +330,8 @@
 @endsection
 
 @push('scripts')
+
+{{-- modal 1 --}}
 <div id="animatedModal">
     <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID  class="close-animatedModal" -->
     <div class="close-animatedModal text-center mt-3">
@@ -352,7 +359,58 @@
         </div>
     </div>
 </div>
+
+{{-- modal 2 --}}
+<div id="animatedModal1">
+    <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID  class="close-animatedModal" -->
+    <div class="close-animatedModal1 text-center mt-3">
+        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-x-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+            <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+        </svg>
+    </div>
+
+    <div class="modal-content container mt-2" style="background-color: transparent;color:white;border:none;">
+        <div class="container text-center">
+            <div class="row justify-content-center mb-5 pb-3">
+                <div class="col-md-4 heading-section ftco-animate">
+                    <img src="{{ asset(Storage::url(\App\Profile::find(1)->logo)) }}" style="width: 20%; margin-bottom: 30pt">
+                    <span class="subheading d-block">Daftar Anggota</span>
+                </div>
+            </div>
+
+            <div class="col heading-section ftco-animate col-md-6 mx-auto ">
+                <div class="row">
+                    <div class="col-lg">
+                        @if (session('success'))
+                            <div class="alert alert-success alert-dismissible fade show">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                {{ session('success') }}
+                            </div>
+                        @endif
+                       
+                    </div>
+                </div>
+                <form action="{{url('/anggota')}}" method="post" class="contact-form p-4 p-md-5 py-md-5">
+                    @csrf
+                    <div class="form-group">
+                      <input type="text" name="username" class="form-control text-center" placeholder="Username">
+                    </div>
+                    <div class="form-group mb-5">
+                      <input type="text" name="password" class="form-control text-center" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                      <input type="submit" value="Download" class="btn btn-primary py-3 px-5">
+                    </div>
+                  </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script src="{{ asset('assets/snapshot/js/jquery.min.js') }}"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="{{ asset('js/jquery.fancybox.js') }}"></script>
 <script src="{{ asset('js//animatedModal.js') }}"></script>
 <script>
@@ -362,6 +420,33 @@
             animatedOut: 'bounceOutDown',
             color: 'rgba(25,26,28,0.9)',
         });
+        $("#demo01").animatedModal({
+            animatedIn: 'lightSpeedIn',
+            animatedOut: 'bounceOutDown',
+            color: 'rgba(25,26,28,0.9)',
+        });
+        
     });
+    
 </script>
+
+@if (session('failed'))
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-body text-center py-5">
+                {{ session('failed') }}
+            </div>
+            <div class="modal-footer text-center">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+<script type="text/javascript">
+    $(window).on('load',function(){
+        $('#myModal').modal('show');
+    });  
+</script>
+@endif
 @endpush

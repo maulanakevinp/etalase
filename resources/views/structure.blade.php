@@ -120,7 +120,7 @@
         </div>
     </div>
     <div class="row justify-content-center text-center">
-    <figure class="highcharts-figure col-md-6 text-center mb-5">
+    <figure class="highcharts-figure col-md-6 text-center">
         <div id="container" class="col-md-12 text-center ml-0"></div>
     </figure>
     </div>

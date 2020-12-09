@@ -9,6 +9,8 @@ use App\Profile;
 use App\Structure;
 use App\Video;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -85,5 +87,16 @@ class HomeController extends Controller
     public function dashboard()
     {
         return view('dashboard');
+    }
+
+    public function anggota(Request $request){
+        if($request->username == "etalase.web" && $request->password == "etalase2020"){
+            $myFile = public_path('storage\anggota\anggota.xlsx');
+            $headers = ['Content-Type: application/xlsx'];
+            $newName = "Anggota UKMK Etalase.xlsx";
+            return response()->download($myFile, $newName, $headers);
+        }else{
+            return back()->with('failed', 'Username atau Passoword salah');
+        }
     }
 }

@@ -19,6 +19,7 @@ Route::get('/gallery', 'HomeController@gallery')->name('gallery');
 Route::get('/structure', 'HomeController@structure')->name('structure');
 Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
 Route::get('/load-gallery', 'HomeController@loadGallery')->name('gallery.load');
+Route::post('/anggota', 'HomeController@anggota')->name('amggota');
 
 Auth::routes([
     'register' => false, // Registration Routes...
