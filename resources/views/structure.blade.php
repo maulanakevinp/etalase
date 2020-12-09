@@ -216,7 +216,7 @@
                 id: 'Litbang1',
                 title: 'Imas Andrian Fajri',
                 name: 'Litbang',
-                image: `{{asset('img/Imas.jpg')}}`,
+                image: `{{asset('img/Imass.jpg')}}`,
                 column: 2,
             }, {
                 id: 'Litbang2',
