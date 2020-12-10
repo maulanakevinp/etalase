@@ -28,9 +28,27 @@ class AnggotaController extends Controller
                             ->latest()->paginate(20);
         }
 
-        $anggota->appends($request->only('cari'));
+        $anggota->appends(request()->input());
 
         return view('anggota.index',compact('anggota'));
+    }
+
+    public function anggota(Request $request){
+        if($request->password == "etalase2020.web"){
+            $anggota = Anggota::paginate(20);
+
+            if ($request->cari) {
+                $anggota = Anggota::where('nama','like',"%{$request->cari}%")
+                                ->orWhere('nim','like',"%{$request->cari}%")
+                                ->orWhere('nia','like',"%{$request->cari}%")
+                                ->latest()->paginate(20);
+            }
+            $anggota->appends(request()->input());
+            return view('anggota',compact('anggota'));
+
+        }else{
+            return back()->with('failed', 'Passoword Salah');
+        }
     }
 
     /**

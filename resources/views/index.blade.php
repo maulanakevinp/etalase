@@ -380,7 +380,7 @@
             </div>
 
             <div class="col heading-section ftco-animate col-md-6 mx-auto ">
-                <form action="{{url('/anggota')}}" method="post" class="contact-form p-4 p-md-5 py-md-5">
+                <form action="{{url('/anggota-etalase')}}" method="get" class="contact-form p-4 p-md-5 py-md-5">
                     @csrf
                     <div class="form-group mb-5">
                       <input type="password" name="password" class="form-control text-center" placeholder="Password">
