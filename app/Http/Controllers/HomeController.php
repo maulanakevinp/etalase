@@ -80,8 +80,7 @@ class HomeController extends Controller
 
     public function structure()
     {
-        $structures = Structure::all();
-        return view('structure', compact('structures'));
+        return view('structure');
     }
 
     public function dashboard()

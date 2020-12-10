@@ -411,9 +411,9 @@
             animatedOut: 'bounceOutDown',
             color: 'rgba(25,26,28,0.9)',
         });
-        
+
     });
-    
+
 </script>
 
 @if (session('failed'))

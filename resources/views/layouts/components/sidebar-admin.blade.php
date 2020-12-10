@@ -54,6 +54,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('anggota.index') }}" class="@if(Request::segment(1) == "anggota") mm-active @endif">
+                        <i class="metismenu-icon pe-7s-users"></i>
+                        Anggota
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('arts.index') }}" class="@if(Request::segment(1) == "arts") mm-active @endif">
                         <i class="metismenu-icon pe-7s-music"></i>
                         Bidang

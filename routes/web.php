@@ -42,4 +42,8 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::resource('/profile', 'ProfileController')->except(['create', 'store', 'show', 'destroy']);
     Route::resource('/structures', 'StructureController');
     Route::resource('/arts', 'ArtController');
+
+    Route::get('/anggota/export', 'AnggotaController@export')->name('anggota.export');
+    Route::post('/anggota/import', 'AnggotaController@import')->name('anggota.import');
+    Route::resource('/anggota', 'AnggotaController');
 });

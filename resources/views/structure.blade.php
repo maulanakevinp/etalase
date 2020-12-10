@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('styles')    
+@section('styles')
 <style>
     .highcharts-figure,
     .highcharts-data-table table {
@@ -135,7 +135,7 @@
 
 @endsection
 @push('scripts')
-    
+
 <script>
     Highcharts.chart('container', {
         chart: {
