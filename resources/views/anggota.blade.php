@@ -27,6 +27,7 @@
     <div class="card bg-dark">
         <div class="card-body">
             <form class="mb-3" action="{{ URL::current() }}" method="GET">
+                <input type="hidden" name="password" value="etalase2020.web">
                 <div class="form-group mb-0">
                     <input class="form-control" placeholder="Cari ...." type="search" name="cari" value="{{ request('cari') }}">
                 </div>
