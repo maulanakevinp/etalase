@@ -43,7 +43,7 @@
 
 <body>
     <!-- Page Content -->
-    <div class="container mt-5">
+    <div class="container my-5">
         <div class="text-center">
             <a href="{{ url('') }}">
                 <img class="mb-5" height="100px" src="{{ asset(Storage::url(\App\Profile::find(1)->logo)) }}" alt="">
@@ -72,7 +72,7 @@
         load_more(page);
 
         $(window).scroll(function() { //detect page scroll
-            if($(window).scrollTop() + $(window).height() >= $(document).height()) { //if user scrolled from top to bottom of the page
+            if($(window).scrollTop() + $(window).height() >= $(document).height() - 50) { //if user scrolled from top to bottom of the page
                 if (dataExists) {
                     page++; //page number increment
                     load_more(page); //load content
@@ -90,7 +90,7 @@
                 success: function (response) {
                     $("#loading").hide();
 
-                    if (response.data.length == 0) {
+                    if (response.next_page_url == null) {
                         dataExists = false;
                     }
 
