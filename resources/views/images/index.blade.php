@@ -232,7 +232,9 @@ Images
         let btn = this;
 
         $(".gambar-check").each(function () {
-            id.push(this.value);
+            if (this.checked) {
+                id.push(this.value);
+            }
         });
 
         if (id.length > 0) {
